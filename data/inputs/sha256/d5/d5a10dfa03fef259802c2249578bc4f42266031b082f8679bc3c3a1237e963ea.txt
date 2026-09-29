@@ -1,0 +1,44 @@
+```python
+import re
+
+def validate_email(email):
+  """
+  Validates an email address using a regular expression.
+
+  Args:
+    email: The email address to validate.
+
+  Returns:
+    True if the email address is valid, False otherwise.
+  """
+
+  regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+  match = re.match(regex, email)
+  return bool(match)
+
+# Example usage
+email1 = "test@example.com"
+email2 = "invalid-email"
+email3 = "user.name@subdomain.example.co.uk"
+
+print(f"'{email1}' is valid: {validate_email(email1)}")
+print(f"'{email2}' is valid: {validate_email(email2)}")
+print(f"'{email3}' is valid: {validate_email(email3)}")
+```
+
+**Explanation of the Regular Expression:**
+
+* `^`: Matches the beginning of the string.
+* `[a-zA-Z0-9._%+-]+`: Matches one or more alphanumeric characters, periods (.), underscores (_), percentage signs (%), plus signs (+), or hyphens (-). This part covers the "local part" of the email address (before the @ symbol).
+* `@`: Matches the literal "@" symbol.
+* `[a-zA-Z0-9.-]+`: Matches one or more alphanumeric characters, periods (.), or hyphens (-). This part covers the "domain name" part of the email address.
+* `\.`: Matches a literal period (.).
+* `[a-zA-Z]{2,}$`: Matches two or more alphabetic characters. This part represents the top-level domain (e.g., com, net, org).
+* `$`: Matches the end of the string.
+
+**Important Considerations:**
+
+* **This regex provides a basic level of email validation.** It doesn't guarantee that the email address actually exists or is deliverable.
+* **For more robust validation, consider using a dedicated email validation library.** These libraries often perform DNS lookups to check if the domain exists and may have more comprehensive rules.
+
+Remember to adapt the regular expression and validation logic to your specific requirements and desired level of strictness.

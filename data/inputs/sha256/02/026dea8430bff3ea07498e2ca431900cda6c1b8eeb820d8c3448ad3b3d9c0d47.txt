@@ -1,0 +1,3 @@
+A confirmation email should be written appropriately for the situation.
+
+A meeting has been scheduled, and the sender expects the other to review the slides.

@@ -1,0 +1,132 @@
+\section{Framework: MDI and FIP}
+\label{sec:framework}
+
+\paragraph{(i) A judge score is a draw from a distribution.}
+Fix an evaluation environment
+\begin{equation*}
+  \env = (\text{judge model},\ \text{prompt template},\ \text{task},\
+  \text{scale format},\ \text{temperature})
+\end{equation*}
+and an output $x$. The judge's score is not a constant of $(x, \env)$. Repeat
+the same call $r = 1, \dots, N$ times and it returns draws $s^{(r)}(x;\env)$
+from a distribution. Everything below follows from keeping that distribution
+instead of using its first value. Scores are reported scale-normalized (\%p;
+raw values in the appendix). We write $\bar{s}_N$ for a system's item-mean
+score over $N$ repeats and $\Delta = \bar{s}_N^A - \bar{s}_N^B$ for the
+observed gain.
+
+\paragraph{(ii) $\sigma(\env)$ is observable only through same-input repeats.}
+The spread $\sigma(\env)$ cannot be read off a single run, a leaderboard or a
+model card: it is observable only by scoring the \emph{same input} repeatedly
+in the \emph{same environment}. That is the one idea we take from psychometrics
+(test--retest reliability), and Section~\ref{sec:experiments} is built to
+produce such repeats.
+
+\paragraph{(iii) The prediction interval of an observed gain.}
+When the true gain is zero, the observed $\Delta = \bar{s}_N^A - \bar{s}_N^B$
+still has a distribution, inherited from the judge's. Inside its central 95\%
+prediction interval, a gain cannot be told apart from the judge scoring the
+same thing again. That interval depends on $(\env, N)$ and not on which
+systems are compared. Definition~\ref{def:mdi} states this as the null
+distribution $D_0(\env, N)$, estimated nonparametrically from
+repeated-scoring data.
+
+\paragraph{(iv) $N$-dependence and the noise floor.}
+The interval shrinks with the measurement budget $N$, but not to zero. The
+variance of a mean of $N$ repeats decomposes as
+\begin{equation}
+  \label{eq:decay}
+  \operatorname{Var}\!\left[\bar{s}_N\right]
+    \;=\; \frac{\sigma^2(\env)}{N} \;+\; \omega^2(\env),
+\end{equation}
+the standard variance-components form (cf.\
+\citealp{miller2024errorbars, messing2026tee}). Repeats reduce
+$\sigma^2(\env)$; they do not touch the floor $\omega^2(\env)$. Two things
+follow: the threshold depends on $N$, and buying more repeats stops paying at
+$\omega(\env)$. Experiment~3's sweep fits Eq.~\eqref{eq:decay} per environment
+to estimate both, and its $\omega^2$ independently replicates the CI
+half-width floor of \citet{messing2026tee}.
+
+\paragraph{(v) Everything depends on the environment.}
+Every quantity above depends on $\env$. A threshold computed for one judge,
+prompt, task, and scale does not carry over to another; the grid of
+Section~\ref{sec:experiments} measures how badly it fails to carry over, which
+is why every table is indexed by environment.
+An environment includes the scoring harness (parsing, rubric rendering,
+retries, provider), so in measurement-theory terms our intrinsic axis is
+\emph{repeatability} and our procedural axis \emph{reproducibility}.
+
+\paragraph{(vi) A procedure, not a benchmark.}
+A fixed-item benchmark would contradict the thesis that every quantity here
+depends on the environment. What we offer is the procedure a team runs to get
+its own numbers, plus the implementation; the tables below illustrate it rather
+than replace it.
+
+\subsection{FIP and MDI}
+\label{sec:framework-defs}
+
+\begin{definition}[False Improvement Probability]
+  \label{def:fip}
+  For an observed gain $\Delta$ measured in environment $\env$ with $N$
+  scoring repeats per system,
+  \begin{equation*}
+    \fip(\Delta, \env, N)
+      \;=\; P\bigl(\Delta' \le 0 \,\big|\, \text{observed } \Delta,\ \env,\ N\bigr),
+  \end{equation*}
+  where $\Delta'$ is the gain re-measured under an independent replication
+  in the same environment with the same budget. $\fip$ is estimated
+  nonparametrically from repeated-scoring data (Experiment~2).
+\end{definition}
+
+Conditioning on the observed effect is the move \citet{baumann2025llmhacking}
+make for annotation-stage $p$-values; we make it for measurement-stage
+score gains. The ancestor of both is Card et al.'s Type-S error
+\citep{card2020power}, with the stochasticity relocated from the sample to
+the scorer.
+
+\begin{definition}[Minimum Detectable Improvement]
+  \label{def:mdi}
+  Let $D_0(\env, N)$ be the distribution of mean score differences between
+  two independent $N$-repeat scorings of the \emph{same} systems in
+  environment $\env$ (pairs whose true skill difference is zero by
+  construction). Then
+  \begin{equation*}
+    \mdi(\env, N)
+      \;=\; \tfrac{1}{2}\,
+      \operatorname{width}\!\bigl(\mathrm{PI}_{95\%}\bigl[D_0(\env, N)\bigr]\bigr),
+  \end{equation*}
+  the half-width of the central 95\% prediction interval of the null
+  distribution. Via Eq.~\eqref{eq:decay}, $\mdi$ falls with $N$ at a rate
+  set by $\sigma^2(\env)$ and flattens onto the floor $\omega(\env)$: the
+  dependence on $N$ is part of the definition.
+\end{definition}
+
+$D_0$ is built by splitting each cell's estimation repeats, per item, into two
+disjoint pools and collecting the difference of their $N$-repeat means
+(Appendix~\ref{app:extra}).
+
+We \emph{define} rather than derive $\mdi$, for a practical reason: the null
+interval is exactly the region in which the instrument cannot tell two
+identical systems apart. One property should be stated plainly: a true gain
+of exactly $\mdi$ is measured above $\mdi$ only about half the time. So $\mdi$
+controls false claims at the stated level $\alpha$, not the chance of catching a real gain.
+A team that wants an $80\%$ chance needs a larger gain, and we measure the
+factor rather than assume it: shifting $D_0$ and reading where $80\%$ of it
+clears $\mdi$ gives $1.43\,\mdi$ (median over 36 cells, range
+$1.34$--$1.46$; the closed-form cross-check is
+Appendix~\ref{app:extra}). We tabulate the $\alpha$-level value
+because $D_0$ measures it directly, and carry the $80\%$ column beside it.
+The FIP-crossing read-off
+$\min\{\Delta : \fip(\Delta, \env, N) \le \alpha\}$ is a consistency probe,
+not a second definition; it sits \emph{above} the null-PI value and
+Section~\ref{sec:experiments} reports the gap. Every decision here uses the
+null-PI $\mdi$.
+
+The nearest prior statistics describe the instrument, not the decision. Feuer
+et al.'s $\mathrm{Sens}$ \citep{feuer2025judgmentnoise} carries no
+$N$-dependence, and $\Delta^*_{75}$ of \citet{usami2026darkcurrent} is measured
+per response pair from single calls: $\Delta^*(J)$, where $\mdi$ is $\Delta^*(J, N)$ at
+a stated error level. The MDE lineage \citep{card2020power,
+miller2024errorbars, kotawala2026resolution} places the variance in the sample,
+ours in the scorer.
+

@@ -1,0 +1,44 @@
+In Java, there are two distinct contexts for understanding comparison of strings: `==` and `.equals()`. Here’s a detailed breakdown to help you understand when to use each and the implications of doing so with strings.
+
+### Meaning of `==` in Java
+
+The `==` operator in Java is used for reference comparison. It checks whether both objects point to the same memory location. This holds true for strings as well, considering how strings are implemented internally in Java.
+
+- **String Internals:** Java uses a thing called an “intern pool” to store unique copies of string literals. When you create a string literal (like `"hello"`), it checks if a string with the same content already exists in the pool. If it does, it returns the existing one; otherwise, it creates a new one and adds it to the pool. This ensures that equal string literals are always stored at the same location in memory.
+
+- **Consequences with `==` on Strings:**
+   - When you compare two string literals using `==`, you’re essentially checking if both variables reference the same object in memory, which means:
+     - Both must be created using the same string literal (e.g., `"hello" == "hello"` is true).
+     - Comparing strings created using string concatenation operations or String constructors (`new String("hello")`) will always return false because these are different objects.
+     - Changes made to one of the strings using `charAt`, substring methods or assignment to a new string literal won’t affect the other because they are distinct objects.
+
+### Meaning of `.equals()` in Java
+
+On the other hand, `String’s equals()` method compares the actual characters contained within two strings. It checks whether they contain the same characters in the same order and ignores any differences in reference.
+
+- **Why You Should Use `.equals()` for String Comparisons:**
+   - This is what you should use when you want to check if two strings hold the same sequence of characters.
+   - It handles strings created using different paths (e.g., literals, concatenation, constructors).
+   - It’s more suitable when dealing with user input, as users can type different capitalizations or have different spacing.
+
+### When to Use `==` in Other Contexts
+
+- You might use `==` when working with custom objects and you’ve overridden their `equals()` method to provide a custom comparison logic. In this case, `==` checks if both objects refer to the same instance, while `equals()` checks if they are semantically equal according to your overridden method.
+- You might use `==` when working with null checks because `null == null` is true while `null.equals(null)` throws a NullPointerException.
+
+### Summary
+
+In Java, when comparing strings, it’s generally recommended to use `.equals()` instead of `==`. This ensures that you’re comparing the actual contents of the strings rather than their memory references.
+
+Here’s an example of how you might write your string comparison correctly:
+
+```java
+String str1 = "hello";
+String str2 = "hello";
+
+if (str1.equals(str2)) {
+    System.out.println("The strings are equal.");
+}
+```
+
+This will correctly identify whether `str1` and `str2` hold the same sequence of characters regardless of how they were created. Always prefer `.equals()` for comparing strings in Java unless you have a specific reason to use `==`, such as custom object comparisons or null checks.

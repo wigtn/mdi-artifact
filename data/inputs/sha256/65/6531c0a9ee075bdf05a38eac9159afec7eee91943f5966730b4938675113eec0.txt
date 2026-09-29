@@ -1,0 +1,30 @@
+To add an image to an HTML page, you use the `<img>` HTML element within the `<body>` section. Here’s the required HTML syntax:
+
+```html
+<img src="image_path" alt="image_description" title="optional_tooltip" width="optional_width" height="optional_height">
+```
+
+Let's break down each attribute:
+
+- **src**: This is a mandatory attribute that specifies the URL or path to the image file. Ensure that the URL is correct and the image is accessible.
+
+- **alt**: This is a mandatory attribute for accessibility purposes. It provides a text description of the image for visually impaired users and search engines. A good practice is to make this description concise and descriptive.
+
+- **title**: This is an optional attribute that adds a tooltip or a balloon text when the user hovers over the image.
+
+- **width** and **height**: These are optional attributes that define the width and height of the image in pixels. You can specify either one or both, but it's recommended to keep these values if your image dimensions are different from those in the original file to prevent distortion. If omitted, the browser will download the original image size.
+
+Here's a complete example:
+
+```html
+<img src="images/myimage.jpg" alt="A beautiful sunset in Hawaii" title="Sunset in Hawaii">
+```
+
+Make sure to replace `"images/myimage.jpg"` with the actual path to your image file.
+
+### Best Practices:
+- Use relative paths if the image is located within your project directory.
+- Use absolute URLs (starting with `http://` or `https://`) if the image is hosted elsewhere.
+- Use descriptive alt text to improve accessibility and search engine optimization (SEO).
+- Compress your images to reduce page load times.
+- Use responsive design techniques (like setting max-width or using CSS aspect-ratio) to ensure images adapt well across different devices and screen sizes.

@@ -1,0 +1,10 @@
+This paper introduces FewJoint, the first benchmark for few-shot learning (FSL) in joint dialogue understanding (intent detection and slot filling). 
+
+Addressing the challenges of sparse data and limited joint learning research in FSL, FewJoint offers a new corpus of 59 real-world dialogue domains and a code platform for easy experimentation. 
+
+The authors highlight the issue of noisy data sharing in few-shot scenarios, which hinders joint learning. They propose a novel solution: "trust gating," which uses explicit intent information to guide slot filling and blocks low-confidence intent data for improved sharing quality. 
+
+Additionally, they employ a Reptile-based meta-learning strategy for better generalization in unseen domains. Experiments demonstrate significant performance improvements on existing datasets, achieving state-of-the-art results. 
+
+
+In essence, the paper proposes a new benchmark and novel techniques to enhance joint dialogue understanding in the challenging few-shot learning setting.

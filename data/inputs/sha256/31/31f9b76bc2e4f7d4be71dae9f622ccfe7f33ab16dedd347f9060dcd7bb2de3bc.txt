@@ -1,0 +1,19 @@
+You're right to question why only proteins, carbohydrates, and fats are considered to have caloric value.  
+
+Here's the breakdown:
+
+**Caloric value (measured in kilocalories or Calories) represents the amount of energy our bodies can extract from a substance when it's broken down through metabolic processes.**
+
+* **Proteins, carbohydrates, and fats** are all **macronutrients**. This means our bodies need them in relatively large amounts to function. They are complex molecules composed of chains of smaller units (amino acids for protein, glucose units for carbohydrates, and fatty acids for fats).  During digestion and metabolism, these chains are broken down, and the bonds between their units release energy that our cells can use.
+
+* **Vitamins, minerals, and electrolytes** are **micronutrients**. We need them in much smaller quantities.  
+
+**Crucially, vitamins, minerals, and electrolytes do not directly provide energy (calories) to our bodies.** They act as essential **cofactors** and **regulators** in various metabolic processes. They help enzymes work, maintain fluid balance, transmit nerve impulses, and perform countless other vital functions.  
+
+**Therefore, 100g of vitamins, minerals, and/or electrolytes would have 0 caloric value.**
+
+
+**Analogy:** Think of it like this:
+
+* Proteins, carbs, and fats are like fuel (wood, gasoline, etc.) that directly powers a car engine.
+* Vitamins, minerals, and electrolytes are like the spark plugs, oil, and coolant – essential for the engine to run efficiently but not providing the energy itself.

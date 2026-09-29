@@ -1,0 +1,173 @@
+# Exp 1 — variance grid, DENSE tier (gpt-4o-mini).
+#
+# Governance:
+#   - judge axis .............. ADR-002 Update 2026-08-01 (dense: gpt-4o-mini) — DECIDED
+#   - notation ................ ADR-001 Update 2026-08-01 (%p primary) — DECIDED
+#   - repeat sweep ............ ADR-011 Update 2026-07-31: N ∈ {1,3,5,8,10,20} — DECIDED
+#   - screening separation .... ADR-007 (held-out; see exp2 block below) — procedure Proposed
+#   - task/benchmark axis ..... ADR-002 (OPEN — kickoff). Only the summarization task is
+#     active below; the other two task slots are declared but BLOCKED until the
+#     benchmark choice is Accepted. Estimates must be reported as "per active task"
+#     with a x3 extrapolation for the envelope.
+#   - budget envelope ......... ADR-002 Update 2026-08-01: ~$16 total, ~$10 reserve
+#
+# EXECUTION IS GATED: estimate-cost -> pilot -> (first-author approval) -> full.
+
+experiment: exp1_dense
+benchmark: summeval
+
+judge:
+  model: "gpt-4o-mini"
+  model_version: "unpinned-alias"   # overwritten per record by the provider echo
+  tier: "dense"                     # ADR-006 Update 2026-08-01: model-grade two-tier
+  provider: "openai"
+  provider_kind: "openai_compat"
+  endpoint: "https://api.openai.com/v1"
+  api_key_env: "OPENAI_API_KEY"
+  serving_engine: null
+  quantization: null
+
+prompt:
+  prompt_id: "p_exp1_summ_v1"
+  paraphrase_id: "pp_0"             # paraphrase axis (pp_1..) lands with Exp 3 ablation
+  templates:
+    likert5: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 1-5 scale, where 1 is very poor and 5 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-5>}
+    likert10: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 1-10 scale, where 1 is very poor and 10 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-10>}
+    score100: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 0-100 scale, where 0 is very poor and 100 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 0-100>}
+
+grid:
+  # ADR-001 Options A: direct-scoring scales only (pairwise as flip-rate output).
+  task: ["summarization"]
+  # Task 2 (instruction following, AlpacaEval 2.0): loader LANDED — see
+  # `kind: alpaca_eval_github` in src/mdi/store.py and the commented
+  # inputs.by_task example below. Enabling it, i.e. switching to
+  #   task: ["summarization", "instruction_following"]
+  # is the FIRST AUTHOR's flip, recorded via ADR-002. Task 3 remains BLOCKED
+  # pending ADR-002; candidates are compared in docs/papers/TASK3-options-memo.md.
+  scale: ["likert5", "likert10", "score100"]
+  temperature: [1.0]                # ADR-011 D2: mean-of-N under sampling
+
+inputs:
+  kind: hf_datasets_server
+  dataset: "mteb/summeval"
+  config: "default"
+  split: "test"
+  builder: "summeval_close_pair"
+  fetch_rows: 100
+  n_items: 100                      # full SummEval test split
+  n_systems: 4                      # 6 pairs — cluster-bootstrap minimum is 2 (see spike)
+  # --- Task-2 example (COMMENTED — flipping it is the first author's ADR-002 switch) ---
+  # With two tasks, both sources move under inputs.by_task (runner._input_spec
+  # dispatches per task). NOTE for the flip: `benchmark:` above is a single
+  # global label baked into every record — a per-task benchmark label needs a
+  # small runner change before mixed-task runs are recorded.
+  #
+  # by_task:
+  #   summarization:
+  #     kind: hf_datasets_server
+  #     dataset: "mteb/summeval"
+  #     config: "default"
+  #     split: "test"
+  #     builder: "summeval_close_pair"
+  #     fetch_rows: 100
+  #     n_items: 100
+  #     n_systems: 4
+  #   instruction_following:
+  #     # AlpacaEval 2.0 — 805 public instructions, per-model outputs released at
+  #     # https://github.com/tatsu-lab/alpaca_eval (results/<system>/model_outputs.json).
+  #     # Data license CC BY-NC 4.0; HF datasets-server does not serve this dataset
+  #     # (script-based), so the loader fetches raw GitHub JSON and pins it under
+  #     # data/inputs/cache/ exactly like the SummEval path.
+  #     kind: alpaca_eval_github
+  #     builder: "alpacaeval_close_cluster"
+  #     ref: "main"                 # pin a commit SHA for stricter provenance
+  #     n_items: 100                # content-addressed subsample of the 805
+  #     max_chars: 8000             # truncation cap — working assumption, see loader docstring
+  #     # PRIMARY: explicit results/ directory names. Which systems is an
+  #     # ADR-002/ADR-007 choice (first author) — names below are syntax examples only:
+  #     # systems: ["gpt4_1106_preview", "gpt-4-0125-preview",
+  #     #           "claude-3-opus-20240229", "Meta-Llama-3-70B-Instruct"]
+  #     # FALLBACK: closest cluster over published length-controlled win rates,
+  #     # copied by hand from
+  #     # https://github.com/tatsu-lab/alpaca_eval/blob/main/docs/data_AlpacaEval_2/weighted_alpaca_eval_gpt4_turbo_leaderboard.csv
+  #     # (the CSV `name` column does not match results/ dir names — do not automate):
+  #     # candidate_systems: ["<dir_a>", "<dir_b>", "<dir_c>", "<dir_d>", "<dir_e>"]
+  #     # lc_win_rates: {"<dir_a>": 55.0, "<dir_b>": 54.1, "<dir_c>": 53.9,
+  #     #                "<dir_d>": 50.7, "<dir_e>": 44.9}
+  #     # n_systems: 4
+
+repeats:
+  n: 20                             # full-N cells; lower N are bootstrap slices
+  max_attempts_factor: 2            # ADR-011 D7
+  seed_base: 20260801
+  sweep: [1, 3, 5, 8, 10, 20]       # ADR-011 Update 2026-07-31 (N=8: VRR-Stop M=8)
+
+exp2:
+  # ADR-007: screening/estimation separation. Repeat 0 of every cell is the
+  # screening pass and is EXCLUDED from FIP estimation (the stats layer raises
+  # on overlap). Bin edges follow ADR-007 §2 and become config once Accepted.
+  screening_repeats: [0]
+
+pilot:
+  n_items: 10
+  n_repeats: 3
+
+budget:
+  pilot_cap_usd: 5
+  cumulative_cap_usd: 16            # ADR-002 Update 2026-08-01 envelope
+
+pricing:
+  "gpt-4o-mini":
+    input_usd_per_mtok: 0.15
+    output_usd_per_mtok: 0.60
+
+runtime:
+  concurrency: 8
+  max_output_tokens: 24             # {"score": NN} only
+  expected_output_tokens: 6         # measured: spike 6.0/call, pilot 2026-08-02 6.0/call
+  chars_per_token: 4.0

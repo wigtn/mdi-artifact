@@ -1,0 +1,40 @@
+Since neither of the servers have direct access to each other and you have SSH set up on your local machine to both servers, you can leverage your local machine as a relay to copy files between these servers securely. Here’s a step-by-step guide using `rsync` and SSH:
+
+### Prerequisites:
+- Ensure you have SSH keys configured on your local machine to authenticate with both Server A and Server B without typing passwords interactively every time (you can refer to [this documentation](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) for setting up SSH keys).
+
+### Copying Files Using Your Local Machine as a Relay:
+1. **From Server A to Your Local Machine:**
+   - Open a terminal on your local machine and use the following command to copy files from Server A:
+   ```bash
+   rsync -avz ssh userA@ServerA:'~/Documents/training_results/' ~/local_destination/temp_from_a/
+   ```
+   - Replace `userA` with your username on Server A and `~/local_destination/temp_from_a/` with any directory you prefer to temporarily store the files on your local machine.
+
+2. **From Your Local Machine to Server B:**
+   - Now copy files from the temporary directory on your local machine to Server B:
+   ```
+   rsync -avz ssh userB@ServerB:'~/training_results/' ~/local_destination/temp_from_a/
+  ôm_files/
+   ```
+   - Append files from the temporary directory to Server B's `~/training_results/` while preserving permissions (-a), compression for better network performance (-z), and verbosity (-v) for informative output.
+   - Replace `userB` with your username on Server B.
+
+### Moving Files Directly into Place on Server B:
+   If you want the files directly in `~/training_results/` on Server B without an intermediate temporary directory on Server B, you can combine steps from both directions with a single rsync command involving both servers from your local machine:
+   ```
+   rsync -avz ssh -e "ssh" userA@ServerA:'~/Documents/training_results/' userB@ServerB:'~/training_results/'
+   ```
+
+### Explanation of the Combined Command:
+- `-e "ssh"` tells rsync to use SSH for connecting to both servers.
+- `userA@ServerA:'~/Documents/training_results/'` is the source directory on Server A.
+- `userB@ServerB:'~/training_results/'` is the destination directory on Server B.
+
+Remember that this combined command assumes both servers have identical directory structures if you want to overwrite files on Server B. If you want to append new files without modifying existing ones, use the `--append` option along with `-r` to include directories recursively. However, this might not be ideal for your case where you want exact matching source and destination directories.
+
+### Security Note:
+Using rsync over SSH ensures secure data transfer as it encrypts data in transit. However, ensure your SSH keys are well-managed, not publicly accessible, and follow best practices for secure authentication.
+
+### Final Thoughts:
+rsync is an efficient and powerful tool for file transfers over networks. By leveraging your local machine as a relay, you can achieve secure copying between two servers without direct access to each other. This method is essential when strict security policies prohibit direct connections between servers.

@@ -1,0 +1,66 @@
+## Subtopics for Music Theory:
+
+**Fundamentals:**
+
+* **Rhythm and Meter:**
+    * Note values and durations
+    * Time signatures
+    * Tempo and meter markings
+    * Polyrhythms
+    * Syncopation
+* **Melody and Pitch:**
+    * Scales and keys
+    * Intervals and chord construction
+    * Pitch notation (treble and bass clef)
+    * Melodic contour and phrasing
+* **Harmony and Chords:**
+    * Triads and inversions
+    * Seventh chords and extensions
+    * Chord progressions
+    * Cadences and harmonic analysis
+* **Form and Structure:**
+    * Binary, ternary, and sonata form
+    * Theme and variations
+    * Rondo form
+    * Through-composed form
+
+**Advanced Concepts:**
+
+* **Counterpoint:**
+    * Two-part and multi-part counterpoint
+    * Imitation and canon
+    * Fugue
+* **Voice Leading:**
+    * Smooth and logical voice movement
+    * Consonance and dissonance
+    * Common tones and neighbor tones
+* **Modulation and Key Changes:**
+    * Secondary dominants
+    * Pivot chords
+    * Modulation techniques
+* **Analysis and Interpretation:**
+    * Identifying musical elements in a score
+    * Understanding composer's intent
+    * Explaining musical structure and meaning
+
+**Genres and Styles:**
+
+* **Western Classical Music:** Baroque, Classical, Romantic, 20th Century
+* **Jazz Theory:**
+    * Blues scales and progressions
+    * Swing rhythm
+    * Improvisation
+* **Popular Music Theory:**
+    * Pop song structure
+    * Chord voicings and inversions
+    * Rhythm and groove
+
+**Tools and Resources:**
+
+* **Music notation software:** Finale, Sibelius, MuseScore
+* **Ear training apps:** Tenuto, Functional Ear Trainer
+* **Online music theory websites:** musictheory.net, Teoria.com
+* **Books and textbooks:** The Complete Idiot's Guide to Music Theory, Harmony by Walter Piston
+
+
+This list is not exhaustive, but it provides a comprehensive overview of the various subtopics within music theory.

@@ -1,0 +1,110 @@
+{
+  "fits": [
+    {
+      "bootstrap": {
+        "ci_level": 0.95,
+        "degenerate": false,
+        "method": "percentile",
+        "n_clusters": 200,
+        "n_resamples": 2000,
+        "seed": 20260731
+      },
+      "draws_per_cell": 400,
+      "env_id": "e_b842cbff3261",
+      "group_field": "paraphrase_id",
+      "icc": 0.001135481299708649,
+      "mean_groups_per_cell": 1.0,
+      "mean_repeats_per_group": 8.0,
+      "n_cells": 200,
+      "omega": 0.008995049029129827,
+      "omega_ci_hi": 0.01917971608935509,
+      "omega_sq": 8.091090703644943e-05,
+      "omega_sq_ci_hi": 0.0003678615092682664,
+      "omega_sq_ci_lo": 0.0,
+      "omega_sq_debiased": 8.091090703644943e-05,
+      "omega_sq_raw": 8.091090703644943e-05,
+      "points": [
+        {
+          "deviation": 0.0,
+          "n": 1,
+          "n_cells": 200,
+          "relative_deviation": 0.0,
+          "sd_mean": 0.2669774686186083,
+          "sd_theoretical": 0.2669774686186083,
+          "var_mean": 0.07127696875
+        },
+        {
+          "deviation": -0.00025327066762648176,
+          "n": 3,
+          "n_cells": 200,
+          "relative_deviation": -0.001643126165911143,
+          "sd_mean": 0.1538862427068919,
+          "sd_theoretical": 0.1541395133745184,
+          "var_mean": 0.023680975694444446
+        },
+        {
+          "deviation": 0.0007300843183800088,
+          "n": 5,
+          "n_cells": 200,
+          "relative_deviation": 0.006114816256410157,
+          "sd_mean": 0.12012603797678502,
+          "sd_theoretical": 0.11939595365840501,
+          "var_mean": 0.014430264999999996
+        },
+        {
+          "deviation": 0.0003139766135726585,
+          "n": 8,
+          "n_cells": 200,
+          "relative_deviation": 0.003326348005919187,
+          "sd_mean": 0.09470476585569097,
+          "sd_theoretical": 0.09439078924211831,
+          "var_mean": 0.00896899267578125
+        }
+      ],
+      "r_squared": 0.9999879703200387,
+      "scale": "likert5",
+      "sigma": 0.26678833402362906,
+      "sigma_sq": 0.07117601517110346,
+      "sweep": [
+        1,
+        3,
+        5,
+        8
+      ],
+      "task": "summarization"
+    }
+  ],
+  "meta": {
+    "analysis": "decay",
+    "env_ids": [
+      "e_b842cbff3261"
+    ],
+    "exp": "exp1_anchor",
+    "input_digest": "sha256:e7e21136aed59136fc840db08a3e1635d26871f7850d8677c914a56a366ee464",
+    "n_records": 1609,
+    "n_scored": 1600,
+    "params": {
+      "ci_level": 0.95,
+      "draws_per_cell": 400,
+      "env_ids": [
+        "e_b842cbff3261"
+      ],
+      "group_field": "paraphrase_id",
+      "n_resamples": 2000,
+      "seed": 20260731,
+      "sweep": [
+        1,
+        3,
+        5,
+        8,
+        10,
+        20
+      ]
+    },
+    "run_ids": [
+      "r_20260801_0eeb4b",
+      "r_20260801_856cc9"
+    ],
+    "schema_version": 2
+  }
+}

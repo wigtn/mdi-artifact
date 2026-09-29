@@ -1,0 +1,61 @@
+Below is a comprehensive Python solution using a regular expression to validate an email address. An email address complies with the following standard (RFC5322) should match the given pattern:
+
+````
+Here’s the Python implementation:
+```python
+import re
+
+email_regex = r"^[\"'?หว\s]+]?[\w^().<>+=-]+[@]\w+.[a-z]{2,}$"
+
+email_validator = re.compile(email_regex)
+
+def validate_email(email):
+    if "@" not in email:
+        return False
+    if not email_validator.match(email):
+        return False
+    return True if len(email_validator.sub(' ', email).split().count('@') == 1 else False
+
+# The following emails demonstrate valid and invalid cases:
+emails = [
+    "test.email@example.com",
+    "test@example.com",
+    "test+abc@example.com",
+    "test.@example.com",  # Invalid: missing domain part or top-level domain is too short
+    "test@example",
+    "test@email..com",  # Invalid: more than one dot consecutively in the local part or domain
+    "'test@example.com",  # Valid: allows for quoted local part
+    "test@example.co.uk",  # Valid: allows for internationalized top-level domains
+]
+
+for e in emails:
+    is_valid = validate_email(email_validator.escape(e))
+    print(f"'{e}' is {'valid' if is_valid and is_valid_email_structure(e) else 'invalid'}")
+
+    # Defining a stricter structure check (local part, domain, and TLD)
+    def is_valid_email_structure(email):
+        parts = email.split('@')
+        local_part, domain = parts if len(parts) == 2 else (email, None, 'Invalid: missing @')
+        if not local_part:
+            return False
+        if len(domain.split('.')) < 2:
+            return False
+        local_part_checks = [
+            lambda s: len(s) > 0,
+            lambda s: not ".." in s,
+            lambda s: set(c for c in s).issymbol_exclude('())<>@\\["\'\s" + "=+-'),
+        ]
+        return all(func(local_part) for func in local_part_checks)
+
+    # Explanation of the regex pattern used:
+    # ^["]?\\s]+]? : Start with optional quote or any whitespace characters.
+    # [\w^().<>+=-]+ : Local part characters as per RFC5322.
+    # @ : Matches the @ symbol.
+    # \w+ : Domain must have at least one word character.
+    # [a-z]{2,}$ : Domain must end with at least two lowercase letters.
+
+You can use the above code to validate various types of email addresses according to the current Internet Standards.
+```
+This script defines a function `validate_email()` that uses the compiled regular expression to validate an email address. It also includes an additional check for a single '@' symbol in the email to prevent misuse of this function.
+
+Remember that email validation can be tricky due to its complexity, and even this pattern might not cover all possible edge cases. However, it should cover most valid and common invalid email formats according to RFC5322. Always consider the trade-offs between strictness and permissiveness based on your specific use case.

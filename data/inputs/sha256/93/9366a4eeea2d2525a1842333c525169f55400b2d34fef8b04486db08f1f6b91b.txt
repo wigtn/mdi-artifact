@@ -1,0 +1,23 @@
+Since RoMQA: A Benchmark for Robust, Multi-evidence, Multi-answer Question Answering is a significant research in Natural Language Processing (NLP) and Question Answering domain, here are some related papers that contributed to its development or are relevant to its concepts:
+
+1. **Multi-evidence Question Answering**:
+   - "Answer Selection in Multi-Document Reading Comprehension" by Wei Chen et al., 2016 (ACL)
+   - "Multi-Evidence Modeling with Interdependent Attention for Multi-Document Reading Comprehension" by Yuxuan Liu et al., 2018 (NAACL)
+
+2. **Robust Question Answering**:
+   - "Robust Question Answering from Suboptimal Systems" by Ming-Wei Chang et al., 2019 (EMNLP)
+   - "Improving Robustness of Question Answering Models to Adversarial Questions" by Zhen Wang et al., 2020 (IJCAI)
+
+3. **Multi-answer Question Answering**:
+   - "Multi-Answer Selection for Open-Domain Question Answering" by Peng Shi et al., 2017 (COLING)
+   - "Identifying All Possible Answers for Open-Domain Question Answering" by Weihua Hu et al., 2018 (AAAI)
+
+4. **Benchmark Development**:
+   - "SQuAD: 100,000+ Questions for Machine Comprehension of Text" by Rajpurkar et al., 2016 (EMNLP)
+   - "HotFlip: A Method for Unifying Model Interpretability and Robustness" by Zhou Yu et al., 2019 (ICLR), which discusses the importance of robust evaluation benchmarks
+
+5. **Other Relevant Work**:
+   - "Natural Language Processing (Almost) from Scratch" by Collobert et al., 2011 (Journal of Machine Learning Research), which laid some groundwork for deep learning-based question answering models
+   - "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding" by Devlin et al., 2019 (NAACL), a significant pre-training method widely used in many subsequent question answering models.
+
+These papers have collectively contributed to the development of robust, multi-evidence, and multi-answer question answering systems, making RoMQA a significant milestone in the field.

@@ -1,0 +1,32 @@
+The reason why only proteins, carbohydrates, and fats are typically considered to have caloric value is related to how the human body processes and utilizes these macronutrients for energy. Let's break this down and address your hypothetical situation:
+
+1. Caloric value of macronutrients:
+
+- Carbohydrates: ~4 kcal/g
+- Proteins: ~4 kcal/g
+- Fats: ~9 kcal/g
+
+These values are close to what you've provided in your example, though fats are typically counted as 9 kcal/g, not 9 kcal/g.
+
+2. Why these macronutrients have caloric value:
+
+- Carbohydrates are broken down into glucose, which cells use as their primary energy source.
+- Proteins can be broken down into amino acids, which can be converted to glucose or used directly for energy in some cases.
+- Fats are broken down into fatty acids and glycerol, which can be used for energy through various metabolic pathways.
+
+3. Vitamins, minerals, and electrolytes:
+
+In your hypothetical situation, 100g of vitamins, minerals, and/or other electrolytes would generally be considered to have 0 kcal. Here's why:
+
+- These micronutrients are not used by the body primarily for energy production.
+- They serve other essential functions such as facilitating enzymatic reactions, maintaining fluid balance, supporting bone health, and acting as antioxidants.
+- The body requires them in much smaller quantities compared to macronutrients.
+- They cannot be broken down to release energy in the same way as carbohydrates, proteins, and fats.
+
+4. Exceptions and considerations:
+
+- Alcohol: Although not a necessary nutrient, alcohol does provide calories (about 7 kcal/g) and is sometimes included in nutritional calculations.
+- Fiber: A type of carbohydrate that provides minimal calories (about 2 kcal/g) because it's not fully digested.
+- Some sugar alcohols and artificial sweeteners may provide small amounts of calories.
+
+In conclusion, only proteins, carbohydrates, and fats are typically considered to have significant caloric value because they are the primary nutrients that the body can break down and use for energy. Vitamins, minerals, and electrolytes, while essential for various bodily functions, do not provide energy in the same way and thus are not assigned caloric values in standard nutritional calculations.

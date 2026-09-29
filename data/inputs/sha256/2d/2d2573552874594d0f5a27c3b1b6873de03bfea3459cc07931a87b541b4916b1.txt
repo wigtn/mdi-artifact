@@ -1,0 +1,24 @@
+```html
+<img src="image_path" alt="image_description">
+```
+
+**Explanation:**
+
+* **`<img>`:** This tag tells the browser to display an image.
+* **`src` attribute:** This attribute specifies the path to the image file. Replace `"image_path"` with the actual URL or relative path to your image.
+    * **Example:** If your image is named "my_picture.jpg" and is located in the same folder as your HTML file, the `src` attribute would be `src="my_picture.jpg"`.
+* **`alt` attribute:** This attribute provides alternative text that is displayed if the image cannot be loaded or for screen readers used by visually impaired users. It should describe the image briefly and accurately. Replace `"image_description"` with a descriptive text.
+
+**Example:**
+
+```html
+<img src="https://www.example.com/images/sunset.jpg" alt="A beautiful sunset over the ocean">
+```
+
+This code will display an image from the provided URL and, if the image fails to load, it will show the text "A beautiful sunset over the ocean" instead.
+
+
+Remember to:
+
+* Ensure the image file exists at the specified path.
+* Use descriptive and relevant alt text for accessibility.

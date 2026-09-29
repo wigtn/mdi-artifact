@@ -1,0 +1,1 @@
+In TypeScript, how can I tell the type system "I know that in theory this value may have these multiple types, but in practice I know it will only have this one"

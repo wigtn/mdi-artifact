@@ -1,0 +1,11 @@
+Based on the given text, I can infer some information about English constituency parsing, although the passage doesn't provide a direct definition. Here's what we can understand:
+
+1. It is a task that the researchers used to evaluate the Transformer model's ability to generalize to other tasks beyond its original purpose.
+
+2. It involves specific challenges:
+   - The output is subject to strong structural constraints
+   - The output is significantly longer than the input
+
+3. It's a task where RNN sequence-to-sequence models have struggled to achieve state-of-the-art results, especially when working with small amounts of data.
+
+While not explicitly stated in the text, English constituency parsing is a natural language processing task that involves analyzing the grammatical structure of a sentence and breaking it down into its constituent parts (such as noun phrases, verb phrases, etc.), typically represented in a tree-like structure. This aligns with the mentioned characteristics of structural constraints and longer outputs compared to inputs.

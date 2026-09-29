@@ -1,0 +1,15 @@
+Here's the distinction between Computer Organization and Computer Architecture in 6 points (full sentence answers):
+
+**1.** **Computer Architecture** focuses on the design and implementation of the internal components and their interaction to execute instructions, defining how hardware components such as CPU, memory, and input/output devices communicate with each other.
+
+**2.** In contrast, **Computer Organization** deals with the overall system structure and how these components are combined and managed to achieve efficient computation, emphasizing the relationships among various components and their functionality.
+
+**3.** Architecture is concerned with the specific design choices for a particular system, such as pipeline processing, register sets, and instruction sets, whereas organization focuses on the system's overall structure and how these designs are integrated.
+
+**4.** Architecture provides the blueprint for a computer's internal design, while organization describes how the system is partitioned, coordinated, and controlled to perform tasks.
+
+**5.** Think of architecture as the "what" (the components and their specifications) and organization as the "how" (the system's configuration and management).
+
+**6.** In summary, computer architecture is a subset of computer organization, as a well-designed organization must be based on a sound computer architecture, but a good architecture can be organized in various ways to achieve optimal system performance.
+
+(Note: These points are concise and target a 6-mark answer.)

@@ -1,0 +1,43 @@
+Here’s a Design for a Fun and Inclusive Simple Strava Training Challenge: **“Global Fitness Fusion Challenge”**
+
+**Objective:** Complete a well-rounded, engaging, and achievable training regimen that caters to riders and runners of all levels, fostering a sense of community and friendly competition on Strava.
+
+**Challenge Details:**
+
+* **Duration:** 4 weeks
+* **Format:** Individual challenge
+* **Distance Categories:** Both running and cycling are included to make it inclusive for all Strava users.
+* **Segments and Activities:**
+	+ Week 1: Endurance Focus
+		- Run: Complete at least 1 x 30-minute steady-state run
+		- Cycle: Finish a single ride with a total of at least 20 kilometers/miles
+	+ Week 2: Interval Intensity
+		- Run: Log 2 x interval sessions with a minimum of 4 x 800m at a fast pace
+		- Cycle: Complete a ride with at least 2 x 15-minute efforts above moderate intensity
+	+ Week 3: Climbing Focus
+		- Run: Climb a total elevation gain of at least 500 meters in a single activity
+		- Cycle: Conquer Strava segment climbs totaling at least 750 meters of elevation gain
+	+ Week 4: Speed and Efficiency
+		- Run: Set a new personal best time on any distance (verified by Strava’s PB tracking)
+		- Cycle: Achieve a new personal best power output or average moving speed on a ride
+* **Badges and Incentives:**
+	+ Participants earn badges by completing each weekly set of activities.
+	+ The first 10,000 participants to complete all four weekly challenges will receive a unique “Fitness Fusion” badge.
+	+ A random winner will be selected from the group to receive a prize package from a sports brand partner (e.g., a heart rate monitor or a fitness watch).
+* **Social Sharing:**
+	+ Encourage participants to share their progress on social media using a branded hashtag (e.g., #FitnessFusionChallenge).
+	+ Create a Strava Club where members can discuss their experiences, ask questions, and support one another throughout the challenge.
+
+**Why it’s inclusive:**
+
+* Both running and cycling are included, allowing users to participate based on their preferred activity.
+* The challenges are designed to be achievable for beginners while still providing a good workout for experienced athletes.
+* The focus on different aspects of fitness (endurance, intervals, climbing, and speed) ensures that participants can work on specific skills or weaknesses.
+
+**Why it’s engaging:**
+
+* The four-week structure provides a clear goal to work towards each week.
+* The variety of challenges keeps the experience fresh and exciting.
+* The social sharing aspect fosters a sense of community and accountability.
+
+This challenge is designed to be enjoyable for everyone on Strava, regardless of their fitness level or preferred activity. It encourages users to try new things, push themselves slightly out of their comfort zones, and connect with like-minded individuals.

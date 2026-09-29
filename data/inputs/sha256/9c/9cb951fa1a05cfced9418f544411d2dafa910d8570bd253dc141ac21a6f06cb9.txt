@@ -1,0 +1,23 @@
+To convert December 21st, 1:00 – 1:50 PM Pacific Time (PT) to Asia/Taipei Time (TT), which is UTC+8, we need to consider the time difference:
+
+Pacific Time (PT) is UTC-8 during standard time in December.
+So we first adjust PT to UTC:
+   - 1:00 PM PT = 9:00 PM UTC
+   - Convert the given duration from 1:50 to straight numbers: 50 minutes = 0 hours 50 minutes
+
+Now consider the conversion to Asia/Taipei Time (TT), which is UTC+8:
+   - Add 8 hours to the start time in UTC:
+       9:00 PM UTC → 05:00 AM UTC (next day)
+       Remove the ‘next day’ afternoon part into our desired time frame (1:00 - 1:50 PM), so it falls in the already discardable ‘09:00 PM’ part. Thus, this part is ignored.
+   - Only the desired time segment of moving 1 hour part is accounted for:
+       So, subtract 8 hours from hours and keep adjusting minutes:
+       - 1 hour becomes 05:00 UTC conversion → 09:08 TT
+       Subtract 50 minutes from this.
+       - Adjusting minutes from 09:08 TT by subtracting 50 minutes results in:
+         - 09:08 TT → 08:18 TT
+
+Thus, the converted time range from December 21st, 1:00 – 1:50 PM Pacific Time (PT) to Asia/Taipei Time (TT) is:
+   - 08:18 TT – 08:53 TT. 
+
+Final answer:
+December 21st, 08:18 – 08:53 Asia/Taipei Time (TT)

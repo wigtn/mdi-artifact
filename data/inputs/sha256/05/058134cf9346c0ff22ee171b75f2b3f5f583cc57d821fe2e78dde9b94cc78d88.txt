@@ -1,0 +1,47 @@
+HTML (Hypertext Markup Language) and JavaScript are both essential technologies for web development, but they serve different purposes and have distinct characteristics. Here are the key differences between HTML and JavaScript:
+
+1. Purpose:
+   - HTML: Defines the structure and content of a web page.
+   - JavaScript: Adds interactivity and dynamic behavior to web pages.
+
+2. Language Type:
+   - HTML: Markup language used for structuring content.
+   - JavaScript: Programming language used for creating dynamic and interactive web applications.
+
+3. Execution:
+   - HTML: Interpreted by the web browser to render the page structure.
+   - JavaScript: Executed by the browser's JavaScript engine to perform actions and manipulate the page.
+
+4. Functionality:
+   - HTML: Static, describes the layout and content of a web page.
+   - JavaScript: Dynamic, can modify HTML content, handle events, and perform complex operations.
+
+5. File Extension:
+   - HTML: .html or .htm
+   - JavaScript: .js
+
+6. Syntax:
+   - HTML: Uses tags and attributes to define elements.
+   - JavaScript: Uses programming constructs like variables, functions, and control structures.
+
+7. Browser Interaction:
+   - HTML: Rendered directly by the browser.
+   - JavaScript: Can interact with the browser, manipulate the DOM, and make asynchronous requests.
+
+8. Learning Curve:
+   - HTML: Generally easier to learn, especially for beginners.
+   - JavaScript: More complex, requires understanding of programming concepts.
+
+9. Dependency:
+   - HTML: Can exist independently.
+   - JavaScript: Often relies on HTML to manipulate page elements.
+
+10. Styling:
+    - HTML: Works with CSS for styling.
+    - JavaScript: Can dynamically modify CSS properties.
+
+11. Server-side Usage:
+    - HTML: Primarily used on the client-side.
+    - JavaScript: Can be used on both client-side (browser) and server-side (Node.js).
+
+In web development, HTML, JavaScript, and CSS work together to create fully functional and interactive websites. HTML provides the structure, JavaScript adds interactivity and dynamic behavior, and CSS handles the presentation and styling.

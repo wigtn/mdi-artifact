@@ -1,0 +1,3 @@
+Make a list of outdoor activities that are suitable for the given weather condition.
+
+Temperature: 57 F, Showers

@@ -1,0 +1,5 @@
+Answer the following question.
+
+How do I compare strings in Java?
+I've been using the == operator in my program to compare all my strings so far. However, I ran into a bug, changed one of them into .equals() instead, and it fixed the bug.
+Is == bad? When should it and should it not be used? What's the difference?

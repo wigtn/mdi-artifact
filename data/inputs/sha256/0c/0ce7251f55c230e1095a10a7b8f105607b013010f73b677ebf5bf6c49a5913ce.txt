@@ -1,0 +1,3 @@
+Assess the sentiment of the given tweet and categorize it as Positive, Negative, or Neutral.
+
+"This is the best cheat-sheet paper that I've found in a LONG time."

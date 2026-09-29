@@ -1,0 +1,31 @@
+Here’s a well-structured confirmation email for a meeting with a specific task to review meeting slides:
+
+Subject: Confirmation: Scheduled Meeting on [Date] with Pre-Meeting Task: Review of Meeting Slides
+
+Dear [Attendee’s Name],
+
+I am pleased to confirm our scheduled meeting on [Date], at [Time] at [Location/Video Conference Link: [insert link], as discussed previously. As we prepare for our productive discussion, I would like to emphasize the importance of reviewing the attached meeting slides (Meeting Agenda – [Meeting Title]) in advance of our meeting.
+
+Your thorough review of these slides will enable us to have a more efficient and effective conversation during our time together. This will cover key topics, objectives, and key takeaways we will be covering during the meeting.
+
+Below are the key details for your reference:
+
+* Date: [Date]
+* Time: [Time]
+* Location: [Location/Video Conference Link]
+* Meeting Agenda Slides: Attached to this email as a PDF document and are also available on our shared drive at [Shared Drive Link, if applicable]
+
+To get the most out of our meeting, please dedicate some time to reviewing the slides before we meet. If you have any questions or concerns regarding the content beforehand, please do not hesitate to reach out to me at [Your Email] or [Your Phone Number].
+
+Looking forward to a productive discussion on [Date]. If your schedule changes and you’re unable to attend, kindly notify me at least 24 hours in advance.
+
+Best regards,
+
+[Your Name]
+[Your Title]
+[Your Company]
+[Your Contact Information]
+
+Attachments: Meeting Agenda – [Meeting Title] (PDF)
+
+This confirmation email clearly outlines the meeting details, the importance of reviewing the slides beforehand, and provides necessary information and contact details for any questions or concerns. It also sets expectations for last-minute changes and ensures a productive use of everyone’s time.

@@ -1,0 +1,12 @@
+Yes, some types of stainless steel can be magnetic, while others are non-magnetic. 
+
+Here's the breakdown:
+
+* **Austenitic stainless steel (most common type):** Generally **non-magnetic** in its annealed state. This means it's been heated and cooled to soften it, removing any internal stresses that might cause magnetism. However, it can become **partially magnetic** if it's cold worked (stretched, bent, or otherwise deformed) or if it has a high nickel content.
+* **Ferritic stainless steel:** Usually **slightly magnetic**. They have a lower nickel content than austenitic stainless steel, making them more susceptible to magnetism.
+* **Martensitic stainless steel:** Generally **strongly magnetic**. They have a high carbon content, which makes them harder and more magnetic.
+
+**So, to answer your question directly:** Yes, stainless steel can be magnetic, but it depends on the specific type and its processing history. 
+
+
+If you're unsure whether a particular piece of stainless steel is magnetic, the easiest way to check is to hold a magnet up to it. If it sticks, it's magnetic.

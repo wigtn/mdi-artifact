@@ -1,0 +1,141 @@
+# Spike — smallest real end-to-end judging run (Phase 1 verification, NOT an experiment).
+#
+# ⚠ SPIKE-ONLY AXIS VALUES ⚠
+# Every axis value below (judge model, provider, benchmark, task, scale,
+# temperature, item count, system pair) is chosen to make one cheap end-to-end
+# run possible and **preempts nothing**:
+#   - judge / benchmark selection ....... ADR-002 (Proposed)
+#   - budget cap + envelope ............. ADR-003 (Proposed)
+#   - judge tier / provider ............. ADR-006 (Proposed; the Update's
+#                                         "open-weight serverless is the default
+#                                         tier" recommendation is what this
+#                                         config exercises, not a decision)
+#   - Exp 2 close-pair selection ........ ADR-007 (Proposed) — the spike's
+#                                         "closest mean human score" pair rule is
+#                                         a stand-in, NOT the held-out screening
+#                                         procedure ADR-007 will define
+#   - repeat protocol / parse policy .... ADR-011 D1/D7 (Proposed)
+# Source of truth is the ADR line (docs/decisions/) — see AGENTS.md §2.
+# Nothing measured by this config may be reported as a result.
+
+experiment: spike_fip
+benchmark: summeval
+
+judge:
+  # Spike judge: OpenAI, because that is the key on hand (first author, 2026-07-31).
+  # This is NOT a judge-selection decision — ADR-002 is still Proposed, and the
+  # first author has separately ruled Anthropic out of the candidate set, which
+  # is an input to that deliberation and not settled here.
+  # ADR-006 Update still recommends open-weight serverless (B2) as the dense-grid
+  # tier; switching this block back is a config change (endpoint + api_key_env).
+  # Provider + endpoint are env metadata and are recorded per record.
+  model: "gpt-4o-mini"
+  model_version: "unpinned-alias"   # overwritten per record by the provider echo
+  tier: "api"
+  provider: "openai"
+  provider_kind: "openai_compat"    # OpenAI's own endpoint is the reference implementation
+  endpoint: "https://api.openai.com/v1"
+  api_key_env: "OPENAI_API_KEY"
+  serving_engine: null
+  quantization: null
+
+prompt:
+  # ADR-009 §3: the template *source text* below enters the env_id hash, and the
+  # rendered prompt's SHA-256 is stored per record as request_payload_hash.
+  # Paraphrases (pp_1, pp_2 ...) are Exp 3's procedural axis — out of spike scope.
+  prompt_id: "p_spike_summ_v1"
+  paraphrase_id: "pp_0"
+  templates:
+    likert5: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 1-5 scale, where 1 is very poor and 5 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-5>}
+
+grid:
+  # One env cell: the spike verifies the path, not the grid.
+  task: ["summarization"]
+  scale: ["likert5"]
+  temperature: [1.0]   # ADR-011 D2: MDI is defined over mean-of-N *under sampling*
+
+inputs:
+  # The runner materializes these into data/inputs/ content-addressed (ADR-009 §2).
+  # Public source: SummEval (CNN/DM articles, 16 machine summaries each with expert
+  # human scores) via the read-only HF datasets-server. The systems kept are the
+  # `n_systems` summarizers packed into the tightest window of mean human score —
+  # the FIP question only has meaning for close pairs. Fetched once, then pinned
+  # in data/inputs/cache/.
+  #
+  # n_systems=4 gives 6 pairs. Two systems would give one, and FIP's confidence
+  # interval comes from a cluster bootstrap over pairs — one cluster has nothing
+  # to resample, so the interval collapses to zero width (the analysis layer now
+  # reports it as undefined rather than as fake precision). Four is the smallest
+  # count that produces a real interval at ~2x the call volume.
+  #
+  # Offline alternative (no network): replace this block with
+  #   kind: jsonl
+  #   path: <your file>.jsonl
+  # where each line is {"item_id": ..., "source": ..., "outputs": {"s_A": ..., "s_B": ...}}
+  kind: hf_datasets_server
+  dataset: "mteb/summeval"
+  config: "default"
+  split: "test"
+  builder: "summeval_close_pair"
+  fetch_rows: 100
+  n_items: 20
+  n_systems: 4
+
+repeats:
+  n: 10                     # spike target: N=10 valid repeats per (env, item, system)
+  max_attempts_factor: 2    # ADR-011 D7: attempt cap 2N, no re-prompting on parse failure
+  seed_base: 20260731
+  # Declared for the Exp 3 decay analysis (src/mdi/stats/, not read by the runner).
+  # ADR-011 Update (2026-07-31) fixes the full sweep at [1, 3, 5, 8, 10, 20]; the
+  # spike truncates at 10 because it only collects N=10 per cell. N=8 is in the
+  # sweep so the decay curve has a point at VRR-Stop's M=8 (arXiv 2607.17641),
+  # giving a direct comparison at equal budget; it costs nothing extra because
+  # lower-N points are bootstrap slices of the full-N cells.
+  sweep: [1, 3, 5, 8, 10]
+
+pilot:
+  # PRD §4.2 order: estimate-cost -> pilot -> full. The pilot slice is a strict
+  # subset of the full slice, so its records are reused (never re-billed) by the
+  # full run under the same idempotent call key.
+  n_items: 5
+  n_repeats: 3
+
+budget:
+  # Spike cap, deliberately far below the PRD §4.2 defaults ($50 pilot / $100
+  # cumulative). Raising a cap is a config change, never a code change.
+  pilot_cap_usd: 5
+  cumulative_cap_usd: 5
+
+pricing:
+  # USD per million tokens. Prices are config data, never hardcoded — verify
+  # against the provider's current rate card before a real run; the ledger
+  # records actual spend either way, so a stale price only skews the estimate.
+  # gpt-4o-mini: $0.15 in / $0.60 out (public rate cards, checked 2026-07-31).
+  "gpt-4o-mini":
+    input_usd_per_mtok: 0.15
+    output_usd_per_mtok: 0.60
+  # Kept for the open-weight tier (ADR-006 Update, 2026-07 survey) — unused
+  # while the judge block above points at OpenAI.
+  "meta-llama/Llama-3.3-70B-Instruct":
+    input_usd_per_mtok: 0.59
+    output_usd_per_mtok: 0.79
+
+runtime:
+  concurrency: 8            # bounded async fan-out; provider backoff handles 429/5xx
+  max_output_tokens: 64
+  chars_per_token: 4.0      # dry-run token heuristic only; the ledger uses real usage

@@ -1,0 +1,33 @@
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Consistency, not validity.}
+Everything we measure is test--retest consistency, and
+Section~\ref{sec:experiments} measures the size of the gap against the
+benchmark's expert annotations rather than asserting it. $\mdi$ and $\fip$
+license a claim \emph{as scored by this judge}, not one about what it should
+score, and a finer threshold makes a mis-aimed instrument more confident,
+not more correct.
+
+\paragraph{Low noise is necessary, not sufficient.}
+Clearing $\mdi(\env, N)$ rules out the instability channel only: a gain can
+clear it and still be judge \emph{bias} \citep{zhou2026selfplay}, which repeats
+do not average away. Experiment~3 separates the channels but removes neither
+bias nor the floor's own uncertainty: we wrote the paraphrases (all eight are
+in Appendix~\ref{app:paraphrases}), and the four added second raised it
+$2.5\times$. The first four proved
+unrepresentatively alike; ours may be unrepresentatively varied. We report the
+dependence, not a value.
+
+\paragraph{Our $\sigma$ is a lower bound on production variability.}
+The systems are frozen, so every wobble is the judge's and agent-side variance
+is a separate environment (Section~\ref{sec:framework}). Three narrower
+caveats: null pools sit inside one system, valid for $A$-vs-$B$ only under
+comparable spread ($1.32\times$ at the widest); both judges share a provider,
+leaving Section~\ref{sec:exp1}'s reversal attributable to scale or stack; and
+item sampling is out of scope, so $\mdi$ licenses a claim about the stated
+item set, not the population.
+The grid is narrow in kind as well as size: two text tasks, one provider,
+temperature~$1$ throughout, and no agent traces, so the agent pipelines that
+motivate the question are argued from, not measured.
+

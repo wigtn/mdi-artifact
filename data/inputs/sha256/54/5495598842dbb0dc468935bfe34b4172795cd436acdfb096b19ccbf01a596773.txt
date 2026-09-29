@@ -1,0 +1,18 @@
+To add an image to an HTML page, you can use the `<img>` element. Here is the syntax:
+
+```html
+<img src="image-file-name.jpg" alt="image description" />
+```
+
+Attributes:
+
+* `src`: The source file path or URL of the image.
+* `alt`: A text description of the image for accessibility purposes.
+
+Example:
+```html
+<img src="image1.png" alt="A beautiful sunset over the ocean">
+```
+Replace "image1.png" with your actual image file name.
+
+Note: Make sure to provide a suitable alt text to ensure accessibility for screen readers and search engines.

@@ -1,0 +1,11 @@
+Here's an example command to show how to use the `input` function in Python:
+
+```
+# Using the input function to get user input
+name = input("Please enter your name: ")
+print("Hello, " + name + "!")
+
+# Output: If the user types "John", the program will print "Hello, John!"
+```
+
+In this example, the `input` function is used to pause the program and wait for the user to enter a line of text, which is then assigned to the variable `name`. The program then uses this input to print out a greeting message.

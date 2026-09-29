@@ -1,0 +1,18 @@
+here's a breakdown of the distinction between computer organization and computer architecture, suitable for a 6-mark response:
+
+**Computer Architecture**
+
+* **Defines the functional units and their interconnections:**  Architecture outlines the major components of a computer system (CPU, memory, I/O) and how they interact at a high level.
+* **Specifies the instruction set:**  Architecture dictates the types of operations the processor can perform (arithmetic, logical, data transfer) and how those operations are represented in machine language.
+* **Focuses on what the computer does:**  It's concerned with the logical structure and functionality, determining the overall capabilities and performance potential.
+* **Visible to programmers:**  Software developers interact with the architecture through the instruction set and system calls, unaware of the precise internal workings.
+
+**Computer Organization**
+
+* **Describes the physical implementation of the architecture:** Organization delves into the detailed circuitry, logic gates, and physical layout of hardware components.
+* **Explains how instructions are executed:**  It details the data paths, control signals, and memory addressing mechanisms that make the architectural concepts operational.
+* **Focuses on how the computer is built:** It's concerned with the physical realization of the functional units and their interconnection, often involving logic diagrams and circuit designs.
+* **Hidden from programmers:**  Organizaton details are typically not directly accessible to software developers, who operate at a higher level of abstraction.
+
+
+**In essence:** Architecture is the "what" (functional blueprint) and organization is the "how" (physical realization) of a computer system.

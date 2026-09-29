@@ -1,0 +1,30 @@
+Certainly! Here's a description of a new Electric-type Pokémon I've designed:
+
+Name: Voltorb (pronounced VOL-torb)
+
+Description:
+Voltorb is a small, spherical Pokémon that resembles a floating orb of pure electricity. Its body is a vibrant yellow color with occasional sparks of blue electricity dancing across its surface. Two large, expressive eyes peer out from the center of its form, giving it an alert and mischievous appearance. Voltorb has no visible limbs, instead hovering a few inches above the ground using its electromagnetic field.
+
+When excited or threatened, the sparks on its body intensify, creating a dazzling light show. Voltorb can change the polarity of its body at will, allowing it to attract or repel metallic objects. It's often found in power plants and near electrical equipment, where it feeds on excess electricity.
+
+Type: Electric
+
+Ability: Static (primary) / Levitate (hidden)
+
+Stats:
+HP: 60
+Attack: 50
+Defense: 70
+Special Attack: 100
+Special Defense: 80
+Speed: 110
+Total: 470
+
+Signature Move: Volt Switch
+Type: Electric
+Category: Special
+Power: 70
+Accuracy: 100%
+Effect: After dealing damage, the user switches out with another Pokémon in the party.
+
+Voltorb is designed to be a fast special attacker with decent bulk, making it a versatile addition to many teams. Its high speed and special attack make it an excellent choice for hit-and-run tactics, especially with its signature move, Volt Switch.

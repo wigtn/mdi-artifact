@@ -1,0 +1,54 @@
+To determine the budget Navina’s younger sister has and how much Navina has left for division into amounts allocated to available spending on the card and remaining budget, let’s start by assigning a variable for the budget Navina’s sister has as ‘x’.
+
+Since Navina has $30 more than her sister, we write this difference as an equation:
+Navina’s Budget = Sister’s Budget + Thirty Dollars
+NB = x + 30
+
+Navina’s Budget (NB) is given as her total available funds that can be allocated between the credit card spending and other expenses. Thus, NB is divided into two parts:
+
+- Spending on the credit card
+- Remaining budget after spending on the credit card
+
+Given a typical rule to avoid excessive debt, it is reasonable to assume at least some portion remains after buying the card. For simplicity, let’s allocate 60% for spending on the card and 40% for remaining budget.
+
+For Navina’s available budget of NB ($x + 30), first find 60% of it:
+0.6 × (x + 30) for the credit card.
+
+To find the remaining budget (40%), subtract the credit card spending from Navina’s total budget:
+0.4 × (x + 30).
+
+Now, let’s calculate these amounts using specific values.
+
+### Credit Card Spending
+60% of (Navina's Budget) = 0.6 × (x + 30) = 0.6x + 18
+
+### Remaining Budget
+40% of (Navina's Budget) = 0.4 × (x + 30) = 0.4x + 12₀
+
+### Sister's Budget
+The original question states Navina has $30 more than her sister. So, express this difference mathematically as above:
+Navina’s Budget (NB) = Sister’s Budget + 30
+x + 30 = NB
+
+To have meaningful amounts in dollars, replace NB with its value in the expressions calculated earlier:
+x + 30 = 0.4x + 18 + remaining sensible amount for actual spending.
+
+### Simplify the expressions
+For practical spending, you would ideally not spend less than $1 on anything. Therefore, we disregard very small amounts left after spending on a credit card. To allocate a reasonable amount to the remaining budget after the card, we ensure that:
+0.4x + 12 ≥ some substantial value greater than zero, say $20.
+
+Choose a suitable value of Sister's Budget as $x = $20. This choice ensures a significant amount of remaining budget after spending on the credit card.
+
+### Calculations with x = $20
+- Navina’s Sister’s Budget: $20
+- Navina’s Budget: $20 + 30 = $50
+
+Now you have:
+- Navina’s Sister has $20 to spend.
+- Navina has $50, which can be allocated to $30 for the credit card spending at most suitable percentage (60%) and $20 remaining after such spending.
+
+### Allocating Credit Card Spending (60%)
+$30 Limitation: In reality, it might not be practical to use exactly $30 as credit card spending due to possible fees and interest rates. So, if you want to use 60% of Navina’s available credit limit ($30 out of 60% of $50), then calculate this percentage as:
+0.6 * $50 ≈ $30.
+
+For actual calculations using other percentages, you would adjust the initial values accordingly.

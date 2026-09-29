@@ -1,0 +1,11 @@
+This problem doesn't give us enough information to figure out exactly how much each sister has to spend.  Here's why:
+
+* **We only know the difference:** We know Navina has $30 more than her sister, but we don't know how much either sister's total budget actually is. 
+
+**To solve this, we'd need one more piece of information, like:**
+
+* **Navina's total weekly budget:** If we knew how much Navina has, we could subtract $30 to find her sister's budget.
+* **The total combined budget:** If we knew how much they have together, we could split it based on the $30 difference. 
+
+
+Let me know if you have either of those pieces of information, and I can help you calculate their individual budgets!

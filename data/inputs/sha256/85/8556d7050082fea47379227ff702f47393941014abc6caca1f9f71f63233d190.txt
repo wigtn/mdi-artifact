@@ -1,0 +1,17 @@
+A common myth-buster!
+
+While stainless steel is typically known for being non-magnetic, there's a twist. Not all stainless steels are created equal, and their magnetic properties depend on their composition.
+
+Stainless steel is a family of iron-chromium-carbon alloys. The addition of other elements, like nickel, molybdenum, and carbon, affects its magnetic behavior. Here's what you need to know:
+
+1. **Austenitic stainless steels (e.g., 304, 316):** These are the most common types of stainless steels and are **nearly magnetic**, but not strongly so. They contain nickel, which suppresses magnetic properties. While they may be slightly attracted to a magnet, they won't be strongly magnetized.
+2. **Ferritic stainless steels (e.g., 409, 430):** These steels have a higher iron content and little or no nickel. They can be **magnetic**, although the magnetism is usually mild. They may be slightly more responsive to magnets than austenitic grades.
+3. **Martensitic stainless steels (e.g., 410, 417):** These steels can also be magnetic, depending on their composition and heat treatment. They may have a higher carbon content, which can lead to magnetic properties similar to low-carbon steel.
+4. **Duplex stainless steels:** These steels combine austenitic and ferritic properties. They can exhibit **weak magnetic behavior**, but it's still generally less than that of pure ferritic grades.
+
+In summary:
+
+* Not all stainless steels are non-magnetic; some can be magnetic to varying degrees.
+* The magnetic properties depend on the specific alloy composition, particularly the presence and amount of nickel, carbon, and iron.
+
+So, if you need a specific magnetic response or non-magnetic properties, it's essential to specify the correct stainless steel grade for your application.

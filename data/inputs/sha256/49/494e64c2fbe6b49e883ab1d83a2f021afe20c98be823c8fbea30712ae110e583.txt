@@ -1,0 +1,61 @@
+Here's how you can copy the directory from server A to server B using your local laptop as an intermediary:
+
+**1. SSH into Server A**
+
+   Open a terminal on your laptop and connect to server A using SSH:
+
+   ```bash
+   ssh username@server_A_ip_address
+   ```
+
+   Replace `username` with your username on server A and `server_A_ip_address` with the actual IP address of server A.
+
+**2. Compress the Directory**
+
+   On server A, compress the `~/Documents/training_results` directory into a tarball:
+
+   ```bash
+   tar -czvf training_results.tar.gz ~/Documents/training_results
+   ```
+
+   This creates a compressed archive file named `training_results.tar.gz` containing the contents of the directory.
+
+**3. Transfer the Archive to Your Laptop**
+
+   Use `scp` (secure copy) to transfer the compressed archive from server A to your local laptop:
+
+   ```bash
+   scp username@server_A_ip_address:~/training_results.tar.gz . 
+   ```
+
+   This will copy the file to your current working directory on your laptop.
+
+**4. SSH into Server B**
+
+   Now, connect to server B using SSH:
+
+   ```bash
+   ssh username@server_B_ip_address
+   ```
+
+   Replace `username` with your username on server B and `server_B_ip_address` with the IP address of server B.
+
+**5. Extract the Archive on Server B**
+
+   On server B, extract the compressed archive you transferred:
+
+   ```bash
+   tar -xzvf training_results.tar.gz -C ~/Documents/
+   ```
+
+   This will create the `training_results` directory and its contents inside your `~/Documents` directory on server B.
+
+**Important Notes:**
+
+* **Permissions:** Ensure you have write permissions in the `~/Documents` directory on server B to extract the files successfully.
+* **Firewall Rules:** Check if any firewall rules on either server might be blocking SSH connections or file transfers.
+* **Alternatives:**  You could also use tools like `rsync` for more efficient file synchronization, especially if you have large directories to transfer frequently.
+
+
+
+Let me know if you have any more questions or need help with specific steps.

@@ -1,0 +1,23 @@
+Certainly! Here are some potential related papers that could be relevant to "RoMQA: A Benchmark for Robust, Multi-evidence, Multi-answer Question Answering":
+
+1. "SQuAD: 100,000+ Questions for Machine Comprehension of Text" by Rajpurkar et al.
+
+2. "Natural Questions: A Benchmark for Question Answering Research" by Kwiatkowski et al.
+
+3. "HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering" by Yang et al.
+
+4. "TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension" by Joshi et al.
+
+5. "MS MARCO: A Human Generated MAchine Reading COmprehension Dataset" by Nguyen et al.
+
+6. "DROP: A Reading Comprehension Benchmark Requiring Discrete Reasoning Over Paragraphs" by Dua et al.
+
+7. "RACE: Large-scale ReAding Comprehension Dataset From Examinations" by Lai et al.
+
+8. "MultiRC: A Multi-hop, Multi-task Reading Comprehension Challenge" by Khashabi et al.
+
+9. "NewsQA: A Machine Comprehension Dataset" by Trischler et al.
+
+10. "DuReader: A Chinese Machine Reading Comprehension Dataset from Real-world Applications" by He et al.
+
+These papers all relate to question answering datasets and benchmarks, which would likely be relevant to the RoMQA paper you mentioned.

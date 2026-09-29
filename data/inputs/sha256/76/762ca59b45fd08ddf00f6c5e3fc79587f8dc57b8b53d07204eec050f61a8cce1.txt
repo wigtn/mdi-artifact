@@ -1,0 +1,41 @@
+What a thrilling task! I present to you: Voltizen, a newly designed Electric-type Pokémon.
+
+**Name:** Voltizen
+**Type:** Electric/Ferro-Type (Introduced a hybrid type here, combining the conductivity properties of Ferro with Electric’s powerful energy. This allows Voltizen to leverage both physical and electrical strengths.)
+
+**Appearance:** Voltizen resembles a futuristic, humanoid figure with an iron-based exoskeleton that shimmers like polished metal. Its body is a blend of copper-toned armor plates and silver filigree, allowing it to absorb and channel electricity efficiently. Two curved horns protrude from its forehead, emitting a soft hum when it generates power. Its eyes glow with a bright blue spark, reminiscent of an arc welder. Four articulated limbs end in hands with retractable claws, tipped with tiny copper nodes that aid in electrical discharges.
+
+**Abilities:**
+
+* **Electroconductor** (Hidden Ability): Voltizen’s ferro-based body allows it to increase the power of its allies’ Electric-type moves within a 2-space radius by 10%.
+* **Ardency**: Voltizen’s Electric-type moves have a 30% chance to cause the target to become paralyzed.
+* **Galvanize**: Voltizen’s physical attacks have a 20% chance to make the target lose their next turn due to the shock.
+
+**Stats:
+
+* **Level 50 Stats:**
+	+ HP: 90
+	+ Attack: 150
+	+ Defense: 120
+	+ Special Attack: 180
+	+ Special Defense: 100
+	+ Speed: 100
+* **Moves:**
+	+ Level-up: Thunderbolt, Iron Head, Magnet Rise, Electro Ball
+	+ Egg Moves: Flash Cannon, Spark
+	+ Technical Machines: Charge Beam, Flash
+
+**Evolution:** Voltizen evolves into its more powerful form, Voltark, at level 60 when holding a rare item called the Tesla Core.
+
+**Voltark (Evolution):**
+	+ Type: Electric/Ferro
+	+ Ability: Electroconductor (becomes more potent, increasing allied Electric-type move power by 20%)
+	+ Stats:
+		- HP: 120
+		- Attack: 200
+		- Defense: 140
+		- Special Attack: 220
+		- Special Defense: 120
+		- Speed: 120
+
+Voltizen is an agile and formidable battler, capable of delivering powerful electric attacks while utilizing its ferro-based body to support its allies and disrupt opponents. Its ability to generate electricity through its horns makes it a valuable addition to any team.

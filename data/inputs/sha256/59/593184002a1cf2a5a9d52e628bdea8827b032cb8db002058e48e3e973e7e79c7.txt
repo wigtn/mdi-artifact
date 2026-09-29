@@ -1,0 +1,33 @@
+Below is the annotated bibliography with six entries, one from each of the specified categories on social media technologies in APA style:
+
+### **Category: Blogs - Journalism and Content Distribution**
+**1. Westlund, J. (2014). Ambient awareness: The use of intrusive alerts as an awareness tool in blogging. Journal of Communication, 64(6), 851–873. DOI: 10.1111/jcom.12140**
+
+This study examines the role of alerts and notifications in blog publishing, analyzing how bloggers use ambient awareness to engage with their audience. It provides insights into the evolution of blogging as a social media technology.
+
+### **Category: Social Networking Sites - Interpersonal Relationships**
+**2. Burke, M., Kraut, R. E., & Friedenbach, D. J. (2010). Social network activity and social well-being. Computers in Human Behavior, 26(6), 1429–1437. DOI: 10.1016/j.chb.2010.03.012**
+
+This research investigates the relationship between social network site usage (Facebook) and users’ social well-being. It explores how Facebook affects its users’ sense of connection, loneliness, and overall well-being.
+
+### **Category: Virtual Social Worlds - Immersive Interaction**
+**3. Hampton, K., & Wellman, B. (2002). The solidifying social web: Social networks, identity, and community in a wired society. In B. Wellman & C. Haythornthwaite (Eds.), The Internet in everyday life (pp. 175–205). Blackwell Publishing.**
+
+This foundational text discusses Second Life, a pioneering virtual social world, examining its impact on community building, identity formation, and social interaction. It highlights the significance of virtual worlds as a social media technology.
+
+### **Category: Virtual Game Worlds - Immersive Collaboration**
+**4. Nardi, V., & Harris, J. (2006). Emergent gameplay and future of gaming in World of Warcraft. In D. Senger & J. Hunsinger (Eds.), Handbook of research on digital games: Technology, design, and applications (pp. 123–138). Hershey, PA: Idea Group Publishing.**
+
+This chapter analyzes World of Warcraft as a virtual game world that fosters emergent gameplay and collaboration among players. It explores how players interact and build communities within this virtual environment.
+
+### **Category: Collaborative Projects - Knowledge Sharing**
+**5. Krauss, S. J., & Theodore, K. M. GitHub: A hybrid peer-production system for software development and open collaboration. Journal of Management Information Systems, 32(3), 235–261. DOI: 10.2753/MIS0742-122270320307**
+
+This study examines GitHub as a collaborative project platform that enables open-source software development through social coding practices and community involvement.
+
+### **Category: Content Communities - Knowledge Creation**
+**6. Jenkins, H., Ford, S., & Green, L. (2013). Spreadable media: Creating value and meaning in a networked culture. New York University Press.**
+
+This book explores fan communities on platforms like YouTube and Tumblr, analyzing how users create, share, and transform content within these communities to contribute to the broader cultural discourse.
+
+These entries provide a comprehensive understanding of various social media technologies across different categories, highlighting their impact on human interaction, community building, and knowledge creation.

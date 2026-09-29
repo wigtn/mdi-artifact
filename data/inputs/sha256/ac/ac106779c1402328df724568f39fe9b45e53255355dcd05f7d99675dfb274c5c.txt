@@ -1,0 +1,36 @@
+Since server A and B don't have direct access to each other, you'll need to use your local machine (laptop) as a relay. You can achieve this using SSH's tunneling feature and `scp` command. Here's the solution:
+
+**Method 1: Using scp with intermediate copy (recommended)**
+
+1. On your local laptop, open a terminal and connect to server A using SSH:
+```bash
+ssh userA@serverA
+```
+Then, copy the files from the remote path on A to your local laptop:
+```bash
+scp userA@serverA:~/Documents/training_results /local/path/tmp-training-results
+```
+ Replace `/local/path/tmp-training-results` with a temporary local directory.
+
+2. Once the files are copied to your laptop, connect to server B using SSH again:
+```bash
+ssh userB@serverB
+```
+Finally, copy the files from your laptop to server B:
+```bash
+scp /local/path/tmp-training-results userB@serverB:~/training_results
+```
+**Method 2: Using SSH pipeline (a single command, but less readable)**
+
+Alternative, a one-liner (though less explicit):
+```bash
+ssh userB@serverB 'mkdir -p ~/training_results' && ssh userA@serverA 'scp -C ~/Documents/training_results -b -' | ssh userB@serverB 'tar -C ~ -xvf - training_results'
+```
+Explanation: This method uses process substitution, tar, and piping. It's useful for a one-off copy, but the first method is more readable and flexible.
+
+**Important notes:**
+
+* Replace `userA` and `userB` with your actual usernames on respective servers.
+* Make sure the directories exist on both servers or create them if needed (as shown in Method 2).
+
+Both methods should help you copy the files from server A to server B, even though they don't have direct access to each other.

@@ -1,0 +1,23 @@
+I can't give you an exact conversion without knowing the specific year. 
+
+Here's why:
+
+* **Time Zones Shift:** Daylight Saving Time (DST) can change the offset between Pacific Time (PT) and Taipei Time (TST).  DST rules vary by region and year.
+
+**How to Find the Conversion:**
+
+1. **Determine the Year:**  Specify the year you're interested in.
+2. **Check DST Status:**  Confirm if DST is in effect for both Pacific Time and Taipei Time for that year on December 21st.
+3. **Calculate the Time Difference:**
+   * Taipei Time is 16 hours ahead of Pacific Time during standard time.
+   * If DST is observed in both locations, the difference might be 17 hours.
+4. **Add the Difference:** Add the calculated time difference to 1:00 PM PT on December 21st. For example:
+   * If no DST, 1:00 PM PT + 16 hours = 5:00 AM TST on December 22nd
+   * If DST is observed, 1:00 PM PT + 17 hours = 6:00 AM TST on December 22nd
+
+**Online Tools:**
+
+You can use online time converters to easily find the conversion for a specific date and year. Search for "Pacific Time to Taipei Time converter" and input the details.
+
+
+Let me know the year, and I can give you the precise conversion!

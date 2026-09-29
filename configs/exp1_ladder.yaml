@@ -1,0 +1,129 @@
+# Exp 1 — known-effect ladder (ADR-029 §e).
+#
+# What this measures, and why it is not another variance cell:
+#   Every null in this project is one the estimator built — two disjoint pools of
+#   the same system, so the true difference is zero by construction. That answers
+#   "does the threshold hold its level", never "does it detect a gap that is
+#   really there". This config scores pairs whose gap is fixed by the SummEval
+#   expert annotations, spanning 0.00 to 37.02 %p, so P(detect | external gap)
+#   can be read as a curve over an effect the judge did not produce.
+#
+# Governance:
+#   - design ................ ADR-029 §e — Accepted (8/13). Gated on budget
+#     approval + an API key; the key landed 8/15.
+#   - selection rule ........ store.gap_ladder_pairs: per target, the pair whose
+#     %p gap is nearest, ties toward the lowest indices. Deterministic.
+#   - env ................... IDENTICAL to exp1_dense likert5 (e_250190cb1b81):
+#     same judge, prompt text, prompt_id, benchmark, task, scale, temperature.
+#     ADR-029 §e asks for "the same 100 items, the same env", and `experiment`
+#     is not part of the env hash — so these records land in the same measured
+#     environment while `data/raw/exp1_ladder/` keeps them a separate run.
+#     Published exp1_dense numbers are read per --exp and are NOT affected.
+#   - scale ................. likert5 only. §e budgets one scale, and likert5 is
+#     the cell the oracle analysis already reports (ADR-029 §a-§c).
+#   - notation .............. ADR-001 (%p primary)
+#   - repeat sweep .......... ADR-011 Update 2026-07-31: N ∈ {1,3,5,8,10,20}
+#   - budget ................ ADR-003 cap $100; $22.11 spent before this run.
+#
+# Scope note (first-author call, 2026-08-15): the ladder needs 11 systems and
+# four of them (s_07, s_09, s_11, s_12) already carry 20 repeats in exp1_dense at
+# this very env. They are re-scored here anyway. Reusing them would save ~8,000
+# calls (~$0.77) but would make every ladder number a join across two run_ids;
+# one self-contained run is worth more than the saving. ADR-029 §e budgeted
+# 24,000 calls / ~$2.3 and this is 22,000.
+#
+# EXECUTION IS GATED: estimate-cost -> pilot -> (first-author approval) -> full.
+
+experiment: exp1_ladder
+benchmark: summeval
+
+judge:
+  model: "gpt-4o-mini"
+  model_version: "unpinned-alias"   # overwritten per record by the provider echo
+  tier: "dense"                     # ADR-006 Update 2026-08-01
+  provider: "openai"
+  provider_kind: "openai_compat"
+  endpoint: "https://api.openai.com/v1"
+  api_key_env: "OPENAI_API_KEY"
+  serving_engine: null
+  quantization: null
+
+prompt:
+  # Byte-identical to exp1_dense: the template SOURCE TEXT is in the env hash
+  # (ADR-009 §3), so any edit here forks the environment and breaks the
+  # "same env" requirement of ADR-029 §e.
+  prompt_id: "p_exp1_summ_v1"
+  paraphrase_id: "pp_0"
+  templates:
+    likert5: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 1-5 scale, where 1 is very poor and 5 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-5>}
+
+grid:
+  task: ["summarization"]
+  scale: ["likert5"]
+  temperature: [1.0]                # ADR-011 D2: mean-of-N under sampling
+
+inputs:
+  kind: hf_datasets_server
+  dataset: "mteb/summeval"
+  config: "default"
+  split: "test"
+  builder: "summeval_gap_ladder"
+  fetch_rows: 100
+  n_items: 100                      # full SummEval test split, same items as exp1_dense
+  # ADR-029 §e. Measured against the pinned snapshot these resolve to
+  # 0.00 / 2.10 / 4.92 / 10.10 / 19.96 / 37.02 %p over 11 distinct systems:
+  #   0  -> s_09 vs s_11 (exactly zero — a null the estimator did not construct)
+  #   2  -> s_02 vs s_05
+  #   5  -> s_04 vs s_06
+  #   10 -> s_03 vs s_07
+  #   20 -> s_12 vs s_15
+  #   37 -> s_00 vs s_12 (the widest pair in the release)
+  ladder_targets: [0, 2, 5, 10, 20, 37]
+
+repeats:
+  n: 20
+  max_attempts_factor: 2            # ADR-011 D7
+  seed_base: 20260815               # distinct from exp1_dense (20260801)
+  sweep: [1, 3, 5, 8, 10, 20]
+
+pilot:
+  n_items: 10
+  n_repeats: 3
+
+budget:
+  # The gate compares ledger + projected against BOTH values, so they move
+  # together (same basis as exp3_decay8). ADR-002's 2026-08-01 figure of $16 was
+  # set when the ledger was near zero and $22.11 has been spent since; carrying
+  # it here would block on history rather than on this run's cost. $28 = ledger
+  # $22.11 + this run's WORST case $5.39, rounded up — so the gate still stops
+  # anything larger than what was estimated. ADR-029 §e priced this run and
+  # recorded it as inside the ADR-003 hard cap of $100; the ledger stands at
+  # $27.50 if every retry fires, and at ~$24.57 on the expected path.
+  pilot_cap_usd: 28
+  cumulative_cap_usd: 28
+
+pricing:
+  "gpt-4o-mini":
+    input_usd_per_mtok: 0.15
+    output_usd_per_mtok: 0.60
+
+runtime:
+  concurrency: 8
+  max_output_tokens: 24             # {"score": NN} only
+  expected_output_tokens: 6         # measured: dense pilot 2026-08-02, 6.0/call
+  chars_per_token: 4.0

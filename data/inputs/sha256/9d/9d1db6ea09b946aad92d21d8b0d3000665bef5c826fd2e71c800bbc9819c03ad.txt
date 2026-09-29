@@ -1,0 +1,7 @@
+This paper introduces FewJoint, the first few-shot learning (FSL) benchmark for joint dialogue understanding, focusing on intent detection and slot filling tasks. The authors address the challenges of joint learning in few-shot scenarios by:
+
+1. Providing a new corpus with 59 dialogue domains from real industrial API and a code platform for FSL experiments.
+2. Proposing a trust gating mechanism to guide slot filling with explicit intent information while blocking low-confidence intent information.
+3. Implementing a Reptile-based meta-learning strategy for better generalization in unseen few-shot domains.
+
+The proposed method achieves significant improvements and new state-of-the-art performance on two datasets.

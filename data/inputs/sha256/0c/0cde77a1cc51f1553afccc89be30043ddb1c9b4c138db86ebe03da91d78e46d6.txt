@@ -1,0 +1,17 @@
+To show how to use the `input()` function in Python, you can use the following command:
+
+```python
+help(input)
+```
+
+This command will display the built-in documentation for the `input()` function, including its syntax, parameters, and a brief description of its functionality.
+
+Alternatively, you can also use:
+
+```python
+print(input.__doc__)
+```
+
+This will print out the docstring associated with the `input()` function, which typically contains similar information to what you'd see with the `help()` function.
+
+Both of these commands can be run in a Python interactive shell or within a Python script to get information about how to use the `input()` function.

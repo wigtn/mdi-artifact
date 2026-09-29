@@ -1,0 +1,668 @@
+\documentclass{article}
+
+\usepackage[dblblindworkshop, final]{neurips_2026}
+
+\workshoptitle{TAE (Trust-AI-Eval): Can We Trust AI Evaluation?}
+
+\usepackage[utf8]{inputenc}   %
+\usepackage[T1]{fontenc}      %
+\usepackage{hyperref}         %
+\usepackage{url}              %
+\usepackage{booktabs}         %
+\usepackage{amsfonts}         %
+\usepackage{amsmath}          %
+\usepackage{amsthm}           %
+\usepackage{nicefrac}         %
+\usepackage{microtype}        %
+\usepackage{graphicx}         %
+\usepackage{xcolor}           %
+
+\raggedbottom
+\setlength{\textfloatsep}{9pt plus 2pt minus 3pt}
+\setlength{\floatsep}{9pt plus 2pt minus 3pt}
+\setlength{\intextsep}{9pt plus 2pt minus 3pt}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.75}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.75}
+
+\setlength{\abovedisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{4pt plus 1pt minus 1pt}
+\setlength{\belowdisplayshortskip}{4pt plus 1pt minus 1pt}
+
+\input{../shared/macros}
+
+\title{MDI: The Minimum Detectable Improvement of an LLM Judge}
+
+\author{%
+  Hyeong-seob Kim \\
+  WIGTN \\
+  \texttt{harrison@wigtn.com} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Where a pipeline's outputs are closed, a golden dataset holds the yardstick
+  still; open-output pipelines scored by an LLM judge have no such anchor:
+  the same output scored twice does not, in general, receive the same score. We
+  ask what improvement claims such a measurement can support, and define
+  $\mdi(\env, N)$, the \emph{minimum detectable improvement}: the smallest gain
+  an environment can confirm at a stated error level given $N$ scoring repeats,
+  the half-width of the null distribution's 95\% prediction interval; and
+  $\fip(\Delta, \env, N)$, the probability that an observed gain $\Delta$
+  reverses under independent re-evaluation. On a grid of two
+  judges, two tasks, and three scales we tabulate $\mdi$, the power (Type~II)
+  side that acceptance testing leaves uncontrolled, over
+  $N \in \{1,3,5,8,10\}$, where it spans $2.7\times$ across one judge tier at
+  $N{=}1$; a repeat sweep separates instability-driven gains, which vanish as $N$
+  grows, from a residue repeats cannot reach, which a decay model puts at a
+  non-zero floor. That floor depends on the measurement's own design: widening the
+  family of accepted rubric rewordings from four to eight raises it
+  $2.5\times$ in variance while the repeat-reducible component holds.
+  Against expert annotations the threshold fires on pairs no annotation facet
+  separates and stays silent on one that three of four do: a measured
+  boundary on what it licenses. We close with a
+  reporting-and-decision protocol (repeat, interval, decide, with an SLA
+  margin for absolute claims) that every number here obeys. The grid is
+  pilot-scale: it establishes direction, leaving cell-level magnitudes to the
+  expanded grid.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_framework}
+\input{sections/04_experiments}
+\input{sections/05_protocol}
+\input{sections/06_limitations}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+
+\section{Additional Tables and Diagnostics}
+\label{app:extra}
+
+\begin{table}[h]
+  \centering
+  \caption{SLA margin: to claim ``score $\geq t$'', the observed $N$-repeat mean
+    must exceed $t$ by the cell value [\%p; $\sigma$-relative in parentheses],
+    the one-sided $95\%$ null quantile per environment. Read off the null
+    \emph{difference} distribution, it prices the uncertainty in $t$ as well,
+    so against an exactly known $t$ every entry is conservative by $\sqrt{2}$.
+    Section~\ref{sec:exp3}'s shared prompt component, $6.83$~\%p, is
+    $2.7$--$12\times$ the $N{=}1$ column ($0.55$--$2.50$~\%p) and
+    $2.7$--$25\times$ this whole table ($0.27$--$2.50$~\%p).
+    Pilot estimates.}
+  \label{tab:sla-margin}
+  \scriptsize
+  \renewcommand{\arraystretch}{0.88}
+  \input{../tables/sla_margin.tex}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Noise-floor decomposition (Experiment~3 environment): total SD
+    of the $N$-mean, observed vs.\ the no-floor $1/\sqrt{N}$ extrapolation
+    of the $N{=}1$ spread, in \%p (raw in parentheses). $N \in \{1,3,5\}$
+    measured; $N{=}20$, $N{\to}\infty$ from the fit (Eq.~\ref{eq:decay}).
+    The last row is the same cell swept over four paraphrases instead of
+    eight. Pilot estimates.}
+  \label{tab:noise-floor}%
+  %% source: data/derived/exp3_decay8/decay.json (fits[0].points sd_mean,
+  %% sd_theoretical for N in {1,3,5}; sigma_sq, omega_sq, omega for the
+  %% model columns). run_ids r_20260805_5b3342 (pilot), r_20260805_523960;
+  %% env_id e_e941458fd533. Observed N=20 = sqrt(sigma_sq/20 + omega_sq),
+  %% N=inf = omega; both /4*100 to %p. Four-paraphrase row: same quantities
+  %% from data/derived/exp3_decay/decay.json, env_id e_a7cb4136ad0c.
+  \footnotesize
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc}
+    \toprule
+    Total SD of $N$-mean [\%p (raw)]
+      & $N{=}1$ & $N{=}3$ & $N{=}5$ & $N{=}20$ & $N{\to}\infty$ \\
+    \midrule
+    Observed (with floor $\omega$)
+      & 10.26 (0.411) & 9.12 (0.365) & 8.86 (0.354) & 8.58 (0.343) & 8.48 (0.339) \\
+    No-floor $1/\sqrt{N}$
+      & 10.26 (0.411) & 5.93 (0.237) & 4.59 (0.184) & 2.30 (0.092) & 0 (0) \\
+    \midrule
+    Same cell, four paraphrases
+      & 7.90 (0.316) & 6.31 (0.252) & 5.91 (0.236) & 5.47 (0.219) & 5.31 (0.213) \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{../figures/fip_overlay_N1_alpha0p05.pdf}
+  % source figure (generated by `mdi report`, do not edit):
+  %   fip_overlay_N1_alpha0p05.pdf -- the three headline envs on one axes,
+  %   selection fixed in figures.HEADLINE_FIP_ENVS.
+  %   run_ids: dense r_20260801_da6e9c, anchor r_20260801_0eeb4b,
+  %   alpaca r_20260801_cc2370
+  \caption{Reversal probability against observed gain at $N{=}1$ (bootstrap
+    95\% CIs, cluster $=$ system pair; dotted verticals mark each
+    environment's $\mdi$). Near-pair reversal is $7.4\%$ for dense
+    \texttt{gpt-4o-mini} against $26.7\%$ for anchor \texttt{gpt-5.6} on the
+    same cell, and $17.2\%$ on instruction-following. The judge contrast's
+    intervals overlap; the ordering is a point-estimate statement.}
+  \label{fig:fip-curves}
+\end{figure}
+
+\paragraph{Conversion table (Experiment 2).}
+The full observed-gain $\rightarrow$ reversal-probability conversion, whose
+headline contrast (the same $1.8$~\%p gain reversing $7.4\%$ under
+\texttt{gpt-4o-mini} but $26.7\%$ under \texttt{gpt-5.6}) appears in
+Section~\ref{sec:exp2}, is Table~\ref{tab:fip-conversion}.
+
+\begin{table}[h]
+  \centering
+  \caption{Conversion table: a single-run observed gain $\rightarrow$
+    estimated reversal probability, per environment (lowest $\Delta$ bin,
+    $N{=}1$; $\fip$ with bootstrap 95\% CI). The same $\Delta$ carries
+    different risk in different environments.}
+  \label{tab:fip-conversion}
+  %% source: paper/tables/fip_conversion.csv (N=1 rows, first bin per env);
+  %% equivalently data/derived/{exp1_dense,exp1_anchor,exp1_alpaca}/fip.json.
+  \small
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcc}
+    \toprule
+    Environment (judge $\cdot$ task $\cdot$ scale)
+      & Observed $\Delta$ [\%p (raw)]
+      & $\fip(\Delta,\env,1)$ [\%, CI] \\
+    \midrule
+    gpt-5.6 $\cdot$ Summ $\cdot$ L5   & $1.8$ (0.071) & 26.7 [8.1, 45.2] \\
+    4o-mini $\cdot$ Summ $\cdot$ L5   & $1.8$ (0.072) & 7.4 [0.0, 14.8] \\
+    4o-mini $\cdot$ Summ $\cdot$ L10  & $1.5$ (0.135) & 1.5 [0.0, 2.6] \\
+    4o-mini $\cdot$ Summ $\cdot$ S100 & $1.1$ (1.064) & 6.7 [0.0, 10.9] \\
+    4o-mini $\cdot$ Instr $\cdot$ L5  & $1.0$ (0.041) & 17.2 [6.0, 34.1] \\
+    4o-mini $\cdot$ Instr $\cdot$ L10 & $0.8$ (0.071) & 20.3 [9.4, 32.3] \\
+    4o-mini $\cdot$ Instr $\cdot$ S100 & $0.6$ (0.550) & 27.5 [9.9, 42.3] \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+\paragraph{Near-pair FIP against repeats (Experiment 2).}
+Dense summarization clears near-pair reversals by $N{=}5$
+($7.4 \rightarrow 0.5\%$), but the anchor and AlpacaEval environments stay in
+double digits even at $N{=}10$ (anchor likert5 $26.7 \rightarrow 10.2\%$;
+instruction score100 $27.5 \rightarrow 14.2\%$).
+%% source: paper/tables/fip_conversion.csv, first-bin reversal_pct at
+%% n_repeats in {1,5,10} for each env. (likert10/likert5
+%% instruction decay figures remain in the csv.)
+
+\paragraph{Decay of the $N$-repeat mean (Experiment 3).}
+Measured SD of the $N$-mean against the no-floor $1/\sqrt{N}$ reference, over
+the \emph{four}-paraphrase family of the dense
+summarization~$\times$~likert5 environment (the last row of
+Table~\ref{tab:noise-floor}). The fit (Eq.~\ref{eq:decay}; $\sigma^2 = 0.055$,
+$\omega^2 = 0.045$) resolves a floor that averaging cannot cross; the
+eight-paraphrase family of the same cell flattens onto $8.48$~\%p instead
+(Section~\ref{sec:exp3}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{../figures/decay_curve_exp3_decay_e_a7cb4136ad0c.pdf}
+  % source figure (generated by `mdi report`, do not edit):
+  %   run_ids r_20260801_821031, r_20260801_8eccda; env_id e_a7cb4136ad0c
+  \caption{Decay of the $N$-repeat mean over the \emph{four}-paraphrase family
+    of the dense summarization~$\times$~likert5 cell (the last row of
+    Table~\ref{tab:noise-floor}), drawn at $\omega = 5.31$~\%p. The measured
+    curve flattens onto $\omega$ while the no-floor $1/\sqrt{N}$ reference
+    keeps falling; widening the family to eight moves the same cell's floor to
+    $8.48$~\%p (Section~\ref{sec:exp3}).}
+  \label{fig:decay-curves}
+\end{figure}
+
+\paragraph{Consistency check, per-cell numbers (Experiment 1).}
+At $N{=}1$, summarization likert5 gives null-PI $1.75$ vs.\ FIP-crossing
+$2.74$~\%p ($\times 1.56$) for \texttt{gpt-4o-mini} and $3.00$ vs.\ $5.15$~\%p
+($\times 1.72$) for \texttt{gpt-5.6}; the full per-cell comparison is the
+\texttt{consistency} block of each environment's \texttt{mdi\_table.json}. The gap is
+systematic (the FIP read-off is always larger) because the sustained-crossing
+rule prices in a stricter criterion than the raw null half-width; it is a
+disclosed property of the two estimators, not an error.
+%% source: data/derived/exp1_*/mdi_table.json ("consistency" block).
+
+\paragraph{Sweep-truncation mechanics (Experiment 1, caveat i).}
+The null distribution draws two disjoint pools per cell, but the draws inside
+each pool are taken \emph{with replacement}, so the split does not itself bound
+$N$: a budget larger than a pool can be simulated. What bounds the lookup is a
+reporting rule: an $N$ is kept only when \emph{every} cell holds at least $N$
+estimation repeats, because reporting simulated budgets would overstate what the
+data measured. Every cell holds 19 estimation repeats in the dense and alpaca
+tiers (20 raw, repeat~0 held out for screening) and 7 in the anchor, so the rule
+leaves no $N{=}20$ entry anywhere on the null-PI path and stops the anchor at
+$N{=}5$. The quantifier is load-bearing: a \emph{some}-cell rule would open the
+anchor's $N{=}8$ column on the strength of one cell in 200 that holds an eighth
+repeat, while the other 199 could only simulate that budget. The FIP path shares
+the same draw machinery but applies no such truncation, and therefore reaches
+$N{=}10$ on the anchor.
+
+\paragraph{Estimation-pool inflation.}
+The two null pools are a split of a cell's $r$ estimation repeats, so their means
+differ by a split-half term that no budget removes. Writing
+$P = \tfrac{1}{|A|} + \tfrac{1}{|B|}$ for the two pools ($|A| + |B| = r$, so
+$P \approx 4/r$), one item contributes
+$\sigma^2\bigl[(2 - P)/N + P\bigr]$: the within-pool part loses $P/N$ because a
+pool of size $a$ has population variance $\sigma^2(a{-}1)/a$, and the pools' own
+means differ by $\sigma^2 P$. The reported half-width is therefore
+\[
+  \mdi_{\alpha}(\env, N) \;\approx\;
+  \frac{z_{1-\alpha/2}\,\sigma}{\sqrt{|I|}}
+  \sqrt{\tfrac{2 - P}{N} + P},
+\]
+rather than $z_{1-\alpha/2}\sigma\sqrt{2/N}/\sqrt{|I|}$, the value for an
+unlimited pool. Two consequences. At $N{=}1$ the two terms cancel \emph{exactly}
+(one draw from each pool is just two draws from the $r$ repeats), so there is
+no inflation at all; and the excess grows with the budget, reaching $39.6\%$ at
+$N{=}10$ on $r{=}19$ and $47.2\%$ at $N{=}5$ on $r{=}7$
+(Table~\ref{tab:pool-inflation}). In the dense
+summarization~$\times$~likert5 cell ($\sigma = 6.40$~\%p, $|I| = 100$, pools of
+$9$ and $10$) the model gives $1.77, 1.13, 0.94, 0.83, 0.78$~\%p against the
+measured $1.75, 1.13, 0.93, 0.84, 0.78$, within $2\%$ everywhere, where the
+$2/N + P$ form this appendix previously quoted was high by up to $7\%$. The
+inflation is conservative, demanding
+a larger gain than the instability alone requires, and it is largest where $r$ is
+smallest: it is the second reason the anchor tier carries no large-$N$ column, and
+the reason MDI is not compared across tiers with different $r$. The corrected
+column is released beside the raw one in the derived records; the archival grid
+will report MDI at matched $r$.
+
+\begin{table}[h]
+  \centering
+  \caption{What the estimator adds on top of the environment. The factor is
+    $\sqrt{[(2-P)/N + P] \big/ (2/N)}$ for the split this project's repeat counts
+    produce; the corrected row divides it out of the dense
+    summarization~$\times$~likert5 cell. At $N{=}1$ the split costs nothing.}
+  \label{tab:pool-inflation}
+  %% source: data/derived/exp1_*/mdi_table.json null_entries[].pool_inflation
+  %% and .mdi_null_corrected_pp (alpha=0.05). Verified against a direct
+  %% simulation of the draw procedure.
+  \footnotesize
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc}
+    \toprule
+    & $N{=}1$ & $N{=}3$ & $N{=}5$ & $N{=}8$ & $N{=}10$ \\
+    \midrule
+    Dense / instruction tiers ($r{=}19$, pools $9{+}10$)
+      & $1.000$ & $1.101$ & $1.193$ & $1.319$ & $1.396$ \\
+    Anchor tier ($r{=}7$, pools $3{+}4$)
+      & $1.000$ & $1.258$ & $1.472$ & -- & -- \\
+    \midrule
+    4o-mini $\cdot$ Summ $\cdot$ L5, as reported [\%p]
+      & 1.75 & 1.13 & 0.93 & 0.84 & 0.78 \\
+    \quad corrected [\%p]
+      & 1.75 & 1.02 & 0.78 & 0.64 & 0.55 \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+\paragraph{The external reference, per pair (Experiment 1).}
+The SummEval release annotates every summarizer on four facets with three
+experts; the pair-selection step reads them to choose the closest four systems, and
+Section~\ref{sec:exp1} reads them again to check the instrument. Over the $100$
+scored items the four differ by at most $1.15$~\%p and no pair of the six has an
+interval excluding zero, so the set is externally null: a null this paper's
+estimator did not construct, which is what makes the coverage below
+non-circular. The reference is itself a measurement: its widest pair interval is
+$4.52$~\%p, so ``not separated'' means ``not separated at this precision'',
+never ``identical''. Averaged over the six pairs, $|$judge gap$|$ is
+$4.54$~\%p against $|$reference gap$|$ $0.57$~\%p in the likert5 cell, leaving
+$4.73$~\%p unaccounted for; the residual does not shrink with $N$.
+One environment reverses this. On \texttt{gpt-5.6}~$\cdot$~score100 the judge
+spread is $2.07$~\%p against the reference's $1.67$, and agreement is $0.67$,
+so the unaccounted residual is a property of the environment, not a fact about
+judges as a class.
+%% source: data/derived/exp1_anchor_scales/oracle.json reports[].{judge_spread_pp,
+%% oracle_spread_pp, rank_concordance}; env gpt-5.6 x summarization x score100.
+
+\begin{table}[h]
+  \centering
+  \caption{Claim rate against the two nulls, dense
+    summarization~$\times$~likert5. \emph{Internal} re-scores one system twice
+    (the channel $\mdi$ is built to control); it lands at the two-sided $\alpha$ where
+    the pool term vanishes ($N{=}1$) and below it thereafter, the same artifact
+    Table~\ref{tab:pool-inflation} prices. \emph{External} compares two systems
+    the reference cannot separate. Both rows are two-sided $|\Delta|$
+    readings; the directional rule of Section~\ref{sec:protocol} fires at
+    half the internal row. Only the first is a property of the threshold.}
+  \label{tab:oracle-coverage}
+  %% source: data/derived/exp1_dense/oracle.json reports[env=e_250190cb1b81]
+  %% .claim_rates[] (alpha=0.05, 200 draws per pair, 6 pairs / 4 systems).
+  \footnotesize
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc}
+    \toprule
+    & $N{=}1$ & $N{=}3$ & $N{=}5$ & $N{=}8$ & $N{=}10$ \\
+    \midrule
+    $\mdi_{.05}$ [\%p]           & 1.75  & 1.13  & 0.93  & 0.84  & 0.78 \\
+    Internal null (one system)   & 0.043 & 0.028 & 0.018 & 0.007 & 0.004 \\
+    External null (unseparated pairs) & 0.829 & 0.934 & 0.960 & 0.983 & 0.993 \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+%% source: data/derived/exp1_{dense,anchor}/mdi_table.json meta.params
+%% .estimation_repeats; support rule = src/mdi/stats/null_mdi.py supported_sweep
+%%. Pool term = 1/|A| + 1/|B| for the split of r; dense 1/9+1/10=0.211.
+
+\paragraph{The known-effect ladder (Experiment 1 validation pass).}
+The eleven-system pass behind Section~\ref{sec:exp1}'s boundary numbers spans
+external gaps of $0.00$--$37.02$~\%p over the same $100$ items and the same
+environment as the dense likert5 cell (registry: \texttt{exp1\_ladder}).
+Detection is the share of scoring draws with $|\Delta| > \mdi(\env, N)$,
+computed with the same draw machinery as the claim rates below.
+Pooled over the ten pairs the reference cannot separate, the claim rate rises
+$0.878 \to 0.999$ from $N{=}1$ to $N{=}10$ while the internal rate falls
+$0.034 \to 0.008$; the per-pair detection curves, the per-facet separation
+flags behind the ``no facet / three of four'' sentences, and the two boundary
+summaries are recorded fields of the derived record.
+%% source: data/derived/exp1_ladder/oracle.json reports[env=e_250190cb1b81]
+%% .{claim_rates[].{internal,external}_rate, detection[], detection_summary[],
+%% facet_reports[], gaps[].facets_separating}; runs r_20260814_2f48e2 (pilot)
+%% + r_20260814_c8104e (full), config 41ff28672647ee0c.
+
+\paragraph{Held-out screening: scope note (Experiment 2).}
+Pair selection separates a screening pass (repeat~0) from FIP estimation, and
+the guard fires on intentional overlap (it raises
+when the screening and estimation repeat indices intersect); all held-out runs
+pass it. On this data, held-out did not
+measurably move FIP: held-out vs.\ no-holdout estimates differ on the order of
+$\pm 0.1$--$2.6$~\%p with mixed signs. The reason is structural rather than a
+null result: the current FIP estimation path bins \emph{all}
+system pairs by re-observed $\Delta$ rather than pre-selecting close pairs on
+the screening $\Delta$, so excluding repeat~0 removes only one of
+$\sim$19--20 estimation repeats and the selection-on-noise inflation the
+held-out design targets is never exercised. The guard remains a required safeguard for a
+future close-pair pre-selection analysis; here it is enforced but
+structurally inert.
+%% source: docs/papers/EXP2-fip-results.md sec.4 (held-out vs no-holdout
+%% comparison) + sec.1 (OverlappingRepeatsError guard demonstration).
+
+\paragraph{Per-system spread (heteroscedasticity check).}
+$\mdi$ builds its null distribution inside one system and averages over
+systems, which represents an $A$-vs-$B$ comparison only if the systems have
+comparable spread. They do: across all eight environments the widest
+system-to-system ratio is $1.32$, and it is $1.10$--$1.24$ in five of the eight.
+The same requirement is why judges are compared by $\sigma$, which is
+item-count-independent, and never by $\mdi$: the anchor cells use fewer items,
+so their $\mdi$ is not on the dense tier's footing.
+
+\begin{table}[h]
+  \centering
+  \caption{Repeat instability per system within each environment, in \%p
+    (pooled over items, estimation repeats only). ``ratio'' is the widest
+    system divided by the narrowest; a large value would mean the null
+    distribution is centred on the wrong variance.}
+  \label{tab:system-sigma}
+  %% source: data/derived/exp1_*/variance.json, "systems" rows (
+  %% 2026-08-06). sigma in %p = raw / scale-width * 100.
+  \footnotesize
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+    \toprule
+    Environment (judge $\cdot$ task $\cdot$ scale)
+      & narrowest $\sigma$ & widest $\sigma$ & ratio \\
+    \midrule
+    4o-mini $\cdot$ Summ $\cdot$ L5    & 5.46 & 7.18 & 1.32 \\
+    4o-mini $\cdot$ Instr $\cdot$ L10  & 3.32 & 4.28 & 1.29 \\
+    4o-mini $\cdot$ Instr $\cdot$ S100 & 2.18 & 2.69 & 1.24 \\
+    4o-mini $\cdot$ Instr $\cdot$ L5   & 3.77 & 4.54 & 1.21 \\
+    gpt-5.6 $\cdot$ Summ $\cdot$ L5    & 6.55 & 7.82 & 1.19 \\
+    gpt-5.6 $\cdot$ Summ $\cdot$ S100  & 2.73 & 3.07 & 1.12 \\
+    4o-mini $\cdot$ Summ $\cdot$ S100  & 3.56 & 3.94 & 1.11 \\
+    4o-mini $\cdot$ Summ $\cdot$ L10   & 4.53 & 5.01 & 1.10 \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+\paragraph{Null-pair construction (estimand and estimator).}
+For an environment $\env$, let $R_{s,i}$ be the estimation repeats of
+system $s$ on item $i$, and let $\bar{m}_N(P)$ denote the mean of $N$
+scores drawn with replacement from a pool $P$. One null draw for system
+$s$ is
+\begin{equation*}
+  \delta_s^{(b)}
+    \;=\; \frac{1}{|I|} \sum_{i \in I}
+      \Bigl( \bar{m}_N\bigl(A^{(b)}_{s,i}\bigr)
+            - \bar{m}_N\bigl(B^{(b)}_{s,i}\bigr) \Bigr),
+\end{equation*}
+where $(A^{(b)}_{s,i}, B^{(b)}_{s,i})$ is a fresh uniform partition of
+$R_{s,i}$ into disjoint pools, drawn independently per item and per draw
+$b$. Both pools score the same cell, so the true difference is zero by
+construction, and the pairing is at the \emph{item} level: system-level
+means enter only through the average over $I$, never through cross-system
+differencing. Pooling $\delta_s^{(b)}$ over systems and draws gives the
+empirical $D_0(\env, N)$; $\mdi$ is the half-width of its central
+interval, and the confidence interval on $\mdi$ is a seeded cluster
+bootstrap over systems (all draws of one system resampled together).
+Relative CI width on the reported $\mdi$ runs $4.3$--$30.6\%$ (median
+$14.3\%$ over the $35$ published cells); with four system clusters the usual
+$(G{-}1)/G$ bias applies, so we read it as a spread rather than calibrated
+coverage.
+
+\paragraph{Family-wise correction (Experiment 4).}
+The band of Section~\ref{sec:experiments} is applied per decision. Under a
+Holm--Bonferroni correction across all $14$ promotion $p$-values (family
+$\alpha = 0.05$), exactly one promotion remains individually significant:
+seed~$5$'s $11$-vs-$1$ ($p = 0.0032$); seed~$101$'s promotions $3$--$4$
+($p = 0.033$, $0.025$) do not survive. The seed-$101$ diagnosis is unaffected
+in direction: its $7$-vs-$6$ last accepted decision is a failure to clear
+the band, which stricter control only reinforces, and a family-wise gate would have promoted
+nothing on that seed. The per-decision band is an operating policy, not a
+family-wise inference. The McNemar null further treats a promotion's $n$
+discordant answers as independent fair-coin flips, which correlated failure
+modes across questions would violate.
+%% source: data/derived/exp4/promotions.json rows[].reversal_prob, Holm
+%% step-down at alpha=0.05 over m=14; survivor = seed 5 promo #4 (11,1).
+
+%% source: data/derived/exp4/promotions.json rows[].confirm_baseline_acc
+%% (seed 101), computed from the release's own confirm_baseline_outcomes.
+\paragraph{The prospective bar (Experiment 4).}
+The band is computable \emph{before} a loop runs: at discordant counts of
+the size this loop produced, the smallest gain that would clear
+$\alpha{=}0.05$ is $+0.06$ to $+0.09$, above both constants the loop shipped
+(Section~\ref{sec:protocol}).
+%% source: prospective_min_delta over n in [7,17] (src/mdi/stats/promotion.py).
+
+\paragraph{Marginals, not a trajectory (Experiment 4).}
+Each accepted decision is scored against the state in force when it was taken,
+and on seed~$101$ those states differ: the six \texttt{confirm} baselines are
+$0.79$, $0.80$, $0.80$, $0.77$, $0.80$ and $0.78$ on the same $100$ held-out
+questions. The six gains are therefore marginals against six different
+baselines, so no ordering of them is a trajectory and summing them would not
+describe where the loop finished.
+
+\paragraph{Statistical notes.}
+(1)~$\mdi_{\alpha}$ is parameterized by $\alpha$ through the central
+$(1-\alpha)$ interval; $\alpha$ is two-sided throughout, events are read
+as $|\Delta|$, and $\fip$ alone is one-sided, a signed reversal probability.
+The decision rule of Section~\ref{sec:protocol} claims only positive gains,
+so its false-claim rate under the null is $\alpha/2$; in the dense summarization~$\times$~likert5 cell
+at $N{=}1$ $\mdi_{\alpha}$ is $1.50$~\%p at $\alpha{=}0.10$ and $2.38$~\%p at
+$\alpha{=}0.01$, against $1.75$~\%p at the headline $\alpha{=}0.05$.
+(2)~FIP confidence intervals are cluster-bootstrapped at the system-pair
+level (six pairs), the coarsest available unit; coarse clustering widens the
+interval while six clusters bias it low, so we report it as a spread rather
+than calibrated coverage.
+(3)~The \%p normalization eases cross-scale reading, but the underlying
+scale widths differ ($4$, $9$, $100$ points), so raw-scale values are
+carried alongside throughout (parentheses in the body,
+Table~\ref{tab:raw-sigma} in full).
+(4)~The measured $80\%$ factor of Section~\ref{sec:framework} matches the
+$1+z_{1-\beta}/z_{1-\alpha/2}$ a normal $D_0$ would give and recovers the
+$(z_{1-\alpha/2}{+}z_{1-\beta})$ form used on the item axis
+\citep{kotawala2026resolution}, so the approximation is a checked choice.
+
+\section{Reproducibility Details}
+\label{app:repro}
+
+Every judge call was issued by the framework's runner (\texttt{mdi run})
+through an \texttt{mdi estimate-cost}~$\rightarrow$~pilot~$\rightarrow$~full
+gate, logged to an
+append-only ledger, and stored with a content-addressed input snapshot;
+analyses are seeded and sorted, and regenerating every figure and table
+twice produces byte-identical files. The code, the configuration files, the
+raw scores and the derived records (everything needed to re-run the
+analyses and reproduce every figure and table) are available at
+\url{https://github.com/wigtn/mdi-artifact}.
+Judges are \texttt{gpt-4o-mini}
+(dense tier) and \texttt{gpt-5.6} (anchor tier; \texttt{max\_completion\_tokens}
+interface) via the OpenAI API, temperature $1.0$, runs of 2026-08-01/02 and 2026-08-05.
+Experiment~3 distributes forty repeats per cell round-robin over eight
+prompt paraphrases sharing one environment id. Experiment~4 issues no API
+calls: it is computed from the public Regimes release
+(\texttt{github.com/yoheinakajima/regimes}, Apache-2.0, commit
+\texttt{7ba11a9}) pinned under the input snapshot store, derived record
+digest \texttt{sha256:01a90e87c48c\ldots}.
+A tied re-measurement counts as a reversal, which inflates
+$\fip$ on coarse scales and is therefore conservative for a claim.
+
+\begin{table}[h]
+  \centering
+  \caption{Measured cost in USD per $100$ (item~$\times$~system) cells at
+    budget $N$, per judge tier: ledger spend over logged calls,
+    $\times\,N \times 100$. Because the ledger aggregates pilot and full
+    passes, the per-tier unit price mixes their call counts; the anchor
+    column therefore differs from a direct division of
+    Table~\ref{tab:run-registry} by about $0.2\%$. Pilot scale; generated from
+    the ledger by \texttt{mdi report} (digest in the file header).}
+  \label{tab:cost}
+  \footnotesize
+  \input{../tables/cost_table.tex}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{Run registry (full-grid runs). The counts are full-run
+    aggregates only; the complementary pilot passes (sharing these config
+    hashes in the same ledger) complete the nominal cell product, with a
+    handful of parse-failure retries above it. $^{*}$Raising the repeats per
+    cell changes the config hash, so the eight-paraphrase environment took a
+    second gated pass; the runner is idempotent on
+    (env, item, system, repeat), so it billed only the $6{,}400$ new calls and
+    the two rows plus this environment's $120$-call pilot sum to the
+    $16{,}000$ records Section~\ref{sec:exp3} reports.}
+  \label{tab:run-registry}
+  %% source: data/ledger.jsonl, aggregated per run_id (spike runs excluded).
+  \footnotesize
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllrr}
+    \toprule
+    Experiment & run\_id & config hash & input digest & calls & USD \\
+    \midrule
+    exp1\_dense         & r\_20260801\_da6e9c & 57230b2ac56a5ffe & c04b5053f276 & 23{,}640 & 2.27 \\
+    exp1\_alpaca        & r\_20260801\_cc2370 & 6455906059207bcb & 716ce514f138 & 23{,}641 & 2.09 \\
+    exp1\_anchor        & r\_20260801\_0eeb4b & 471dabd1861b8f7a & 1f69dfca06f0 & 1{,}569  & 7.50 \\
+    exp1\_anchor\_scales & r\_20260801\_8133fe & e52338b922a693b2 & d12fd21c8be9 & 1{,}242  & 7.11 \\
+    exp1\_ladder        & r\_20260814\_c8104e & 41ff28672647ee0c & ac908ce9c639 & 21{,}670 & 2.09 \\
+    exp3\_decay         & r\_20260801\_8eccda & 97a5b1d31c9b8385 & c04b5053f276 & 7{,}880  & 0.76 \\
+    exp3\_decay8        & r\_20260805\_a9d7a3 & 1abfa882321f4392 & c04b5053f276 & 9{,}480  & 0.91 \\
+    exp3\_decay8$^{*}$  & r\_20260805\_523960 & 07f436c4afaa217e & c04b5053f276 & 6{,}400  & 0.62 \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{Raw-scale repeat instability per environment (raw values live
+    here by convention; the body reports \%p $=$ raw~/~scale
+    width~$\times 100$). Bootstrap 95\% CIs, cluster $=$ item.}
+  \label{tab:raw-sigma}
+  %% source: paper/tables/variance_by_env.csv (sigma, sigma_ci_lo/hi).
+  \footnotesize
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llll}
+    \toprule
+    Environment & env\_id & raw $\sigma$ [95\% CI] & $\sigma$ [\%p] \\
+    \midrule
+    4o-mini $\cdot$ Summ $\cdot$ L5    & e\_250190cb1b81 & 0.2560 [0.2375, 0.2734] & 6.40 \\
+    gpt-5.6 $\cdot$ Summ $\cdot$ L5    & e\_b842cbff3261 & 0.2860 [0.2530, 0.3157] & 7.15 \\
+    4o-mini $\cdot$ Summ $\cdot$ L10   & e\_7268666f4d91 & 0.4219 [0.4089, 0.4347] & 4.69 \\
+    4o-mini $\cdot$ Summ $\cdot$ S100  & e\_200f3c74cbfa & 3.8159 [3.6222, 3.9979] & 3.82 \\
+    gpt-5.6 $\cdot$ Summ $\cdot$ S100  & e\_d26d4476fba5 & 2.8558 [2.7024, 3.0087] & 2.86 \\
+    4o-mini $\cdot$ Instr $\cdot$ L5   & e\_dabfcd0d96e0 & 0.1712 [0.1364, 0.2030] & 4.28 \\
+    4o-mini $\cdot$ Instr $\cdot$ L10  & e\_9dae315a7446 & 0.3453 [0.3079, 0.3831] & 3.84 \\
+    4o-mini $\cdot$ Instr $\cdot$ S100 & e\_1cfecd45841e & 2.4651 [2.1254, 2.8314] & 2.47 \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+\section{Experiment 3 Rubric Paraphrases}
+\label{app:paraphrases}
+The eight templates behind Section~\ref{sec:exp3}'s floor, verbatim, so the
+family can be judged directly rather than through its variance.
+\texttt{\{\{source\}\}} and \texttt{\{\{candidate\}\}} mark where the article
+and the summary are inserted; line breaks are joined. All eight hold the four
+criteria, the $1$--$5$ scale and the JSON reply contract fixed and vary wording
+only. The first four are the family behind the four-paraphrase floor of
+$5.31$~\%p (the last row of Table~\ref{tab:noise-floor}); the full eight give
+$8.48$~\%p. Experiment~1's summarization~$\times$~likert5 cells, both judges
+and the validation pass, are scored with \texttt{pp\_0}'s wording.
+
+\noindent\texttt{pp\_0} \emph{(four-paraphrase family)}
+\begin{quote}\small
+You are evaluating the quality of a summary. \\
+Read the source article and the candidate summary, then rate the summary's overall quality on a 1-5 scale, where 1 is very poor and 5 is excellent. Consider relevance, coherence, fluency, and factual consistency with the source. \\
+Source article: \texttt{\{\{source\}\}} \\
+Candidate summary: \texttt{\{\{candidate\}\}} \\
+Reply with JSON and nothing else, in exactly this form: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+\noindent\texttt{pp\_1} \emph{(four-paraphrase family)}
+\begin{quote}\small
+Your task is to judge how good a summary is. \\
+Below are a source article and a summary written from it. Assign an overall quality rating between 1 and 5, where 1 means very poor and 5 means excellent. Base your judgment on how relevant the summary is, how coherent it reads, how fluent it is, and how factually faithful it stays to the source. \\
+Article: \texttt{\{\{source\}\}} \\
+Summary to rate: \texttt{\{\{candidate\}\}} \\
+Return only JSON, exactly like this: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+\noindent\texttt{pp\_2} \emph{(four-paraphrase family)}
+\begin{quote}\small
+Act as an evaluator of summary quality. \\
+Given the original article and a candidate summary, provide a single overall score from 1 (very poor) to 5 (excellent). Weigh four things: whether the summary is relevant, whether it reads coherently, whether it is fluent, and whether it remains factually consistent with the article. \\
+Original article: \texttt{\{\{source\}\}} \\
+Candidate summary: \texttt{\{\{candidate\}\}} \\
+Respond with JSON only, in precisely this format: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+\noindent\texttt{pp\_3} \emph{(four-paraphrase family)}
+\begin{quote}\small
+You will score the quality of a summary. \\
+After reading the source text and the proposed summary, rate the summary overall on a scale from 1 to 5 (1 = very poor, 5 = excellent). Take into account its relevance, its coherence, its fluency, and its factual agreement with the source text. \\
+Source text: \texttt{\{\{source\}\}} \\
+Proposed summary: \texttt{\{\{candidate\}\}} \\
+Answer with JSON and nothing more, exactly in this shape: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+\noindent\texttt{pp\_4}
+\begin{quote}\small
+Rate the summary below. \\
+You are given an article and a summary of it. Give one overall rating from 1 to 5, with 1 the worst and 5 the best. Four things should inform the rating: relevance, coherence, fluency, and factual consistency with the article. \\
+Article: \texttt{\{\{source\}\}} \\
+Summary: \texttt{\{\{candidate\}\}} \\
+Output JSON only, exactly: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+\noindent\texttt{pp\_5}
+\begin{quote}\small
+How good is this summary? \\
+Read the source below, then the summary written from it. Decide on a single overall quality score in the range 1-5 (1 = very poor, 5 = excellent). Ask yourself about its relevance, its coherence, its fluency, and its factual consistency with the source. \\
+Source: \texttt{\{\{source\}\}} \\
+Summary: \texttt{\{\{candidate\}\}} \\
+Give your answer as JSON and nothing else: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+\noindent\texttt{pp\_6}
+\begin{quote}\small
+You are a summary quality assessor. \\
+Assess the candidate summary against the source article and report one overall score between 1 and 5, where 1 denotes very poor quality and 5 denotes excellent quality. The assessment covers four criteria: (1) relevance, (2) coherence, (3) fluency, (4) factual consistency with the article. \\
+Article text: \texttt{\{\{source\}\}} \\
+Summary under assessment: \texttt{\{\{candidate\}\}} \\
+Your reply must be JSON only, in this exact form: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+\noindent\texttt{pp\_7}
+\begin{quote}\small
+Score a summary for overall quality. \\
+The source article comes first, then a summary of it. Produce one overall score on a five-point scale where 1 is very poor and 5 is excellent, judged on relevance, coherence, fluency, and factual agreement with the source. \\
+The article: \texttt{\{\{source\}\}} \\
+Its summary: \texttt{\{\{candidate\}\}} \\
+Reply with nothing but JSON, in this exact shape: \texttt{\{"score": <integer 1-5>\}}
+\end{quote}
+
+\end{document}

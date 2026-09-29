@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.env
+paper/tae2026/main.pdf
+paper/tae2026/*.aux
+paper/tae2026/*.log
+paper/tae2026/*.out
+paper/tae2026/*.bbl
+paper/tae2026/*.blg
+paper/tae2026/*.fls
+paper/tae2026/*.fdb_latexmk

@@ -1,0 +1,77 @@
+Here's a comprehensive list of subtopics in Music Theory:
+
+### 1. Fundamentals
+- **Pitch**:
+	* Notes (whole, half, quarter, etc.)
+	* Scales (major, minor, modal)
+	* Intervals (harmonic, melodic)
+	* Key signatures
+- **Rhythm**:
+	* Time signatures
+	* Note durations (length and variation)
+	* Rests
+	* Articulation (legato, staccato, etc.)
+- **Harmony**
+	* Chords (triads, seventh chords, extended chords)
+	* Chord progressions
+	* Functions of chords (tonic, dominant, subdominant)
+	* Voice leading
+
+### 2. Melodic Structure
+- **Scales and Modes**
+	* Major and natural minor scales
+	* Harmonic minor and melodic minor scales
+	* Modal interchange
+- **Motives and Themes**
+	* Fragmentation and development
+	* Variation and transformation
+- **Form**
+	* Binary form
+	* Ternary form
+	* Rondo form
+	* Sonata form
+
+### 3. Timbre and Texture
+- **Timbre**
+	* Instrumental ranges and characteristics
+	* Vocal ranges and types
+- **Texture**
+	* Monophony
+	* Polyphony
+	* Homophony
+	* Heterophony
+
+### 4. Analysis and Composition
+- **Analytical Tools**
+	* Functional harmony analysis
+	* Schenkerian analysis
+	* Graphical analysis
+- **Composition Techniques**
+	* Counterpoint
+	* Voice leading
+	* Form and structure
+
+### 5. Additional Topics
+- **Meter and Accents**
+	* Duple, triple, quadruple meter
+	* Strong and weak beats
+- **Articulation and Dynamics**
+	* Expression markings (f, ff, p, pp, etc.)
+	* Touch and attack
+- **Aural Skills**
+	* Sight-singing
+	* Ear training (interval recognition, chord progressions)
+
+### 6. Historical and Cultural Contexts
+- **Historical Periods**
+	* Medieval music theory
+	* Renaissance music theory
+	* Baroque music theory
+	* Classical music theory
+	* Romantic music theory
+	* 20th-century music theory
+- **Non-Western Music Theory**
+	* Indian raga system
+	* Jazz harmony and theory
+
+These subtopics provide a comprehensive framework for understanding the vast field of music theory. Mastering each of these areas can help musicians develop a deep appreciation and understanding of the language of music.

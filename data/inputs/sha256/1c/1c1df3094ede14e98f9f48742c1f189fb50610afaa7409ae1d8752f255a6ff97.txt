@@ -1,0 +1,1 @@
+Design a simple training challenge on Strava that everyone could attend.

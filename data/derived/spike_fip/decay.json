@@ -1,0 +1,120 @@
+{
+  "fits": [
+    {
+      "bootstrap": {
+        "ci_level": 0.95,
+        "degenerate": false,
+        "method": "percentile",
+        "n_clusters": 80,
+        "n_resamples": 2000,
+        "seed": 20260731
+      },
+      "draws_per_cell": 400,
+      "env_id": "e_a269851257be",
+      "group_field": "paraphrase_id",
+      "icc": 0.0,
+      "mean_groups_per_cell": 1.0,
+      "mean_repeats_per_group": 10.0,
+      "n_cells": 80,
+      "omega": 0.0,
+      "omega_ci_hi": 0.015780082045326396,
+      "omega_sq": 0.0,
+      "omega_sq_ci_hi": 0.0002490109893572325,
+      "omega_sq_ci_lo": 0.0,
+      "omega_sq_debiased": 0.0,
+      "omega_sq_raw": -0.0001803984893158153,
+      "points": [
+        {
+          "deviation": 0.0,
+          "n": 1,
+          "n_cells": 80,
+          "relative_deviation": 0.0,
+          "sd_mean": 0.2873893808928924,
+          "sd_theoretical": 0.2873893808928924,
+          "var_mean": 0.08259265625
+        },
+        {
+          "deviation": -0.0014419306578383473,
+          "n": 3,
+          "n_cells": 80,
+          "relative_deviation": -0.008690290339217607,
+          "sd_mean": 0.16448240576291298,
+          "sd_theoretical": 0.16592433642075133,
+          "var_mean": 0.02705446180555555
+        },
+        {
+          "deviation": -0.0008802673974604158,
+          "n": 5,
+          "n_cells": 80,
+          "relative_deviation": -0.006849027382232674,
+          "sd_mean": 0.1276441709401569,
+          "sd_theoretical": 0.1285244383376173,
+          "var_mean": 0.016293034374999998
+        },
+        {
+          "deviation": 9.929449530476919e-05,
+          "n": 8,
+          "n_cells": 80,
+          "relative_deviation": 0.0009772359820165444,
+          "sd_mean": 0.10170678453048868,
+          "sd_theoretical": 0.1016074900351839,
+          "var_mean": 0.01034427001953125
+        },
+        {
+          "deviation": -0.00030582190142701415,
+          "n": 10,
+          "n_cells": 80,
+          "relative_deviation": -0.0033650991691766465,
+          "sd_mean": 0.09057467999529448,
+          "sd_theoretical": 0.09088050189672149,
+          "var_mean": 0.008203772656249997
+        }
+      ],
+      "r_squared": 0.9999560721186453,
+      "scale": "likert5",
+      "sigma": 0.2875523649517354,
+      "sigma_sq": 0.08268636258933604,
+      "sweep": [
+        1,
+        3,
+        5,
+        8,
+        10
+      ],
+      "task": "summarization"
+    }
+  ],
+  "meta": {
+    "analysis": "decay",
+    "env_ids": [
+      "e_a269851257be"
+    ],
+    "exp": "spike_fip",
+    "input_digest": "sha256:44a6ae74d744671cecee295650570e54866a7193230d065a9a73c6effc857ffa",
+    "n_records": 800,
+    "n_scored": 800,
+    "params": {
+      "ci_level": 0.95,
+      "draws_per_cell": 400,
+      "env_ids": [
+        "e_a269851257be"
+      ],
+      "group_field": "paraphrase_id",
+      "n_resamples": 2000,
+      "seed": 20260731,
+      "sweep": [
+        1,
+        3,
+        5,
+        8,
+        10,
+        20
+      ]
+    },
+    "run_ids": [
+      "r_20260731_30ff5c",
+      "r_20260731_a9caae"
+    ],
+    "schema_version": 2
+  }
+}

@@ -1,0 +1,53 @@
+\section{A Reporting-and-Decision Protocol}
+\label{sec:protocol}
+
+Reporting prescriptions exist (TEE's checklist \citep{messing2026tee}, NIST AI
+800-3's repeat-trial minimum \citep{nist2026ai8003}), but not the decision
+rule that turns reported uncertainty into a licensed claim. The protocol below
+adds that step and nothing more.
+
+When reporting an improvement measured by an LLM judge:
+\begin{enumerate}
+  \item \textbf{Repeat}: score with $N \geq 3$ independent repeats per
+    system in the stated environment.
+  \item \textbf{Interval}: report a confidence interval for the gain
+    $\Delta$, not a point estimate alone.
+  \item \textbf{Decide}: claim only when $\Delta > \mdi_{\alpha}(\env, N)$
+    \emph{on the stated item set} \textbf{and} $\fip(\Delta, \env, N) \leq
+    \alpha$. The first is a pre-experimental threshold, the second prices the
+    gain actually observed; a $\Delta$ just past $\mdi$ can still reverse a
+    quarter of the time (Table~\ref{tab:fip-conversion}).
+\end{enumerate}
+Steps 2 and 3 are both necessary: a gain clearing $\mdi$ whose interval still
+covers zero is not licensed.
+The two enter at different times: $\mdi$ before the run, to choose the $N$
+a target gain requires, and $\fip$ after it, to price the gain observed.
+Since the $\fip$ read-off exceeds $\mdi$ in every cell of our grid
+(Section~\ref{sec:exp1}), it is usually the $\fip$ condition that binds.
+$\fip$ costs no second evaluation: it is estimated from the same repeated
+scoring that yields $\mdi$, with repeat~$0$ held out as the screening pass
+(Experiment~2), and a team reads its own environment's row off the resulting
+conversion table (Table~\ref{tab:fip-conversion}) instead of recomputing one
+per decision. None of the three speaks to where the
+instrument is aimed (Section~\ref{sec:limitations}). The protocol fixes the \emph{rule}, not a
+universal threshold; no constant survives even our own grid, and the
+hand-picked ones the loop of Section~\ref{sec:exp4} shipped (a $0.0$ default,
+a $+0.02$ remedy) sit below its measured band. %
+Measuring your own costs under
+\$0.20 per system (dense) or \$10.38 (anchor) at $N{=}20$ over $100$ items;
+an $A$-vs-$B$ pair is twice that (Table~\ref{tab:cost}).
+
+\paragraph{Absolute decisions: the SLA margin table.}
+The rule above is relative ($A$ vs.\ $B$); delivery decisions are often
+absolute, and the same null distribution prices a contract threshold $t$ too
+(Table~\ref{tab:sla-margin}): G-theory's absolute/relative distinction
+\citep{cronbach1972dependability, messing2026tee}.
+Every entry is \emph{fixed-prompt}, and Section~\ref{sec:exp3}'s shared prompt
+component exceeds every margin in the table
+(Appendix~\ref{app:extra}): re-wording a rubric moves an absolute score by more
+than the margin it must clear. Re-calibrate rather than reuse.
+
+
+
+Every number in this paper passes all three steps, traceable to a derived
+record and a run identifier.

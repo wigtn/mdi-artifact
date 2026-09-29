@@ -1,0 +1,49 @@
+\section{Related Work}
+\label{sec:related}
+
+Six clusters border this work; each full contrast is stated once, next to
+the definition it qualifies (Section~\ref{sec:framework}), and this section
+is the map. \emph{Error decomposition}: TEE \citep{messing2026tee}
+decomposes total evaluation error across judges, prompts, and temperatures
+via crossed random effects; we ask the downstream question (given that error, when is an improvement claim
+licensed?) and consume their variance components as \emph{inputs}, a builds-on, consumed-not-replaced
+relation. \emph{Resolution statistics}: the nearest priors to $\mdi$, Feuer et al.'s $\mathrm{Sens}$
+\citep{feuer2025judgmentnoise} and the
+per-response-pair detection threshold
+$\Delta^*_{75}$ of \citet{usami2026darkcurrent}, describe the judge alone, with no repeat or
+budget axis (full contrast after Definition~\ref{def:mdi}).
+\emph{Item-axis detectability}: \citet{kotawala2026resolution} and
+\citet{zhuang2026preregistering} ask how large a gain a benchmark can detect at
+its item count; both treat items as the only noise source and assume a scorer
+that gives the same answer twice.
+\emph{Statistical lineage}: $\fip$ descends from Card et al.'s Type-S
+error \citep{card2020power} and is the measurement-stage sibling of
+Baumann et al.'s FDR conditioned on the observed $p$
+\citep{baumann2025llmhacking} (contrast after Definition~\ref{def:fip}).
+\emph{Loop-side thresholds}: VRR-Stop \citep{wu2026vrrstop} states its
+accept threshold in optimizer units with $M{=}8$ verifier queries; ours is
+in observed score-difference units, and our sweep includes $N{=}8$ so the
+two are directly comparable (Section~\ref{sec:exp3}). \emph{Measurement theory and institutions}: of
+the contested psychometrics import we take test--retest reliability only.
+The construction of $\mdi$ is that of the smallest detectable difference of
+classical test--retest theory ($1.96\sqrt{2}\,\mathrm{SEM}$, the half-width of
+the null distribution of a re-measured difference
+\citep{beckerman2001srd, weir2005sem}), carried from one subject to an item-set
+mean and indexed by a measurement budget the clinical form has no analogue for.
+That lineage never reads detectability alone: a change claim must also
+clear a minimal \emph{important} difference against an external criterion
+\citep{devet2006minimal, devet2011measurement}; we import the pair, and
+Section~\ref{sec:exp1} measures the gap between them.
+The classical frame is generalizability theory, whose D-study
+\citep{cronbach1972dependability, brennan2001generalizability} already sizes
+measurement conditions for a target dependability and whose variance
+decomposition is Eq.~\ref{eq:decay}; \citet{song2025autoscoring} run that
+D-study on LLM-scored essays. In their design a ``rater'' is a different model
+and each model scores once, so they answer how many models to average. We ask
+how many times to call one model, a facet their design cannot see. Our
+delta is not estimation theory but the unit, the conditioning on the observed
+$\Delta$, and $\sigma$, $\omega$ measured over that facet. The EU JRC lists failure to distinguish signal from
+noise among the field's structural problems \citep{eriksson2025trust}, and
+NIST AI 800-3 already requires repeat trials with valid confidence
+intervals \citep{nist2026ai8003}, the frame we extend to a stochastic
+scorer.

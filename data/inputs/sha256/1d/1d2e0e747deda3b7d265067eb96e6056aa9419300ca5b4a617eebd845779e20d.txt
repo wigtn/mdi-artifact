@@ -1,0 +1,4 @@
+Given a programming language and the name of a function, write a command to show how to use the function.
+
+Language: Python
+Function: input

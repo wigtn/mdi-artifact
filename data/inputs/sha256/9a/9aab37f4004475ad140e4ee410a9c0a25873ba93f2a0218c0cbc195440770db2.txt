@@ -1,0 +1,10 @@
+The sentiment of this tweet is **Positive**. 
+
+Here's why:
+
+* **"Best"** is a strong positive adjective indicating high approval.
+* **"Cheat-sheet paper"**  suggests a helpful and useful resource.
+* **"In a LONG time"** emphasizes the speaker's positive experience, implying they haven't found anything comparable recently.
+
+
+All these elements together create a clear expression of satisfaction and endorsement.

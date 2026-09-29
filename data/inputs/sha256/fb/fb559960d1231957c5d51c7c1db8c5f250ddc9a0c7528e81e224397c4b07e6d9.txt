@@ -1,0 +1,30 @@
+Here's the HTML syntax for adding an image to a web page:
+
+```html
+<img src="path/to/image.jpg" alt="Description of the image">
+```
+
+Explanation of the attributes:
+
+1. `src`: This is the source attribute, which specifies the path to the image file. It can be a relative path within your website's directory structure or an absolute URL to an image on the web.
+
+2. `alt`: This is the alternative text attribute, which provides a text description of the image. It's important for accessibility and SEO purposes, and it's displayed if the image fails to load.
+
+Optional attributes you might want to include:
+
+3. `width` and `height`: These specify the dimensions of the image in pixels.
+   ```html
+   <img src="path/to/image.jpg" alt="Description" width="300" height="200">
+   ```
+
+4. `title`: This provides additional information about the image, often displayed as a tooltip when hovering over the image.
+   ```html
+   <img src="path/to/image.jpg" alt="Description" title="More information about the image">
+   ```
+
+5. `loading`: This attribute can be set to "lazy" to defer loading of images that are not in the viewport, which can improve page load performance.
+   ```html
+   <img src="path/to/image.jpg" alt="Description" loading="lazy">
+   ```
+
+Remember to replace "path/to/image.jpg" with the actual path or URL of your image, and "Description of the image" with an appropriate description of what the image depicts.

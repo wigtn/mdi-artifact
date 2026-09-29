@@ -1,0 +1,4 @@
+question about Computer architecture and organization 
+for 6 marks
+what in general terms is the distinction between computer organization and computer architecture ?
+give answer in full sentence points if possible

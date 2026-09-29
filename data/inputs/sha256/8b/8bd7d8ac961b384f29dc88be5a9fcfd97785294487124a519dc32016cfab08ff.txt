@@ -1,0 +1,24 @@
+**HTML (Hypertext Markup Language)** and **JavaScript** are two distinct technologies used to create web pages and web applications, but they serve different purposes:
+
+**HTML:**
+
+* **Purpose:** HTML is used for structuring and defining the content and layout of a web page.
+* **Function:** It adds meaning to the content on a web page by wrapping it in elements, such as headings, paragraphs, images, links, forms, tables, etc. These elements define the structure and organization of the content.
+* **Static structure:** HTML provides the basic skeleton of a web page, which remains static (unchanged) until the user interacts with it.
+* **Example:** `<p>This is a paragraph of text.</p>`
+
+**JavaScript:**
+
+* **Purpose:** JavaScript is a programming language used for adding interactivity to a web page.
+* **Function:** It enables you to create dynamic effects, respond to user interactions, update content, animate elements, validate form data, and much more.
+* **Dynamic behavior:** JavaScript runs on the client-side (in the web browser) and can change the HTML structure, style, and content dynamically in response to user actions, such as clicks, hover effects, or form submissions.
+* **Example:** A simple JavaScript code can take an HTML button and change its text when clicked: `document.getElementById('myButton').textContent = 'Button clicked!';`
+
+In summary:
+
+* HTML provides the basic structure and content of a web page.
+* JavaScript adds interactivity, dynamic effects, and functionality to a web page built on that HTML structure.
+
+Together, HTML, CSS (Cascading Style Sheets), and JavaScript form the core technologies of the web development triangle, enabling the creation of rich, interactive, and engaging web experiences.
+
+I hope this helps!

@@ -1,0 +1,1 @@
+I have two remote Debian servers, A and B. How can I copy a directory of files at `~/Documents/training_results` existing on server A to the path `~/training_results` on server B? I have SSH access on my local laptop to each of the servers, but neither of the servers have SSH access to the other.

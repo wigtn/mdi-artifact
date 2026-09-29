@@ -1,0 +1,40 @@
+Area and perimeter are fundamental concepts in geometry that describe different aspects of two-dimensional shapes.
+
+Perimeter:
+
+1. Definition: The perimeter is the distance around the outside of a shape.
+2. Measurement: It's measured in linear units (e.g., cm, m, ft).
+3. Calculation: Add up the lengths of all sides of the shape.
+4. Example: For a rectangle with length 5 cm and width 3 cm, the perimeter is 2(5 + 3) = 16 cm.
+
+Area:
+
+1. Definition: The area is the amount of space inside a two-dimensional shape.
+2. Measurement: It's measured in square units (e.g., cm², m², ft²).
+3. Calculation: Depends on the shape, but generally involves multiplying dimensions.
+4. Example: For a rectangle with length 5 cm and width 3 cm, the area is 5 × 3 = 15 cm².
+
+Common formulas:
+
+1. Rectangle:
+   - Perimeter: P = 2(length + width)
+   - Area: A = length × width
+
+2. Square:
+   - Perimeter: P = 4 × side
+   - Area: A = side²
+
+3. Circle:
+   - Circumference (perimeter): C = 2πr (where r is the radius)
+   - Area: A = πr²
+
+4. Triangle:
+   - Perimeter: Sum of all three sides
+   - Area: A = ½ × base × height
+
+Key points:
+
+1. Perimeter is one-dimensional, while area is two-dimensional.
+2. Different shapes have different formulas for calculating area and perimeter.
+3. Units are important: perimeter uses linear units, area uses square units.
+4. Understanding these concepts is crucial for many real-world applications, from construction to design.

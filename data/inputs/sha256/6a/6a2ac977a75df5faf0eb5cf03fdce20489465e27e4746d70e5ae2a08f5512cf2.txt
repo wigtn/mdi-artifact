@@ -1,0 +1,28 @@
+Here's a breakdown of area and perimeter:
+
+**Perimeter**
+
+* **What it is:** The perimeter of a shape is the total distance around its outside edge.  Imagine you're walking along the fence of a garden – the perimeter is how long that walk would be.
+* **How to find it:** You add up the lengths of all the sides of the shape.
+
+    * Example: A rectangle with sides of 5 cm and 3 cm has a perimeter of 5 + 3 + 5 + 3 = 16 cm.
+
+**Area**
+
+* **What it is:** The area of a shape is the amount of space it covers inside its boundaries. Think of it like how much carpet you'd need to cover the entire floor of a room.
+* **How to find it:**  The formula depends on the shape:
+
+    * **Rectangle:** Area = length x width
+    * **Square:** Area = side x side (since all sides are equal)
+    * **Triangle:** Area = (1/2) x base x height 
+    * **Circle:** Area = π x radius² (π is a special number, approximately 3.14)
+
+    * Example: A rectangle with a length of 8 meters and a width of 4 meters has an area of 8 x 4 = 32 square meters.
+
+**Key Differences**
+
+* **Units:** Perimeter is measured in linear units (like centimeters, meters, inches), while area is measured in square units (like square centimeters, square meters, square inches).
+* **What they tell you:** Perimeter tells you the size of the "boundary" of a shape, while area tells you the size of the space *within* the boundary.
+
+
+Let me know if you'd like to explore the area and perimeter of a specific shape in more detail!

@@ -1,0 +1,18 @@
+To convert the time from Pacific Time (PT) to Asia/Taipei time, we need to consider the time difference between these two zones.
+
+Pacific Time (PT) is typically UTC-8 during standard time and UTC-7 during daylight saving time.
+Taipei time is UTC+8 all year round.
+
+Assuming this is for the current year and Pacific Time is observing standard time (as December 21 falls during standard time):
+
+The time difference between PT and Taipei is 16 hours.
+
+So, December 21 · 1:00 – 1:50pm PT would be:
+
+December 22 · 5:00 – 5:50am in Taipei
+
+To break it down:
+1:00pm PT = 5:00am next day in Taipei
+1:50pm PT = 5:50am next day in Taipei
+
+Therefore, the event occurring on December 21 from 1:00 – 1:50pm Pacific Time would take place on December 22 from 5:00 – 5:50am in Taipei.

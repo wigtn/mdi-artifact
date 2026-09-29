@@ -1,0 +1,28 @@
+A fundamental pair in geometry! Let's break down the basics of **Area** and **Perimeter**:
+
+**Area:**
+
+* **Definition:** The area of a shape is the measure of the amount of space inside the shape.
+* **Unit of measurement:** Square units (e.g., square meters (m²), square centimeters (cm²), square feet (ft²), etc.)
+* **Formula:** For common shapes:
+	+ Rectangle: Length × Width (A = lw)
+	+ Triangle: (Base × Height) / 2 (A = (bh) / 2)
+	+ Circle: π × Radius² (A = πr²) or π × Diameter × (Diameter/2) (A ≈ π(D/2)²)
+* **Intuition:** Imagine spreading a rug or a sheet inside a shape. The area is the amount of rug or sheet that covers the interior.
+
+**Perimeter:**
+
+* **Definition:** The perimeter is the distance around a shape.
+* **Unit of measurement:** Linear units (e.g., meters (m), centimeters (cm), feet (ft), etc.)
+* **Formula:** For common shapes:
+	+ Rectangle: 2 × (Length + Width) (P = 2(l + w))
+	+ Triangle: The sum of all sides (P = a + b + c)
+	+ Circle: Circumference (approximately π × Diameter or 2 × π × Radius) (P ≈ 2πr or πd)
+* **Intuition:** Imagine walking around a shape. The perimeter is the total distance you'd travel to circumnavigate it.
+
+Key differences to keep in mind:
+
+* Area measures the inside space, while Perimeter measures the outside distance.
+* Area is typically used for calculations involving volume, capacity, or coverage, while Perimeter is important in problems involving boundaries, fencing, or wrapping.
+
+Now, go ahead and practice calculating areas and perimeters for various shapes. You got this!

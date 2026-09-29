@@ -1,0 +1,65 @@
+# Exp 1 — judge-variance grid (FR-001 grid declaration; consumed by estimate-cost/run).
+#
+# WORKING ASSUMPTIONS — every axis value below is a placeholder pending the
+# kickoff ADR decisions and must not be treated as decided:
+#   - judges / benchmarks:  ADR-002 (census-first selection)
+#   - budget caps:          ADR-003 (kickoff; defaults below are PRD §4.2 defaults)
+#   - judge tiers/providers: ADR-006 (two-tier judge; provider & endpoint are env
+#                            metadata — the serving stack is part of the environment)
+# Source of truth is the ADR line (docs/decisions/) — see AGENTS.md §2.
+
+experiment: exp1_variance
+
+grid:
+  judge:
+    # ADR-006 Update: record provider / endpoint (and published precision) as env
+    # metadata even for API judges.
+    - model: "provider-a/frontier-judge-1"
+      model_version: "snapshot-YYYY-MM-DD"
+      tier: "api"
+      provider: "provider-a"
+      endpoint: "https://api.provider-a.example/v1"
+    - model: "provider-b/frontier-judge-2"
+      model_version: "snapshot-YYYY-MM-DD"
+      tier: "api"
+      provider: "provider-b"
+      endpoint: "https://api.provider-b.example/v1"
+    - model: "open-weight/judge-70b"
+      model_version: "weights-tag"
+      tier: "open_weight"
+      provider: "serverless-provider"
+      endpoint: "https://api.serverless.example/v1"
+
+  prompt:
+    # ADR-009: the prompt template *source text* is content-addressed in
+    # data/inputs/ and its verbatim content enters the env_id hash — reference
+    # ids alone are not provenance. Paraphrases vary surface form only,
+    # information content fixed (FR-008).
+    - prompt_id: "p_base"
+      paraphrase_id: "pp_0"
+    - prompt_id: "p_base"
+      paraphrase_id: "pp_1"
+    - prompt_id: "p_base"
+      paraphrase_id: "pp_2"
+
+  task: ["summarization", "instruction_following", "dialogue"]
+
+  scale: ["likert5", "likert10", "score100"]
+
+  temperature: [0.0, 0.7]
+
+budget:
+  # PRD §4.2 defaults pending ADR-003 — raisable via config only, never in code.
+  pilot_cap_usd: 50
+  cumulative_cap_usd: 100
+
+pilot:
+  # PRD Phase 2: subsample pilot before any full grid (estimator -> pilot -> full).
+  items_per_task: 20
+  n_repeats: 5
+
+repeats:
+  # ADR-011 D1 working assumption: core subgrid N=20, elsewhere N=5;
+  # N in {1,3,5,10} derived as bootstrap intercepts from the N=20 cells.
+  core_subgrid_n: 20
+  default_n: 5

@@ -1,0 +1,11 @@
+```excel
+=OR(C7="U.S.A.",C7="Canada",C7="Europe",C7="The Americas")
+```
+
+**Explanation:**
+
+* **`OR()`** function checks if any of the provided conditions are TRUE.
+* **`C7`** refers to the cell containing the text you want to check (in this case, cell C7).
+* **`"U.S.A."`, `"Canada"`, `"Europe"`, `"The Americas"`** are the specific text values you want to compare C7 against. Each comparison is enclosed in double quotes because they are text strings.
+
+This formula will return **TRUE** if the value in cell C7 matches any of the listed countries/regions, and **FALSE** otherwise.

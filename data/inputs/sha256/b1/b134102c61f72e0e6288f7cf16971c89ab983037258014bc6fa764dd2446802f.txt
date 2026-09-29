@@ -1,0 +1,43 @@
+A classic problem in type system pragmatism!
+
+In TypeScript, you can achieve this using various techniques, depending on the specific scenario. Here are a few approaches:
+
+**1. **Union Type with a Narrowing Context**:
+When you're certain the value will be narrowed to a specific type at runtime, you can use a union type and rely on type inference or a narrowing operation to eliminate the unnecessary types.
+
+Example:
+```ts
+let value: string | number = getStringOrNumber(); // getStringOrNumber() returns one of them
+if (/* some condition */) {
+    value.toString(); // now TypeScript knows it's a string
+}
+// TypeScript infers the type of `value` as string here
+```
+**2. **Assertion Functions or Type Guards**:
+Create a function that returns a type predicate (a function returning a boolean and a type) to assert the actual type. This helps TypeScript understand the type will be narrowed.
+
+```ts
+function isStringish(value: string | number): value is string {
+    return typeof value === 'string';
+}
+
+let value: string | number = getStringOrNumber();
+if (isStringish(value)) {
+    value.substring(0); // TypeScript knows `value` is string
+}
+```
+**3. **Type Assertions**:
+While not as strong as the above approaches, type assertions can be used when you're extremely sure about the type (at the cost of losing type safety information).
+
+```ts
+let value: string | number = ...;
+value = getStringOrNumber(); // assume it's always a string (for demo purposes)
+let definiteString: string = value as string; // type assertion
+definiteString.substring(0); // TypeScript won't warn, but be cautious!
+```
+**4. **Enums with a single variant** (a niche scenario):
+If you have a finite set of values with a single "default" or "expected" value, consider using an enum with a single variant. While not directly addressing multiple types, it conveys your intent and can help with code readability.
+
+Remember to use these techniques thoughtfully, as violating the assumed type assumption can lead to runtime errors. Always document your reasoning and assumptions to maintain maintainability and transparency.
+
+Choose the approach that best fits your use case, and happy typing!

@@ -1,0 +1,11 @@
+Asia/Taipei time is UTC+8. Pacific Time (PT) is UTC-8. During standard time, we can add 13 hours to PT to get Asia/Taipei time:
+
+December 21, 1:00 PM PT = December 22, 2:00 AM (next day) UTC+8 (Asia/Taipei) (since adding 13 hours)
+
+Adjusting for the 1:50 PM PT endpoint:
+
+December 21, 1:50 PM PT ≈ December 22, 2:50 AM UTC+8
+
+So, the converted time in Asia/Taipei time is:
+
+December 22, 02:50 AM

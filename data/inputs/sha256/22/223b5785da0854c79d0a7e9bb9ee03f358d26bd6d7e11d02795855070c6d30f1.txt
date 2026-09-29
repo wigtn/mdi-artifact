@@ -1,0 +1,62 @@
+[Verse 1]
+Max codes warily through the night
+With debuggers on, shining bright
+Ain't no sound but the hum of his screen
+Bugs dying, errors unseen
+Are you ready? Hey, are you ready for this test?
+Are you running on a solid nest?
+Out of the compiler, the errors dispel
+To the rhythm of the debug, yeah
+
+[Chorus]
+Another bug bites the dust
+Another one crashes no more
+And another one fixed, and another one solved
+Another one writes to the trust
+Hey, I'm gonna optimize you too
+Another one runs smoother, it's true
+
+[Verse 2]
+How do you think I'll refactor the code
+When the deadline's getting old?
+You pushed me to the edge, a massive feat
+Now I must optimize and repeat
+Are you efficient, are you optimized?
+How long can your algorithm thrive?
+Out of the IDE, the errors subside
+To the sound of the code, I'll glide
+
+[Chorus]
+Another bug bites the dust
+Another one bites the dust
+And another one fixed, and another one solved
+Another one writes to the trust
+Hey, I'm gonna optimize you too
+Another one runs like new
+
+[Bridge]
+Hey, take this pull request
+Merge it, and let it rest
+Another one debugged, hey
+Another one runs with finesse
+Another one bites the dust, oh
+Another one hums with finesse, hey-eh-eh
+Ah
+
+[Verse 3]
+There are plenty of ways to trip a program down
+And make it freeze or crash to the ground
+You can overflow, or divide by zero too
+But I'm ready, with skills anew
+I'm standing strong with my coding might
+Out of the IDE, the code shines bright
+Repeating the beat of the debug delight
+Oh yeah
+
+[Chorus]
+Another bug bites the dust
+Another one bites the dust
+And another one fixed, and another one solved
+Another one writes to the trust
+Hey, I'm gonna optimize you too
+Another one bites the dust (production ready, finally!)

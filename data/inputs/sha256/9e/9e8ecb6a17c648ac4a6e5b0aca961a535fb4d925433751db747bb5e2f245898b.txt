@@ -1,0 +1,11 @@
+Based on the provided text, English constituency parsing is a task that:
+
+1. **Involves analyzing English sentences:** It focuses on understanding the grammatical structure of sentences in English.
+2. **Establishes hierarchical relationships:** It identifies "constituents" within a sentence, grouping words into phrases and clauses based on their grammatical roles (subject, verb, object, etc.). This creates a tree-like structure representing the sentence's hierarchy.
+3. **Faces specific challenges:** 
+    * The output (the constituency tree) has strict structural rules it must follow.
+    * The output tree is typically longer than the original input sentence due to the hierarchical representation.
+4. **Has been difficult for RNNs:** Traditional Recurrent Neural Network (RNN) models have struggled to achieve top performance, especially when trained on limited data.
+
+
+Essentially, English constituency parsing aims to automatically determine the grammatical structure of English sentences by building a tree-like representation of their constituents.

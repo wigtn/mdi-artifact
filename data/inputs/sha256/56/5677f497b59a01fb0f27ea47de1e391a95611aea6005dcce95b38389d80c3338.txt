@@ -1,0 +1,32 @@
+Here's a Python regular expression to validate an email address:
+
+```python
+import re
+
+email_regex = r"^[a-zA-Z0-9_.+::-%@]+@[a-zA-Z0-9-]+\.[a-zA-Z.com]+$"
+
+def validate_email(email):
+    if re.match(email_regex, email):
+        return True
+    return False
+
+# Example usage:
+email = "sample.email@example.com"
+if validate_email(email):
+    print("Email is valid")
+else:
+    print("Email is not valid")
+```
+
+Explanation of the regex pattern:
+
+- `^` asserts the start of the line
+- `[a-zA-Z0-9_.+::-%@]+` matches one or more of the allowed characters in the local part of the email (before `@`)
+- `@` matches the `@` symbol
+- `[a-zA-Z0-9-]+` matches one or more of the allowed characters in the domain (note: I added `-` to allow subdomains)
+- `\.` matches the dot ( escaped with backslash because . has special meaning) before the TLD
+- `[a-zA-Z.com]+$` allows only common TLDs (adjust according to your requirements) or restricts to `.com` (if that's sufficient)
+
+Please note that although this regex pattern is quite comprehensive, it's not foolproof. Email address validation is a complex topic, and you may still want to consider additional business logic or libraries like `email-validator` in Python for more robust validation.
+
+Also, keep in mind that TLDs have become more diverse since the regex pattern was designed. If you need to support a wide range of TLDs, consider using a dedicated library or a more advanced regex pattern.

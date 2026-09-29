@@ -1,0 +1,3 @@
+Compare the given item with similar products based on its properties such as price, rating, etc. For product comparison, use a table and separate the columns with "|".
+
+Item: iBayam Journal Planner Pens Colored Pens Fine Point Markers Fine Tip Drawing Pens Porous Fineliner Pen for Journaling Writing Note Taking Calendar Coloring Art Office Back to School Supplies, 18 Color

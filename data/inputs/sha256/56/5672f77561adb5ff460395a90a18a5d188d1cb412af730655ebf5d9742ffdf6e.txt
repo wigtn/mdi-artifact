@@ -1,0 +1,78 @@
+[Verse 1]
+Max codes quietly through the night
+With a screen aglow from the dim light
+Ain’t no sound but the typing fast
+Debuggers ready to pass
+Are you ready? Hey, are you ready for this bug?
+Are you hanging on the edge of your fix?
+Out of the compiler the errors rip
+To the rhythm of his keystrokes, yeah
+
+[Chorus]
+Another line crashes out
+Another one crashes out
+And another function fails, and another one fails
+Another line crashes out, yeah
+Hey, I’m gonna debug you too
+Another one crashes out
+
+[Verse 2]
+How do you think I'll optimize my code
+Without your syntax guide, when it’s gone cold
+You taught me languages from C to Java too
+And left me with a project to get through
+Are you efficient, are you satisfied?
+How long can you iterate and refine?
+Out of the compiler the errors rip
+To the rhythm of his keystrokes
+Look out for that runtime
+
+[Chorus]
+Another line crashes out
+Another one crashes out
+And another function fails, and another one fails
+Another line crashes out
+Hey, I’m gonna debug you too
+Another one crashes out
+
+[Bridge]
+Hey
+Oh, refactor
+Crash the bugs, hey
+Another line crashes out
+Another one crashes out, oh
+Another one crashes out, hey hey
+Another one crashes out, eh-eh-eh
+Ah-ha!
+
+[Verse 3]
+There are plenty of ways you can write poorly code and fail
+And bring your project to its knees
+You can overlook syntax, you can miss a detail or two
+And let it crash when users pursue
+But I'm ready, yes I'm ready for the test
+My code stands strong and well-indexed best
+Out of the compiler the errors rip
+Repeating the rhythm of my coding quest, oh yeah
+
+[Chorus]
+Another line crashes out
+Another one crashes out
+And another function fails, and another one fails
+Another line crashes out, yeah
+Hey, I’m gonna debug you too
+Another one crashes out
+
+In this version, I've replaced war-like themes with programming metaphors. Here's a breakdown of the changes:
+
+* "Steve walks warily" becomes "Max codes quietly," shifting from a physical action to a quiet focus on coding.
+* "Machine guns" become "debuggers ready to pass," emphasizing the tools used in programming.
+* "Bullets rip" becomes "errors rip," highlighting the failures that need to be addressed in coding.
+* "Getting along" without someone refers to understanding and using programming concepts effectively.
+* "Taking everything that I had" represents learning various programming languages.
+* "Bite the dust" becomes "crashes out," indicating a failure or bug in code.
+* "Heat" symbolizes the pressure to optimize and refine code efficiently.
+* "Take it" in the bridge becomes "refactor," encouraging improvement and optimization.
+* "Ways to hurt a man" are replaced with "ways to write poorly code and fail," emphasizing responsible coding practices.
+* "Feet" become "key strokes," emphasizing the physical action of typing.
+* The lyrics maintain a similar rhythm and structure throughout to maintain the original song's energy and flow.

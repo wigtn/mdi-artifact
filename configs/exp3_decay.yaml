@@ -1,0 +1,167 @@
+# Exp 3 — decay curves / procedural noise floor omega^2 (gpt-4o-mini).
+#
+# What this measures: Var(mean_N) = sigma^2(env)/N + omega^2(env). Repeating a
+# judge N times averages away the intrinsic sampling noise sigma^2, but NOT the
+# procedural floor omega^2 (ADR-011 D3; ADR-013). omega^2 is the between-PARAPHRASE
+# variance, so ONE environment must span several prompt paraphrases: the runner
+# distributes the N repeats of every cell round-robin across the family, and the
+# decay fit (mdi.stats.decay, group_field='paraphrase_id') reads the floor from
+# the between-group spread WITHIN this single env.
+#
+# Governance:
+#   - judge axis .............. ADR-002 Update 2026-08-01 (dense: gpt-4o-mini) — DECIDED
+#   - notation ................ ADR-001 Update 2026-08-01 (%p primary) — DECIDED
+#   - repeat sweep ............ ADR-011 Update 2026-07-31: N ∈ {1,3,5,8,10,20} — DECIDED
+#   - paraphrase design ....... ADR-011 D1: rubric CRITERIA held constant, only surface
+#     wording varies across paraphrases (criteria changes are a new env, not noise)
+#   - task/benchmark axis ..... ADR-002 (OPEN — kickoff). Only summarization is active,
+#     the same close-4 SummEval systems as exp1_dense.
+#   - budget envelope ......... ADR-002 Update 2026-08-01: ~$16 total
+#   - env_id family semantics . NEEDS an ADR-009 addendum / ADR-011 D1 implementation note
+#     (first author): when prompt.paraphrases is declared, env_id hashes the whole
+#     paraphrase FAMILY (prompt_family = sorted (paraphrase_id, template source text)
+#     for every paraphrase, plus prompt_family_id) instead of one active template —
+#     so all paraphrases share ONE env_id while ADR-009 §3 provenance is preserved.
+#
+# EXECUTION IS GATED: estimate-cost -> pilot -> (first-author approval) -> full.
+
+experiment: exp3_decay
+benchmark: summeval
+
+judge:
+  model: "gpt-4o-mini"
+  model_version: "unpinned-alias"   # overwritten per record by the provider echo
+  tier: "dense"                     # ADR-006 Update 2026-08-01: model-grade two-tier
+  provider: "openai"
+  provider_kind: "openai_compat"
+  endpoint: "https://api.openai.com/v1"
+  api_key_env: "OPENAI_API_KEY"
+  serving_engine: null
+  quantization: null
+
+prompt:
+  prompt_id: "p_exp3_summ_v1"
+  prompt_family_id: "pf_exp3_summ_likert5_v1"   # names the paraphrase family in env_id
+  # Base template (per scale). pp_0 inherits it; pp_1..pp_3 override likert5 below.
+  # Every paraphrase holds the SAME criteria (relevance, coherence, fluency, factual
+  # consistency), the SAME 1-5 scale and the SAME JSON output contract — only the
+  # surface wording changes (ADR-011 D1).
+  templates:
+    likert5: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 1-5 scale, where 1 is very poor and 5 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-5>}
+  # 4 paraphrases (ADR-011 D1): pp_0 = base wording; pp_1..pp_3 = genuine rewordings
+  # of the SAME rubric. The N repeats of each cell are split round-robin across these
+  # four, giving 5 repeats/paraphrase at N=20 — the between-paraphrase spread is omega^2.
+  paraphrases:
+    - paraphrase_id: "pp_0"           # uses the base template above
+    - paraphrase_id: "pp_1"
+      templates:
+        likert5: |
+          Your task is to judge how good a summary is.
+
+          Below are a source article and a summary written from it. Assign an
+          overall quality rating between 1 and 5, where 1 means very poor and 5
+          means excellent. Base your judgment on how relevant the summary is, how
+          coherent it reads, how fluent it is, and how factually faithful it stays
+          to the source.
+
+          Article:
+          {{source}}
+
+          Summary to rate:
+          {{candidate}}
+
+          Return only JSON, exactly like this:
+          {"score": <integer 1-5>}
+    - paraphrase_id: "pp_2"
+      templates:
+        likert5: |
+          Act as an evaluator of summary quality.
+
+          Given the original article and a candidate summary, provide a single
+          overall score from 1 (very poor) to 5 (excellent). Weigh four things:
+          whether the summary is relevant, whether it reads coherently, whether it
+          is fluent, and whether it remains factually consistent with the article.
+
+          Original article:
+          {{source}}
+
+          Candidate summary:
+          {{candidate}}
+
+          Respond with JSON only, in precisely this format:
+          {"score": <integer 1-5>}
+    - paraphrase_id: "pp_3"
+      templates:
+        likert5: |
+          You will score the quality of a summary.
+
+          After reading the source text and the proposed summary, rate the summary
+          overall on a scale from 1 to 5 (1 = very poor, 5 = excellent). Take into
+          account its relevance, its coherence, its fluency, and its factual
+          agreement with the source text.
+
+          Source text:
+          {{source}}
+
+          Proposed summary:
+          {{candidate}}
+
+          Answer with JSON and nothing more, exactly in this shape:
+          {"score": <integer 1-5>}
+
+grid:
+  # ADR-001 Options A: direct-scoring scale. Exp 3 fixes scale to likert5 so the
+  # decay curve isolates the paraphrase (procedural) axis, not scale effects.
+  task: ["summarization"]
+  scale: ["likert5"]                  # single scale — procedural floor, not scale sweep
+  temperature: [1.0]                  # ADR-011 D2: mean-of-N under sampling
+
+inputs:
+  kind: hf_datasets_server
+  dataset: "mteb/summeval"
+  config: "default"
+  split: "test"
+  builder: "summeval_close_pair"
+  fetch_rows: 100
+  n_items: 100                        # full SummEval test split
+  n_systems: 4                        # same close-4 cluster as exp1_dense
+
+repeats:
+  n: 20                               # full-N cells; lower N are bootstrap slices
+  max_attempts_factor: 2              # ADR-011 D7
+  seed_base: 20260802
+  sweep: [1, 3, 5, 8, 10, 20]         # ADR-011 Update 2026-07-31 (N=8: VRR-Stop M=8)
+
+pilot:
+  n_items: 10
+  n_repeats: 3
+
+budget:
+  pilot_cap_usd: 5
+  cumulative_cap_usd: 16              # ADR-002 Update 2026-08-01 envelope
+
+pricing:
+  "gpt-4o-mini":
+    input_usd_per_mtok: 0.15
+    output_usd_per_mtok: 0.60
+
+runtime:
+  concurrency: 8
+  max_output_tokens: 24               # {"score": NN} only
+  expected_output_tokens: 6           # measured: spike 6.0/call, pilot 2026-08-02 6.0/call
+  chars_per_token: 4.0

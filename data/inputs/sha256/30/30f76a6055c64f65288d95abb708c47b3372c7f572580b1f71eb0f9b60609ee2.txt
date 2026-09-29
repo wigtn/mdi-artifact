@@ -1,0 +1,23 @@
+To understand why only proteins, carbohydrates, and fats have caloric values in significant amounts, let’s delve into the definition of energy-relevant biochemical properties. Here are the key points:
+
+1. **Energy-yielding macromolecules and their breakdown:** In living organisms, caloric value arises from the process of cellular respiration, where macromolecules are broken down into smaller molecules, oxidized to release energy according to the following hierarchy:
+	* Efficiency of energy extraction from these macromolecules during cellular respiration follows this order:
+		+ Carbohydrates (ATP yield per glucose molecule: 36-38 ATP) and proteins (glucose equivalent ATP yield: 5-8 per “indirect” breakdown pathway) both ultimately feed into the citric acid cycle and electron transport chain.
+		+ Fats (triacylglycerols) yield ATP directly through beta-oxidation in the mitochondria (GTP/ATP yield: approximately 106-129 ATP per acetyl-CoA fed into the citric acid cycle).
+	2. **Vitamins, minerals, and electrolytes:**
+	* Vitamins, minerals, and electrolytes are micronutrients that serve various essential biological functions such as enzyme cofactors, structural components, and regulation of physiological processes. They do not contain enough energy-rich chemical bonds to contribute significantly to ATP production through cellular respiration.
+	* These compounds do have some energy associated with their physical movement across cell membranes or binding to molecules during their biological functions, but this energy is negligible compared to the amounts stored in carbohydrates, proteins, and fats.
+3. **Energy content measurements:**
+	* The caloric content of a substance is determined by its atomic structure and the energy released during complete oxidation (combustion) to carbon dioxide and water at standard conditions.
+	* Carbohydrates, proteins, and fats are composed of atoms with energy-rich bonds such as C-C, C-H, C-O, P-O, and peptide bonds. These bonds require energy to break during cellular respiration and release a significant amount of energy in the form of ATP.
+	* Vitamins, minerals, and electrolytes lack these energy-rich bonds or have chemical structures that don't contribute significantly to ATP production during cellular respiration.
+
+Based on these principles:
+
+* For your hypothetical example:
+	+ 100g of carbohydrates typically contains approximately 370-420 kcal (as you mentioned 400 kcal), mainly from the breakdown of glycosidic bonds between sugar molecules.
+	+ 100g of protein contains around 370-400 kcal (your mentioned 400 kcal), primarily from the breaking of peptide bonds.
+	+ 100g of fat typically contains around 870-900 kcal (your mentioned 900 kcal), primarily from the energy stored in fatty acid chains.
+	+ Vitamins, minerals, and electrolytes have negligible caloric contributions. Their typical values are essentially zero or near zero (<5 kcal per 100g).
+
+In summary, only carbohydrates, proteins, and fats have significant caloric values because they contain energy-rich chemical bonds that can be broken down and oxidized to produce ATP during cellular respiration. Vitamins, minerals, and electrolytes lack these bonds and do not contribute substantially to an organism's energy budget.

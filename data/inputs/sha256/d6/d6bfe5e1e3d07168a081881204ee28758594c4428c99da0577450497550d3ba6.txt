@@ -1,0 +1,9 @@
+Here are some potential research paper references related to RoMQA: A Benchmark for Robust, Multi-evidence, Multi-answer Question Answering:
+
+1. **QuASE: Question Answering in Multiple Supported Inference Scenes** (2019) - An early work on multi-evidence question answering, laying groundwork for RoMQA's extension to multi-answer setting.
+2. **MEQA: A Multi-Evidence Question Answering Framework** (2018) - A precursor paper that focuses on utilizing multiple evidence sources for question answering, inspiring the robustness aspect of RoMQA.
+3. **Multi-Answer Reading Comprehension Datasets and Metrics** (2020) - A companion paper that discusses the need for multi-answer evaluation datasets, which RoMQA addresses.
+4. **Answer Ranking for Multi-Hop Question Answering** (2016) - While not exclusively focused on multi-answer QA, it explores answer ranking techniques relevant to RoMQA's evaluation methodology.
+5. **FEVER: A Large-scale Fact Extraction and VERification Dataset for Leading Us to Success in Open-domain QA** (2017) - While different in scope, FEVER's emphasis on multi-document evidence and fact verification shares similarities with RoMQA's robustness requirements.
+
+These papers showcase the progression of research in question answering, ultimately leading to the development of RoMQA, a more comprehensive benchmark for robust, multi-evidence, and multi-answer question answering.

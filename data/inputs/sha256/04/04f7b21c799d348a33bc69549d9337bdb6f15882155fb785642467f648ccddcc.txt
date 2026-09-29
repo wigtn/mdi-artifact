@@ -1,0 +1,4 @@
+Decide if the given email belongs to the Promotions or Social category.
+
+Subject: You have an invitation
+Email: Hi, I'd like to join your LinkedIn network.

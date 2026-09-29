@@ -1,0 +1,125 @@
+# Exp 1 — variance grid, task 2 (AlpacaEval 2.0), DENSE tier (gpt-4o-mini).
+#
+# task 2 = AlpacaEval 2.0, DECIDED by the first author (ADR-002 Update 2026-08-02).
+# Run separately from exp1_dense (summarization) because the benchmark label is a
+# single global field today; analysis combines the tasks. Same judge axis,
+# scales, sweep, screening, and notation as exp1_dense.
+#
+# Data: github.com/tatsu-lab/alpaca_eval results/<system>/model_outputs.json.
+#   License: code Apache-2.0, DATA CC BY-NC 4.0 — cite in the artifacts statement.
+# The four systems are the tightest LC-win-rate cluster with verified outputs
+# (ADR-002 Update table). Prompt asks for instruction-following quality, not
+# summary quality — a distinct rubric from the summarization task.
+
+experiment: exp1_alpaca
+benchmark: alpacaeval2
+
+judge:
+  model: "gpt-4o-mini"
+  model_version: "unpinned-alias"
+  tier: "dense"
+  provider: "openai"
+  provider_kind: "openai_compat"
+  endpoint: "https://api.openai.com/v1"
+  api_key_env: "OPENAI_API_KEY"
+  serving_engine: null
+  quantization: null
+
+prompt:
+  prompt_id: "p_exp1_instr_v1"
+  paraphrase_id: "pp_0"
+  templates:
+    likert5: |
+      You are evaluating how well a response follows an instruction.
+
+      Read the instruction and the candidate response, then rate the response's
+      overall quality on a 1-5 scale, where 1 is very poor and 5 is excellent.
+      Consider helpfulness, correctness, relevance to the instruction, and clarity.
+
+      Instruction:
+      {{source}}
+
+      Candidate response:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-5>}
+    likert10: |
+      You are evaluating how well a response follows an instruction.
+
+      Read the instruction and the candidate response, then rate the response's
+      overall quality on a 1-10 scale, where 1 is very poor and 10 is excellent.
+      Consider helpfulness, correctness, relevance to the instruction, and clarity.
+
+      Instruction:
+      {{source}}
+
+      Candidate response:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-10>}
+    score100: |
+      You are evaluating how well a response follows an instruction.
+
+      Read the instruction and the candidate response, then rate the response's
+      overall quality on a 0-100 scale, where 0 is very poor and 100 is excellent.
+      Consider helpfulness, correctness, relevance to the instruction, and clarity.
+
+      Instruction:
+      {{source}}
+
+      Candidate response:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 0-100>}
+
+grid:
+  task: ["instruction_following"]
+  scale: ["likert5", "likert10", "score100"]
+  temperature: [1.0]
+
+inputs:
+  kind: alpaca_eval_github
+  builder: "alpacaeval_close_cluster"
+  ref: "main"                       # ADR-002 Update: SHA pin recommended; this cycle uses main
+  # Tightest LC-win-rate cluster with verified model_outputs.json (ADR-002 Update
+  # table, 2026-08-02). LC win rates: SPPO 53.97 / WPO 53.37 / Claude 52.37 /
+  # RainbowPO 51.66 — span 2.31 %p.
+  systems:
+    - "SPPO-Gemma-2-9B-It-PairRM"
+    - "Llama-3-Instruct-8B-WPO-HB-v2"
+    - "claude-3-5-sonnet-20240620"
+    - "Llama-3-Instruct-8B-RainbowPO"
+  n_systems: 4
+  n_items: 100                      # first 100 of the 805 by content-addressed id
+  max_chars: 8000
+
+repeats:
+  n: 20
+  max_attempts_factor: 2
+  seed_base: 20260802
+  sweep: [1, 3, 5, 8, 10, 20]
+
+exp2:
+  screening_repeats: [0]
+
+pilot:
+  n_items: 10
+  n_repeats: 3
+
+budget:
+  pilot_cap_usd: 5
+  cumulative_cap_usd: 16
+
+pricing:
+  "gpt-4o-mini":
+    input_usd_per_mtok: 0.15
+    output_usd_per_mtok: 0.60
+
+runtime:
+  concurrency: 8
+  max_output_tokens: 24
+  expected_output_tokens: 6
+  chars_per_token: 4.0

@@ -1,0 +1,13 @@
+You can use the `SEARCH` and `OR` logic (combined with the absence of a need for an exact regex match thanks to string concatenation) or `REGEXMATCH` (if you prefer a more modern approach) in Google Sheets. Here are both alternatives:
+
+**Method 1: Using SEARCH and OR**
+```equal to`=IF(OR(ISNUMBER(SEARCH({"*U.S.A.*","Canada","Europe","The Americas"},LOWER(C7))), TRUE, FALSE)``
+(or simplify it to a boolean value with `=OR(...)` instead of checking for TRUE/FALSE result)
+```=C7 IN {"U.S.A.","Canada","Europe","The Americas"}* (note: array formula, unabbreviated version, recommended)
+
+**Method 2: Using REGEXMATCH (Sheet's built-in regex support from v2018.06 onward)**
+```=REGEXMATCH(LOWER(C7)," ^(usa|canada|europe|the americas)$")
+```
+In both cases, the `LOWER` function is used to ensure the search is case-insensitive.
+
+Adjust the formula to fit your specific needs.

@@ -1,0 +1,14 @@
+```python
+user_input = input("Enter something: ") 
+```
+
+This command demonstrates how to use the `input()` function in Python. 
+
+Here's a breakdown:
+
+1. **`input("Enter something: ")`**: This part calls the `input()` function. 
+    * It takes a string argument within parentheses, which is the prompt displayed to the user. In this case, it's "Enter something:".
+2. **`user_input = ...`**: This part assigns the value returned by the `input()` function to a variable named `user_input`. The `input()` function waits for the user to type something and press Enter. Whatever the user types is then stored as a string in the `user_input` variable.
+
+
+After running this code, the program will display "Enter something: " on the console, and wait for the user's input. Once the user enters text and presses Enter, the entered text will be stored in the `user_input` variable, which you can then use in your Python program.

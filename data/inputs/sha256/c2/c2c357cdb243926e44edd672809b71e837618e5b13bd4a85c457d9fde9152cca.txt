@@ -1,0 +1,73 @@
+Here's a list of subtopics for Music Theory:
+
+1. Pitch and Scales
+   - Major and minor scales
+   - Modes
+   - Chromatic scale
+
+2. Rhythm and Meter
+   - Time signatures
+   - Tempo
+   - Syncopation
+
+3. Harmony
+   - Chord construction
+   - Chord progressions
+   - Cadences
+
+4. Melody
+   - Melodic intervals
+   - Phrase structure
+   - Motifs and themes
+
+5. Form and Structure
+   - Song forms (e.g., AABA, verse-chorus)
+   - Classical forms (e.g., sonata, rondo)
+
+6. Notation
+   - Staff notation
+   - Clefs
+   - Key signatures
+
+7. Ear Training
+   - Interval recognition
+   - Chord identification
+   - Melodic dictation
+
+8. Counterpoint
+   - Two-part writing
+   - Fugue
+
+9. Orchestration
+   - Instrument ranges
+   - Timbre and texture
+   - Arranging techniques
+
+10. Music Analysis
+    - Roman numeral analysis
+    - Schenkerian analysis
+
+11. Composition Techniques
+    - Modulation
+    - Transposition
+    - Variation
+
+12. Music Technology
+    - MIDI
+    - Digital audio workstations (DAWs)
+    - Sound synthesis
+
+13. Historical Music Theory
+    - Medieval and Renaissance theory
+    - Baroque theory
+    - 20th-century techniques
+
+14. Jazz Theory
+    - Chord extensions
+    - Improvisation
+    - Reharmonization
+
+15. World Music Theory
+    - Non-Western scales and modes
+    - Rhythmic cycles
+    - Microtonal systems

@@ -1,0 +1,3 @@
+Write the HTML syntax for the required action.
+
+adding an image to the page

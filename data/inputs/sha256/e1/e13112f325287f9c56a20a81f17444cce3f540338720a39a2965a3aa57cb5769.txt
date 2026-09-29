@@ -1,0 +1,10 @@
+Here’s the classification for the given email addresses:
+
+* Your initial email:
+   - From the Subject "You have an invitation" initially mentioned part from the secondary email ("Hi, I’d like to join your LinkedIn network.") doesn’t belong to either:
+   - **Promotions**: This category typically includes emails about sales, discounts, offers, newsletters related to products or services.
+   - **Primary categorization for this email falls under Social**:
+     - As it’s an invitation to connect on LinkedIn, a professional networking platform.
+     - This type of email aims to establish a connection between individuals for personal or professional purposes.
+
+So, the given email belongs to the **Social** category.

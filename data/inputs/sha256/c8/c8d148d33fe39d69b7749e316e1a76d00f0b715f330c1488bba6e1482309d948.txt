@@ -1,0 +1,12 @@
+You can see the Moon during the day for several reasons related to the relative brightness of the Moon and sunlight:
+
+1. **The Moon is still illuminated at daytime:** The Moon orbits the Earth in about 27.3 days in a phase called lunar cycle, going through eight distinct phases from New Moon to New Moon. Although we think of it as being divided into night-side visible (New Phase called Full Moon) and day-side visible phases invisible (New Moon), it’s actually always illuminated by the Sun. It’s just that half of the time one side facing the Earth is reflecting sunlight.
+   - About 47% of the Moon's surface facing the Sun is illuminated by sunlight at all times due to its angle of about 12 degrees relative to the Earth-Sun axis. This reflected sunlight is what makes the Moon visible from our planet.
+
+2. **Daytime sky brightness comparison:** Although the surface of the Sun appears incredibly bright to our eyes (approximately 2.5 billion times brighter than the Moon), its glare is diminished when viewed during the day by other light sources and atmospheric scattering effects in the Earth's atmosphere. In contrast, the Moon’s reflected sunlight, although much weaker than direct sunlight, still outshines the brightness of the surrounding daytime sky by a significant margin.
+
+3. **Contrast with the sky:** The blue tinted daytime sky has a relatively low intensity of around 10^-6 cd/m². On the other hand, a full moon reflects light with an intensity of around 0.12 cd/m² and a crescent moon about 0.05 cd/m² (candelas per square meter). As long as the Moon is brighter than its surroundings, it becomes visible.
+
+Given these conditions, even when the Sun is shining brightly, you can still see the Moon during the day if it is more than about 7% illuminated (called a crescent or visible phase during daylight hours). This is why you can usually spot the Moon during the day if you know where to look and when it is above the horizon.
+
+I hope this helps clarify why you can see the Moon during the day!

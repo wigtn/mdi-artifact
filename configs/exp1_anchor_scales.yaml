@@ -1,0 +1,132 @@
+# Exp 1 — variance grid, ANCHOR tier (gpt-5.6, core cells only).
+#
+# Purpose (ADR-002 Update 2026-08-01): the judge axis. One core slice re-measured
+# with the expensive judge to (a) show MDI(env) moves across judges and (b) test
+# hypothesis H (ADR-013 Update §c): upgrading the judge does not shrink the
+# repeat-to-repeat wobble (pilot observed sigma 0.2887 == 0.2887, 20 cells only).
+#
+# Deliberately small: 50 items x 4 systems x 1 scale x N=8. N=8 keeps the sweep
+# comparable at VRR-Stop's M=8 while capping spend; the full decay curve
+# (N up to 20) lives on the dense tier. Same governance gates as exp1_dense.
+
+experiment: exp1_anchor_scales
+benchmark: summeval
+
+judge:
+  model: "gpt-5.6"                  # alias for gpt-5.6-sol
+  model_version: "unpinned-alias"
+  tier: "anchor"
+  provider: "openai"
+  provider_kind: "openai_compat"
+  endpoint: "https://api.openai.com/v1"
+  api_key_env: "OPENAI_API_KEY"
+  # gpt-5.6 rejects max_tokens (400); requires max_completion_tokens.
+  max_tokens_param: "max_completion_tokens"
+  serving_engine: null
+  quantization: null
+
+prompt:
+  prompt_id: "p_exp1_summ_v1"       # SAME template source as dense — judge is the only axis
+  paraphrase_id: "pp_0"
+  templates:
+    likert5: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 1-5 scale, where 1 is very poor and 5 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-5>}
+
+    likert10: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 1-10 scale, where 1 is very poor and 10 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 1-10>}
+    score100: |
+      You are evaluating the quality of a summary.
+
+      Read the source article and the candidate summary, then rate the summary's
+      overall quality on a 0-100 scale, where 0 is very poor and 100 is excellent.
+      Consider relevance, coherence, fluency, and factual consistency with the
+      source.
+
+      Source article:
+      {{source}}
+
+      Candidate summary:
+      {{candidate}}
+
+      Reply with JSON and nothing else, in exactly this form:
+      {"score": <integer 0-100>}
+grid:
+  task: ["summarization"]
+  scale: ["score100"]                # H strengthening: the finest scale (contrast to likert5, the coarsest)
+  temperature: [1.0]
+
+inputs:
+  kind: hf_datasets_server
+  dataset: "mteb/summeval"
+  config: "default"
+  split: "test"
+  builder: "summeval_close_pair"
+  fetch_rows: 100
+  n_items: 40                       # reduced from 50 to keep the reasoning-judge cost under cap
+  n_systems: 4
+
+repeats:
+  n: 8                              # sweep point shared with VRR-Stop M=8
+  max_attempts_factor: 2
+  seed_base: 20260801
+  sweep: [1, 3, 5, 8]
+
+exp2:
+  screening_repeats: [0]
+
+pilot:
+  n_items: 5
+  n_repeats: 2
+
+budget:
+  pilot_cap_usd: 5
+  # Raised to admit the 50-item anchor's worst-case 2N bound (first author,
+  # 2026-08-02: "50 items, I'll cover more budget"). Expected spend is ~$8;
+  # the cap must clear the SHARED ledger ($2.9 already spent) plus
+  # anchor's worst-case ~$27; parse failures have been 0 across 48k calls so
+  # the ~$27 worst case (all-2N-retry) does not actually materialize. This is
+  # the anchor tier's own cap, separate from the dense tier's $16.
+  cumulative_cap_usd: 36    # worst-case bound admits H-strengthening score100 cell; expected total ~$19.7
+
+pricing:
+  "gpt-5.6":
+    # Sol tier rate card, checked 2026-07-31.
+    input_usd_per_mtok: 5.00
+    output_usd_per_mtok: 30.00
+
+runtime:
+  concurrency: 8
+  # Cap 160 = ~3x headroom over measured output. Expected recalibrated from the
+  # 2026-08-02 pilot ledger: 1,926 out-tokens / 40 calls = 48.2 per call
+  # (likert5; the 2026-07-31 spike's 79/call was under a 512 cap).
+  max_output_tokens: 160
+  expected_output_tokens: 48
+  chars_per_token: 4.0

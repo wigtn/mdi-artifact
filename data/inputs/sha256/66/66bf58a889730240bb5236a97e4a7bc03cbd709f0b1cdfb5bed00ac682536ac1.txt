@@ -1,0 +1,10 @@
+In brewing beer, hops are added at specific stages to achieve the desired flavor, bitterness, aroma, and stability. Here's a breakdown of when hops are typically added during the brewing process:
+
+1. **Bittering hop addition** (Boil, early stage): Typically around 60-75 minutes into the boil. At this stage, high-alpha-acid hops (high in bittering compounds) are added to impart bitterness to balance the sweetness of the malt. This is the primary purpose of bittering hops.
+2. **Flavor/aroma hop additions** (Boil, middle to late stage): Adding hops with a lower alpha acid content (more focused on flavor and aroma) between 15-30 minutes before the end of the boil. These hops contribute to the beer's flavor profile, aroma, and mouthfeel.
+3. **Dry-hopping** (Post-fermentation): After primary fermentation is complete, hops can be added to the beer and left to steep for a few days (usually 2-14 days) to extract aromatic and flavorful compounds. This technique is commonly used in IPAs, Pale Ales, and Double/IP Double IPAs.
+4. **Whirlpool hop addition** (Late boil or post-boil): Some breweries add hops during the whirlpool phase, which occurs after the boil and before cooling the wort. This helps to clarify the beer and retain hop particles and oils.
+
+Keep in mind that specific hop addition schedules may vary depending on the brewery, recipe, and style of beer being brewed. Experienced brewers may also experiment with different hop addition strategies to create unique flavor profiles.
+
+I hope that covers the hop additions process!

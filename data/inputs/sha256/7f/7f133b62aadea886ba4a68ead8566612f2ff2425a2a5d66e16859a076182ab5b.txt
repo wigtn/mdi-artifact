@@ -1,0 +1,41 @@
+## Annotated Bibliography: Social Media Technologies
+
+**Blogs**
+
+1.  **Automattic. (n.d.). WordPress.com. Retrieved from https://wordpress.com/**
+
+    *This entry describes WordPress.com, a popular hosted blogging platform. It outlines the platform's features, including customizable themes, easy content management, and a vast community of users. The annotation highlights WordPress.com's accessibility and user-friendliness, making it a widely adopted platform for personal and professional blogging.*
+
+**Social Networking Sites**
+
+2.  **Facebook, Inc. (2023). Facebook. Retrieved from https://www.facebook.com/**
+
+    *This entry focuses on Facebook, the largest social networking site globally. It discusses its core functionalities like connecting with friends and family, sharing updates, joining groups, and engaging in discussions. The annotation emphasizes Facebook's impact on social interaction, news dissemination, and marketing, while acknowledging concerns regarding privacy and data security.*
+
+**Virtual Social Worlds**
+
+3.  **Linden Lab. (n.d.). Second Life. Retrieved from https://secondlife.com/**
+
+    *This entry explores Second Life, a pioneering virtual world platform. It describes its 3D environment, user-created avatars, and diverse activities like socializing, attending events, and building virtual businesses. The annotation highlights Second Life's potential for immersive experiences, virtual tourism, and alternative economies, but also mentions its challenges in user retention and mainstream adoption.*
+
+**Virtual Game Worlds**
+
+4.  **Activision Blizzard. (2023). World of Warcraft. Retrieved from https://worldofwarcraft.com/**
+
+    *This entry analyzes World of Warcraft, a massively multiplayer online role-playing game (MMORPG). It details its persistent world, complex gameplay, and thriving community. The annotation focuses on World of Warcraft's influence on online gaming, its social aspects fostering teamwork and competition, and its impact on esports and virtual economies.*
+
+**Collaborative Projects**
+
+5.  **Wikimedia Foundation. (n.d.). Wikipedia. Retrieved from https://www.wikipedia.org/**
+
+    *This entry examines Wikipedia, a collaborative online encyclopedia. It explains its open-source nature, user-generated content, and vast repository of knowledge. The annotation emphasizes Wikipedia's democratization of information, its reliance on community editing and fact-checking, and its influence on online research and education.*
+
+**Content Communities**
+
+6.  **DeviantArt, Inc. (2023). DeviantArt. Retrieved from https://www.deviantart.com/**
+
+    *This entry explores DeviantArt, a platform dedicated to art and creative expression. It describes its diverse content, ranging from digital art and photography to literature and music, and its focus on community feedback and critique. The annotation highlights DeviantArt's role in fostering artistic talent, providing a platform for sharing and discussing art, and connecting artists with audiences.*
+
+
+
+This annotated bibliography provides a starting point for understanding the diverse landscape of social media technologies across different categories. Remember to cite these entries correctly in your own work and delve deeper into each platform for a comprehensive understanding.

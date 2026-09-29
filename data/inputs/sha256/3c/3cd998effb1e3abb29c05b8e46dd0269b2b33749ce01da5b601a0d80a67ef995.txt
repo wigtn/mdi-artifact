@@ -1,0 +1,31 @@
+What a thrilling request! I present to you: **Auravora, the Electric Sparkwing**
+
+**Type:** Electric/Flying
+
+**Description:** Auravora is a nocturnal, insectoid Pokémon with iridescent blue and gold plumage. Its slender body resembles a cross between a dragonfly and a swallow, with six agile wings that generate a mesmerizing aura. The wings' edges are lined with tiny, glowing circuits that store and channel electricity. Two large, shining blue compound eyes seem to absorb and reflect light, allowing Auravora to navigate and hunt in the darkest skies. A delicate, crescent-shaped crest on its forehead pulsates with electricity, emitting a soft humming noise. Its long, slender tail ends in a sparkling, fiber-optic-like filament that helps balance and communicate.
+
+**Stats:**
+
+**Level 50 Auravora**
+
+* **HP:** 78
+* **Attack:** 130 (special attack focus)
+* **Defense:** 90
+* **Special Defense:** 120
+* **Speed:** 150
+* **Sp. Attack:** 100
+* **Sp. Def:** 80
+
+**Abilities:**
+
+1. **Auric Surge** (Passive): Auravora's electric wings generate a 10% chance to electrify its attacks, dealing additional Paralyzing shock damage to opponents.
+2. **Sky Dancer** (Passive): Auravora's speed increases by 20% when its HP is above 50%.
+
+**Moves:**
+
+* **Level-up:** Electro Web, Quick Attack, Agility, Thunderbolt, Air Slash, Spark
+* **Egg Move:** Whirlwind
+
+**Behavior:** Auravora is a solitary hunter, often found near luminescent plants or bioluminescent caves. It uses its electric powers to navigate and stun prey, which it then devours with its long, extendable proboscis. Trainers who earn its trust can form strong bonds with Auravora, as it values intelligence and agility.
+
+There you have it! Auravora, a dazzling and formidable Electric/Flying-type Pokémon, ready to light up the skies.

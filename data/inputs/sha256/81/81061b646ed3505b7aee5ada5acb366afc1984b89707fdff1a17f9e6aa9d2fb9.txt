@@ -1,0 +1,30 @@
+### What are Area and Perimeter in Geometry?
+
+In geometry, two fundamental concepts used to describe the measurements of various two-dimensional shapes are **Area** and **Perimeter**.
+
+### **Area:**
+The **Area** of a shape is the amount of space enclosed within its boundaries. It is measured in square units, such as square centimeters (cm²), square meters (m²), square feet (ft²), or square inches (in²). The formula to calculate the area varies depending on the shape:
+
+* For Rectangles: Area = Length (l) × Width (w)
+* For Triangles: Area = (Base × Height) / 2
+* For Circles: Area = π (Pi) × Radius² ≈ 3.14 × r²
+* For Triangles, Parallelograms, and General Shapes with known formulas: Refer to their specific formulas.
+
+### **Perimeter:**
+The **Perimeter** of a shape is the distance around its border or boundary. It is measured in linear units, such as centimeters (cm), meters (m), feet (ft), or inches (in). The perimeter formula also varies based on the shape:
+
+* For Rectangles: Perimeter = 2 × (Length + Width)
+* For Triangles: Perimeter = a + b + c, where a, b, and c are the lengths of the sides
+* For Circles: Perimeter is also known as Circumference, which is Circumference = 2 × π × Radius ≈ 2 × 3.14 × r
+
+### Key Points to Remember:
+- Area measures the internal space of a shape.
+- Perimeter measures the length of its boundary.
+- Units of area are square units, while units of perimeter are linear units.
+- Understanding these concepts is crucial in various fields like architecture, engineering, design, and construction.
+
+### Examples:
+- A rectangular garden with a length of 10 meters and a width of 5 meters has an area of 10 × 5 = 50 square meters and a perimeter of 2 × (10 + 5) = 30 meters.
+- A circle with a radius of 4 centimeters has an area of approximately π × 4² = approximately 50.27 square centimeters and a circumference of approximately 2 × π × 4 = approximately 25.13 centimeters.
+
+Understanding area and perimeter helps you to effectively calculate and visualize various geometric shapes in everyday life, from designing rooms to building bridges.

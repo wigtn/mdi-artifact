@@ -1,0 +1,49 @@
+Here's how we can estimate the number of atoms in a grain of salt:
+
+**1. Identify the Chemical Composition:**
+
+* Table salt is primarily composed of sodium chloride (NaCl).  This means each "grain" is made up of molecules of sodium (Na) and chlorine (Cl) atoms bonded together.
+
+**2.  Estimate the Mass of a Grain of Salt:**
+
+*  A typical grain of salt is very small, let's roughly estimate its mass to be 0.1 milligrams (mg).
+
+**3. Convert Mass to Grams:**
+
+* There are 1000 milligrams (mg) in 1 gram (g). So, 0.1 mg is equal to 0.0001 grams (g).
+
+**4.  Find the Molar Mass of NaCl:**
+
+* The molar mass of NaCl is the mass of one mole of sodium chloride.  You can find this on the periodic table:
+    * Sodium (Na) has a molar mass of approximately 23 g/mol.
+    * Chlorine (Cl) has a molar mass of approximately 35.5 g/mol.
+    * The molar mass of NaCl is 23 + 35.5 = 58.5 g/mol.
+
+**5. Calculate the Number of Moles of NaCl:**
+
+*  Use the formula: moles = mass / molar mass
+*  Moles of NaCl = 0.0001 g / 58.5 g/mol = approximately 1.7 x 10^-6 moles
+
+**6.  Use Avogadro's Number:**
+
+* Avogadro's number (6.022 x 10^23) tells us the number of particles (atoms, molecules, etc.) in one mole of a substance.
+
+**7. Calculate the Number of NaCl Molecules:**
+
+* Number of NaCl molecules = moles x Avogadro's number
+* Number of NaCl molecules = 1.7 x 10^-6 moles x 6.022 x 10^23 molecules/mole 
+* Number of NaCl molecules ≈ 1 x 10^18 molecules
+
+**8.  Account for Atoms per Molecule:**
+
+* Each NaCl molecule contains 2 atoms (1 sodium atom and 1 chlorine atom).
+
+**9. Calculate the Total Number of Atoms:**
+
+* Total number of atoms = number of NaCl molecules x 2 atoms/molecule
+* Total number of atoms ≈ 1 x 10^18 molecules x 2 atoms/molecule 
+* Total number of atoms ≈ 2 x 10^18 atoms
+
+
+
+**Therefore, a typical grain of salt contains approximately 2 x 10^18 atoms.** Keep in mind that this is a rough estimate, as the actual number of atoms can vary depending on the size and shape of the individual grain.

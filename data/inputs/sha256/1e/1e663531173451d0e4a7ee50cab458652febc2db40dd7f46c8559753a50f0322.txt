@@ -1,0 +1,3 @@
+Translate the natural language description into a Google Sheets formula.
+
+if C7 is equal to "U.S.A." or "Canada" or "Europe" or "The Americas"

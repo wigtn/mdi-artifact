@@ -1,0 +1,31 @@
+Here's an Annotated Bibliography in APA citation style with six entries describing different social media technologies in the requested categories:
+
+Blogs:
+Nardi, B. A., Schiano, D. J., Gumbrecht, M., & Swartz, L. (2004). Why we blog. Communications of the ACM, 47(12), 41-46.
+
+This article explores the motivations behind blogging, identifying five major reasons why people engage in this form of social media: documenting one's life, providing commentary and opinions, expressing emotions, articulating ideas through writing, and forming and maintaining community forums. The authors conducted interviews with bloggers and analyzed their content to derive these insights, providing a foundational understanding of the blog as a social media technology.
+
+Social Networking Sites:
+Boyd, D. M., & Ellison, N. B. (2007). Social network sites: Definition, history, and scholarship. Journal of Computer-Mediated Communication, 13(1), 210-230.
+
+Boyd and Ellison provide a comprehensive overview of social networking sites, tracing their evolution from the first recognizable social network site in 1997 to the proliferation of platforms in the mid-2000s. The article offers a definition of social network sites, discusses their key features, and examines the existing body of research on these platforms. This work is essential for understanding the development and impact of social networking sites as a distinct category of social media.
+
+Virtual Social Worlds:
+Messinger, P. R., Stroulia, E., Lyons, K., Bone, M., Niu, R. H., Smirnov, K., & Perelgut, S. (2009). Virtual worlds — past, present, and future: New directions in social computing. Decision Support Systems, 47(3), 204-228.
+
+This article provides an in-depth examination of virtual social worlds, focusing on their history, current state, and potential future developments. The authors discuss various aspects of virtual worlds, including their business models, technological foundations, and social implications. The paper offers valuable insights into the unique characteristics of virtual social worlds as a social media technology and their potential impact on human interaction and commerce.
+
+Virtual Game Worlds:
+Ducheneaut, N., Yee, N., Nickell, E., & Moore, R. J. (2006). Building an MMO with mass appeal: A look at gameplay in World of Warcraft. Games and Culture, 1(4), 281-317.
+
+This study focuses on World of Warcraft, one of the most popular virtual game worlds, to understand the elements that contribute to its mass appeal. The authors analyze player behavior, social interactions, and game mechanics to provide insights into the unique characteristics of virtual game worlds as a form of social media. The paper highlights how these platforms facilitate social connections and community-building through shared gaming experiences.
+
+Collaborative Projects:
+Forte, A., & Bruckman, A. (2005). Why do people write for Wikipedia? Incentives to contribute to open-content publishing. Proceedings of GROUP 2005, 6-9.
+
+This paper examines Wikipedia as a prime example of collaborative projects in social media. The authors investigate the motivations behind voluntary contributions to this open-content platform, shedding light on the unique dynamics of collaborative knowledge creation. The study provides valuable insights into the factors that drive participation in collaborative projects and the potential of these platforms for large-scale information sharing and curation.
+
+Content Communities:
+Burgess, J., & Green, J. (2009). YouTube: Online video and participatory culture. Polity Press.
+
+This book offers a comprehensive analysis of YouTube as a content community platform. The authors explore how YouTube has transformed online video sharing and fostered a participatory culture. They examine the platform's impact on media production, distribution, and consumption, as well as its role in shaping online social interactions. This work provides a thorough understanding of content communities as a distinct category of social media technology and their influence on contemporary digital culture.

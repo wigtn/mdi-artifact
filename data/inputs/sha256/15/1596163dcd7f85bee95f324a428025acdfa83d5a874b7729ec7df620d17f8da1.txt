@@ -1,0 +1,4 @@
+Answer the question about the paper after reading it carefully.
+
+To evaluate if the Transformer can generalize to other tasks we performed experiments on English constituency parsing. This task presents specific challenges: the output is subject to strong structural constraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence models have not been able to attain state-of-the-art results in small-data regimes.
+Question: What is English constituency parsing?

@@ -1,0 +1,39 @@
+**Annotated Bibliography in APA Style**
+
+**Category: Blogs**
+
+1. **Technorati** (2002). The State of the Blogosphere (2007). _Technorati's State of the Blogosphere Report_
+
+This report provides an overview of the early blogging landscape, setting the stage for the evolution of online publishing. It highlights the growth, demographics, and trends of the blogosphere, offering insights into the emergence of blogging as a significant social media platform. (DOI: 10.6084/m9.figshare.785422.v1)
+
+**Category: Social Networking Sites**
+
+2. **Boyd, D. M., & Ellison, N. B.** (2008). Social network sites: Definition, history, and scholarship. _Journal of Computer-Mediated Communication, 13_(1), 210-230.
+
+This seminal article defines social network sites, explores their history, and synthesizes existing research on the topic. It serves as a foundational text for understanding the development and impact of social networking sites like Facebook, Twitter, and LinkedIn.
+
+**Category: Virtual Social Worlds**
+
+3. **Steinkuehler, C. A.** (2004). Cognition and cooperation in massively multiplayer online games. _Games and Culture, 3_(3-4), 331-353.
+
+This study examines the social dynamics in virtual worlds, specifically in massively multiplayer online games (MMOs) like Second Life. Steinkühler investigates how players collaborate, communicate, and develop social structures, shedding light on the complexities of online social interaction.
+
+**Category: Virtual Game Worlds**
+
+4. **Ducheneaut, N., Yee, N., & Hendrix, C.** (2001). The Life and Times of Online Game Characters. In _Proceedings of CHI 2001_ (pp. 677-682). Association for Computing Machinery.
+
+This paper delves into the world of online gaming, analyzing player behavior and character development in MMORPGs (Massively Multiplayer Online Role-Playing Games). The study reveals insights into player motivations, identity formation, and social interactions within virtual game worlds.
+
+**Category: Collaborative Projects**
+
+5. **Wenger, E., McDermott, R., & Snyder, W. M.** (2002). _Cultivating Communities of Practice: A Guide to Building Learning Organizations_. Jossey-Bass. (Chapter 6: "Wikis and Other Collaborative Tools")
+
+While not exclusively focused on a specific technology, this book chapter highlights the emergence of wiki-based collaboration platforms, like Wikipedia, and their potential to facilitate knowledge sharing and community building.
+
+**Category: Content Communities**
+
+6. **Hargittai, E., & Sandvig, C.** (2015). _Digital Content Creation and Sharing: A Study of Flickr Users_. _Journal of Computer-Mediated Communication, 20_(2), 147-165.
+
+This study explores the Flickr photo-sharing platform, examining the behaviors and motivations of content creators and sharers. The research provides insights into the dynamics of user-generated content communities, highlighting the social aspects of content creation and sharing online.
+
+Note: DOI links are provided when available; otherwise, the reference information is complete for direct lookup.

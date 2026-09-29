@@ -1,0 +1,27 @@
+In Java, `==` and `equals()` are two distinct methods with different purposes when it comes to string comparison.
+
+**`==` (Reference Equality Operator):**
+
+The `==` operator checks if both operands refer to the same object in memory. It compares the references, not the string contents. This means it checks if both variables point to the exact same instance in memory.
+
+**Issues with using `==` for string comparison:**
+
+1. **String interning**: Strings in Java are interned by the compiler and runtime. This means literals with the same value may share the same memory location. For example, `"abc".equals("abc")` might return true not because the comparison is magic, but because both refer to the same internally cached instance. However, this is an implementation detail, and you shouldn't rely on it.
+2. **Manually created strings**: When you create strings using the `new` keyword, e.g., `String s = new String("abc");`, different objects are created, even with the same content. `s1 == new String("abc")` would be `false`, despite both containing the same characters.
+
+**`equals()` method:**
+
+The `equals()` method, defined in the `Object` class and overridden by `String`, compares the contents of two strings. It checks if the character sequences are the same.
+
+**When to use each:**
+
+* Use `==` when you need to check if two variables refer to the same object instance (e.g., in cache lookup or specific algorithmic requirements).
+* Use `equals()` when you need to compare the actual string values, regardless of the object instance.
+
+**Best practice:**
+
+Always use `equals()` to compare strings in Java, unless you have a specific reason to check for reference equality (as mentioned above).
+
+In your case, switching from `==` to `equals()` fixed the bug because you likely compared two different string objects created separately, and `equals()` correctly compared their contents.
+
+Remember: for strings, `equals()` is the safe and intended way to compare their values. `==` is best reserved for reference equality checks.

@@ -1,0 +1,45 @@
+## Electribyte: The Circuit Pokémon
+
+**Type:** Electric
+
+**Description:**
+
+Electribyte is a small, rodent-like Pokémon with a sleek, metallic body resembling circuitry. Its fur is a vibrant blue, crackling with static electricity. Two large, glowing antennae sprout from its head, constantly pulsing with energy. Its eyes are bright yellow, like miniature LEDs, and it has tiny, nimble paws tipped with conductive metal claws. Electribyte's tail ends in a bulbous sphere that emits a faint, humming light, acting as a power source for its body.
+
+**Behavior:**
+
+Electribyte is a curious and energetic Pokémon, always eager to explore and experiment with electricity. It loves to play pranks by short-circuiting appliances and generating small sparks. While its electricity isn't powerful enough to be dangerous, it can be quite annoying for unsuspecting humans. Electribyte thrives in urban environments, finding endless sources of electrical energy to absorb and manipulate.
+
+**Evolution:**
+
+Electribyte evolves into **Voltstrike** at level 30.
+
+**Stats (Base):**
+
+* HP: 50
+* Attack: 65
+* Defense: 45
+* Special Attack: 80
+* Special Defense: 55
+* Speed: 70
+
+**Abilities:**
+
+* Static (Normal): 30% chance to paralyze an opponent upon physical contact.
+* Spark Surge (Hidden Ability): Increases the power of Electric-type moves used by Electribyte and its allies by 1.2x.
+
+**Moves (Learned by Leveling):**
+
+* Tackle
+* Thunder Shock
+* Quick Attack
+* Growl
+* Spark
+* Nuzzle
+* Thunder Wave
+* Discharge
+* Volt Switch
+
+**Design Inspiration:**
+
+Electribyte draws inspiration from common household electronics, circuit boards, and rodents known for their electrical conductivity, like rats. Its design aims to be cute and approachable while conveying a clear electric theme through its colors, antennae, and glowing tail.

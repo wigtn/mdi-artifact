@@ -1,0 +1,21 @@
+Here are the distinctions between Computer Organization and Computer Architecture in full sentence points, explained to secure 6 marks:
+
+### **1. Definition in Terms of Scope:**
+**Computer Architecture** refers to the design and implementation of the internal processes, functional elements, and organization of a computer system, specifically focusing on its functional parts such as processor, memory hierarchy, input-output systems, and networks that define how these components interact with each other at the bit-level and instruction-level.
+
+### **2. Focus:**
+Computer Architecture emphasizes the structure and behavior of individual components, their interfaces, and how they work together to execute instructions; whereas, **Computer Organization** concentrates on how these components are combined and managed to achieve overall system performance, efficiency, and usability.
+
+### **3. Layer of Abstraction:**
+Computer Architecture deals with the lowest two layers of the system hierarchy: the hardware components and the machine language that they execute. Computer Organization involves the middle layers, including the operating system, memory hierarchy management, input-output operations, and communication between these components.
+
+### **4. Concerns:**
+Computer Architecture is concerned with questions like "What are the components?" and "How do they communicate?", whereas Computer Organization is concerned with questions like "How do these components work together?", "How are resources allocated?", and "How efficiently does the system run programs?".
+
+### **5. Goal:**
+The primary goal of Computer Architecture is to design an efficient and effective way to execute machine code instructions, while the primary goal of Computer Organization is to manage the interaction among components to achieve better performance, scalability, and maintainability.
+
+### **6. Relationship:**
+In summary, Computer Architecture provides the foundation upon which Computer Organization builds its strategies for efficient resource utilization, process synchronization, and overall system performance. In other words, a well-designed computer architecture enables effective computer organization.
+
+These distinctions highlight that while computer architecture focuses on the design of individual components and their interactions at a low level, computer organization considers how these components work together at a higher level to achieve system-level goals.

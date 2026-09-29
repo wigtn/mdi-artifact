@@ -1,0 +1,39 @@
+Since you have SSH access to both servers from your local laptop, but the servers can't directly communicate with each other, you can use your local machine as an intermediary to transfer the files. Here's how you can do it using the `scp` (secure copy) command:
+
+1. First, copy the directory from server A to your local machine:
+
+```bash
+scp -r user_A@server_A:~/Documents/training_results ~/temp_training_results
+```
+
+This command copies the `training_results` directory from server A to a temporary location on your local machine.
+
+2. Then, copy the directory from your local machine to server B:
+
+```bash
+scp -r ~/temp_training_results user_B@server_B:~/training_results
+```
+
+This command copies the temporary directory from your local machine to server B.
+
+3. Optionally, remove the temporary directory from your local machine:
+
+```bash
+rm -r ~/temp_training_results
+```
+
+You can combine these steps into a single line using a subshell:
+
+```bash
+(scp -r user_A@server_A:~/Documents/training_results ~/temp_training_results && scp -r ~/temp_training_results user_B@server_B:~/training_results && rm -r ~/temp_training_results)
+```
+
+This will perform all the steps in sequence.
+
+Note:
+- Replace `user_A` and `user_B` with the appropriate usernames for each server.
+- Replace `server_A` and `server_B` with the appropriate hostnames or IP addresses.
+- If you're using non-standard SSH ports, add `-P port_number` to each `scp` command.
+- If the directories are large, you might want to use compression by adding the `-C` flag to the `scp` commands.
+
+Remember that this method will use your local machine's bandwidth and storage as an intermediary, so it might not be ideal for very large directories or if you have limited local storage or bandwidth.

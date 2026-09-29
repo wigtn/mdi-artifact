@@ -1,0 +1,79 @@
+TypeScript provides you with several ways to specify union types that you want to narrow or assert a value will actually be of a single type in runtime conditions. Here's a breakdown of the methods to achieve this:
+
+### 1. **Assertions using `asserts` and Utility Types (TS 3.7+)**
+You can use the `asserts` feature along with utility types like `as const` and `infer` from the `utility-types` library by Lodash maintainer Miguel Castro (types-contrib). The primary idea here is to leverage const assertions. Here's an example:
+
+```typescript
+import { ConditionalType } from 'utility-types';
+
+type SingleTypeFromUnion<T extends readonly [unknown, ...(infer U[]) as { readonly [K in keyof typeof U]: typeof U[K] extends never ? never : typeof U[K] }[number]>> =
+    T[number] extends assert const t : typeof t : never;
+
+const enum Values = ['string', 'stringonly'] as const;
+type SingleType = SingleTypeFromUnion<typeof Values[number]>;
+
+// Now, you can confirm `SingleType` is exactly the type 'string'
+assertionType<string>(SingleType); // In reality, it's guaranteed at compile-time.
+// At runtime, TypeScript assertions do nothing but warnings without the flag '--noEmitWebpackNames' and '--noErrorOnUnmountedAsserts'. You can enable fatal assertions with `process.env.TS_ASSERTIONS = 'true'`.
+```
+
+### 2. **Type Guards**
+You can write a type guard function that narrows the type within its scope. This approach is more common and does not require any special TypeScript flags or third-party libraries.
+
+```typescript
+type StringOnly = 'string' | 'never-actually-happening-types';
+
+function isActualString(value: StringOnly): value is 'string' {
+    return value !== 'never-actually-happening-types';
+}
+
+function process(value: StringOnly) {
+    if (isActualString(value)) {
+        console.log("This will always be a string"); // TypeScript knows it's 'string' here
+        return value.toUpperCase();
+    } else {
+        throw new Error("This should never happen");
+    }
+}
+```
+
+### 3. **Control Flow Analysis**
+If your types are related to values determined by conditional statements or loops, you can leverage TypeScript’s control flow analysis.
+
+```typescript
+type ActualString = 'string';
+
+function processEnum(value: ('string' | 'not-string-that-will-never-happen')[]
+) {
+    const singleValue = value.find((v) => v !== 'not-string-that-will-never-happen');
+    if (singleValue) {
+        // TypeScript knows `singleValue` is of type 'ActualString' here
+        console.log(singleValue.toUpperCase());
+        return singleValue.toUpperCase();
+    } else {
+        throw new Error("This array should only contain one type.");
+    }
+}
+```
+
+### 4. **Type Narrowing in Enums**
+When working with enums and you know all possible values are provided when the enum is declared, you can ensure that at runtime, it will only be one specific value by casting it correctly.
+
+```typescript
+enum ActualSingleEnum {
+    STRING
+}
+
+function processEnum(enumValue: typeof ActualSingleEnum) {
+    // TypeScript knows enumValue will only be ActualSingleEnum.STRING
+    switch (enumValue) {
+        case ActualSingleEnum.STRING:
+            console.log("Only one value exists.");
+            break;
+        default:
+            throw new Error("This should never happen");
+    }
+}
+```
+
+By choosing the right approach depending on your specific situation, you can effectively tell TypeScript about your knowledge of the actual type of a value within a union while maintaining strong type safety throughout your application.

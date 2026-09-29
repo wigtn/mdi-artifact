@@ -1,0 +1,50 @@
+Certainly! Here's a Python script that implements a regular expression to validate an email address:
+
+```python
+import re
+
+def validate_email(email):
+    # Regular expression pattern for email validation
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    
+    # Use re.match to check if the email matches the pattern
+    if re.match(pattern, email):
+        return True
+    else:
+        return False
+
+# Test the email validation function
+while True:
+    email = input("Enter an email address (or 'q' to quit): ")
+    
+    if email.lower() == 'q':
+        break
+    
+    if validate_email(email):
+        print("Valid email address")
+    else:
+        print("Invalid email address")
+```
+
+This script does the following:
+
+1. We import the `re` module to use regular expressions in Python.
+
+2. We define a function called `validate_email` that takes an email address as input.
+
+3. Inside the function, we define a regular expression pattern for email validation:
+   - `^` asserts the start of the string
+   - `[a-zA-Z0-9._%+-]+` matches one or more characters that can be letters, digits, or certain special characters for the local part of the email
+   - `@` matches the @ symbol
+   - `[a-zA-Z0-9.-]+` matches one or more characters for the domain name
+   - `\.` matches a literal dot
+   - `[a-zA-Z]{2,}` matches two or more letters for the top-level domain
+   - `$` asserts the end of the string
+
+4. We use `re.match()` to check if the email matches the pattern. If there's a match, we return `True`; otherwise, we return `False`.
+
+5. We create a loop that prompts the user to enter an email address and validates it using the `validate_email` function.
+
+6. The loop continues until the user enters 'q' to quit.
+
+This regular expression pattern covers most common email formats, but it's worth noting that email validation can be complex, and there are some edge cases that this pattern might not cover. For production use, you might want to consider using a more comprehensive email validation library or referring to the official email address specification (RFC 5322) for a more robust solution.
